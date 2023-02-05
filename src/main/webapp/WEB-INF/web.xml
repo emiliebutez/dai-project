@@ -1,0 +1,46 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+	<display-name>Archetype Created Web Application</display-name>
+	<servlet>
+		<servlet-name>HelloWordController</servlet-name>
+		<display-name>HelloWordController</display-name>
+		<description></description>
+		<servlet-class>controller.HelloWordController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ConnexionController</servlet-name>
+		<display-name>ConnexionController</display-name>
+		<description></description>
+		<servlet-class>controller.ConnexionController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>AccueilController</servlet-name>
+		<display-name>AccueilController</display-name>
+		<description></description>
+		<servlet-class>controller.AccueilController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>index</servlet-name>
+		<jsp-file>/index.jsp</jsp-file>
+	</servlet>
+	<servlet>
+		<servlet-name>accueil.jsp</servlet-name>
+		<jsp-file>/accueil.jsp</jsp-file>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AccueilController</servlet-name>
+		<url-pattern>/accueil</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ConnexionController</servlet-name>
+		<url-pattern>/ConnexionController</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>index</servlet-name>
+		<url-pattern>/index</url-pattern>
+	</servlet-mapping>
+</web-app>
