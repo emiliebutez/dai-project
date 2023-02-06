@@ -82,6 +82,10 @@ public class Groupe {
 		this.sessionsCours.add(session);
 	}
 
+	public Set<Utilisateur> getEtudiantsGroupe() {
+		return etudiantsGroupe;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, nom);

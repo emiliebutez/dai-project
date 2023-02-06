@@ -36,6 +36,10 @@
 		<description></description>
 		<servlet-class>controller.CtrlListeAppel</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>listeAppel.jsp</servlet-name>
+		<jsp-file>/listeAppel.jsp</jsp-file>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>AccueilController</servlet-name>
