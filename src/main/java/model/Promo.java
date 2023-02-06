@@ -1,26 +1,22 @@
 package model;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "groupes")
-public class Groupe {
+@Table(name = "promos")
+public class Promo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,28 +25,15 @@ public class Groupe {
 	@Column(name = "nom")
 	private String nom;
 	
-	// Relations 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name ="id_promo")
-	private Promo promo;
+	//Relations 
+	@OneToMany(mappedBy="promo", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Set<Groupe> groupes = new HashSet<>();
 	
-	@ManyToMany
-	@JoinTable (name = "composer",
-		joinColumns = @JoinColumn(name = "code_groupe"), 
-		inverseJoinColumns = @JoinColumn(name = "code_utilisateurs"))
-	private Set<Utilisateur> etudiantsGroupe = new HashSet<>();
-	
-	@ManyToMany
-	@JoinTable (name = "assister",
-		joinColumns = @JoinColumn(name = "code_groupe"), 
-		inverseJoinColumns = @JoinColumn(name = "code_sessionCours"))
-	private Set<Utilisateur> sessionsCours = new HashSet<>();
-	
-	public Groupe() {
+	public Promo() {
 		
 	}
 
-	public Groupe(Long id, String nom) {
+	public Promo(Long id, String nom) {
 		this.id = id;
 		this.nom = nom;
 	}
@@ -84,7 +67,7 @@ public class Groupe {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Groupe other = (Groupe) obj;
+		Promo other = (Promo) obj;
 		return Objects.equals(id, other.id) && Objects.equals(nom, other.nom);
 	}
 }

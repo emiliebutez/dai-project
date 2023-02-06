@@ -1,14 +1,19 @@
 package model;
 
 import java.time.OffsetDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -26,7 +31,16 @@ public class SessionCours {
 	private OffsetDateTime fin;
 	
 	@ManyToOne
+	@JoinColumn(name ="id_enseignant")
 	private Utilisateur enseignant;
+	
+	// Relations 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name ="id_cours")
+	private Cours cours;
+	
+	@ManyToMany(mappedBy = "sessionsCours")
+	private Set<Utilisateur> etudiants = new HashSet<>();
 	
 	public SessionCours() {
 		
