@@ -42,6 +42,10 @@ public class SessionCours {
 	@ManyToMany(mappedBy = "sessionsCours")
 	private Set<Utilisateur> etudiants = new HashSet<>();
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name ="id_groupe")
+	private Groupe groupe;
+	
 	public SessionCours() {
 		
 	}
