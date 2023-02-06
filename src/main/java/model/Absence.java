@@ -1,7 +1,10 @@
 package model;
 
+import java.io.File;
+import java.util.HashMap;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,11 +24,18 @@ public class Absence {
 	
 	@ManyToOne
 	SessionCours sessionCours;
+	private HashMap<Cours,Utilisateur> absMap = new HashMap<>();
+	@Column(name = "Justificatif")
+	private File justificatif = new File("C:\\Users\\amine\\Desktop\\pdf.pdf");
+	@Column(name = "validation")
+	private boolean validation = false ;
+	
 	
 	public Absence() {
 		
+		
 	}
-	
+ 
 	public Absence(Utilisateur utilisateur, SessionCours sessionCours) {
 		this.utilisateur = utilisateur;
 		this.sessionCours = sessionCours;

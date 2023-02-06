@@ -9,6 +9,7 @@
 		<property name="hibernate.connection.username">21709745</property>
 		<property name="hibernate.connection.password">S00CZ7</property>
 
+
 		<!-- Parseur HQL -->
 		<property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
 		<property name="hibernate.show_sql">true</property>

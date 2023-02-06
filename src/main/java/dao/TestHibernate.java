@@ -12,6 +12,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+
 import model.Absence;
 import model.LigneAbsence;
 import model.Statut;
@@ -32,7 +33,7 @@ public class TestHibernate
 	public static void creationUtilisateur () throws ParseException {
 		try (Session session = HibernateUtil.getSessionFactory().getCurrentSession()) {
 			Transaction t = session.beginTransaction();
-			
+
 			Utilisateur u = new Utilisateur("emiliebutez.eb@gmail.com", "123","butez", "emilie", Statut.Etudiant, true, 21801546L);
 			
 			session.save(u);
