@@ -24,7 +24,6 @@ public class Absence {
 	
 	@ManyToOne
 	SessionCours sessionCours;
-	private HashMap<Cours,Utilisateur> absMap = new HashMap<>();
 	@Column(name = "Justificatif")
 	private File justificatif = new File("C:\\Users\\amine\\Desktop\\pdf.pdf");
 	@Column(name = "validation")

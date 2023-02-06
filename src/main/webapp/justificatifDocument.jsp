@@ -13,7 +13,7 @@
 <body>
 <div class="container">
     <% Utilisateur u = (Utilisateur)session.getAttribute("utilisateur"); %>
-    <% out.print("<p> User :" + u.getNom() + " " + u.getPrenom() + "</p>");%>
+    <% out.print("<p>" + u.getNom() + " " + u.getPrenom() + "</p>");%>
     <form action="">
     <table class="table">
       <thead>
@@ -39,17 +39,19 @@
       <tbody>
       <% 
         for (LigneAbsence labs : (List<LigneAbsence>)request.getAttribute("listeAbs") ) {
+        	
         	out.println("<tr><td>" + labs.getNomCours() +"</td>");
         	out.println("<td>" + labs.getDtdebut() +"</td>");
         	out.println("<td>" + labs.getDtfin() +"</td>");
         	out.println("<td>" + labs.getNomGroupe()+"</td>");
-        	out.println("<td><input type=\"File\"/></td>");
-        	out.println("<td><input type=\"checkbox\"></input></td></tr>");
+        	out.println("<td> Aucun justificatif déposé.</td>");
+        	out.println("<td><input type=\"checkbox\" value= "+ labs.getAbsid() +" name=\"cb\"></input></td></tr>");
         } 
       %>
       </tbody>
     </table>
-    <button type="submit" class="btn btn-success">Success</button>
+    <input type="File" id="justificatif" name="justificatif"/>
+    <button type="submit" class="btn btn-success">Valider</button>
     </form>
     </div>
     </body>
