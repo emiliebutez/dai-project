@@ -53,6 +53,10 @@ public class Cours {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+	
+	public void addSessionCours(SessionCours session) {
+		this.sessionCours.add(session);
+	}
 
 	@Override
 	public int hashCode() {

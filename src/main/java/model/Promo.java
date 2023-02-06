@@ -53,6 +53,10 @@ public class Promo {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+	
+	public void addGroupe(Groupe groupe) {
+		this.groupes.add(groupe);
+	}
 
 	@Override
 	public int hashCode() {

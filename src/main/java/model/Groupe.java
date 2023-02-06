@@ -70,6 +70,18 @@ public class Groupe {
 		this.nom = nom;
 	}
 
+	public void setPromo(Promo promo) {
+		this.promo = promo;
+	}
+	
+	public void addEtudiant(Utilisateur etudiant) {
+		this.etudiantsGroupe.add(etudiant);
+	}
+	
+	public void addSession (SessionCours session) {
+		this.sessionsCours.add(session);
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, nom);

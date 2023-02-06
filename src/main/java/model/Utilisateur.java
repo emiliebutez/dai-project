@@ -85,6 +85,14 @@ public class Utilisateur {
 	public Statut getStatut() {
 		return this.statut;
 	}
+	
+	public void addSessionsCours(SessionCours session) {
+		this.sessionCoursEnseigne.add(session);
+	}
+	
+	public  void addGroupe(Groupe groupe) {
+		this.groupes.add(groupe);
+	}
 
 	@Override
 	public int hashCode() {
