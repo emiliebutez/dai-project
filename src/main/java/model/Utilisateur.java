@@ -41,7 +41,7 @@ public class Utilisateur {
 	private Statut statut;
 	
 	@Column(name= "alternant")
-	private boolean estAlternant;
+	private Boolean estAlternant;
 	
 	@Column(name = "numero_etudiant")
 	private Long numEtudiant;
