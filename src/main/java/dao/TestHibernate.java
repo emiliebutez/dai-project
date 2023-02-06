@@ -32,7 +32,9 @@ public class TestHibernate
 	public static void creationUtilisateur () throws ParseException {
 		try (Session session = HibernateUtil.getSessionFactory().getCurrentSession()) {
 			Transaction t = session.beginTransaction();
-			
+
+
+
 			Utilisateur u = new Utilisateur("emiliebutez.eb@gmail.com", "123","butez", "emilie", Statut.Etudiant, true, 21801546L);
 
 			
@@ -53,7 +55,7 @@ public class TestHibernate
 			 /*----- Ouverture d'une transaction -----*/
 	            Transaction t = session.beginTransaction();
 	         // Liste des abscence d'un etudiant "
-	            Query Liste = session.createQuery("Select new model.LigneAbsence(s.debut, s.fin, c.nom, g.nom)" +
+	            Query Liste = session.createQuery("Select new model.LigneAbsence(a.id, s.debut, s.fin, c.nom, g.nom )" +
 	                    "from model.Utilisateur u, model.Absence a, model.SessionCours s, model.Cours c, model.Groupe g "+
 	            		"where u.id = a.utilisateur.id " +
 	                    "and a.sessionCours.id = s.id " +

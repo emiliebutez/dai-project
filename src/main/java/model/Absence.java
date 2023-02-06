@@ -24,6 +24,9 @@ public class Absence {
 	
 	@ManyToOne
 	SessionCours sessionCours;
+
+	@Column(name = "Justificatif")
+
 	private File justificatif = new File("C:\\Users\\amine\\Desktop\\pdf.pdf");
 	@Column(name = "validation")
 	private boolean validation = false ;
