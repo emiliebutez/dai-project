@@ -85,6 +85,15 @@ public class Utilisateur {
 	public Statut getStatut() {
 		return this.statut;
 	}
+	
+	public String getNom() {
+		return nom;
+	}
+
+	
+	public String getPrenom() {
+		return prenom;
+	}
 
 	@Override
 	public int hashCode() {

@@ -11,5 +11,6 @@
 	<h1>Accueil</h1>
 	<% Utilisateur u = (Utilisateur)session.getAttribute("utilisateur"); %>
 	<%= u.getMail() %>
+	<a href="JustificatifController">Click</a>
 </body>
 </html>
