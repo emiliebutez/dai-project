@@ -71,6 +71,29 @@ public class TestHibernate
 	            return lst;
 		 }		
 	}
+	
+	
+	public static List<LigneAbsence> hqlabsSc(){
+		try (Session session = HibernateUtil.getSessionFactory().getCurrentSession())
+		{
+	/*----- Ouverture d'une transaction -----*/
+			session.beginTransaction();
+
+	/*----- Requête HQL, retour sous forme d'une liste de tableau d'objets  -----*/
+		Query liste1 = session.createQuery("Select new model.LigneAbsence(u.id, a.id, s.debut, s.fin, c.nom, g.nom)" +
+            "from model.Utilisateur u, model.Absence a, model.SessionCours s, model.Cours c, model.Groupe g "+
+    		"where u.id = a.utilisateur.id " +
+            "and a.sessionCours.id = s.id " +
+    		"and s.cours.id = c.id " +
+            "and s.groupe.id = g.id "+
+            "and u.mail = :email " 
+            );
+	System.out.println("----- HQL 11a -----");
+	List<LigneAbsence> lste = liste1.list();
+	return lste;
+	}}
+	
+	
 	/**
 	 * Programme de test.
 	 * @throws ParseException 
@@ -91,35 +114,10 @@ public class TestHibernate
 			System.out.println();
 		}
 	}
-	public static List<String> hqlabsSc(){
 	
-	/*----- Ouverture de la session -----*/
-	try (Session session = HibernateUtil.getSessionFactory().getCurrentSession())
-		{
-		/*----- Ouverture d'une transaction -----*/
-		session.beginTransaction();
-
-		/**
-		 * Liste des employés ayant fait plus de 2 demandes.
-		 */
-
-		/*----- Requête HQL, retour sous forme d'une liste de tableau d'objets  -----*/
-		List liste1 = session.createSQLQuery("select * " +
-										  		"From `absences`as a " +
-										  		"where a.justificatif is NOT null").list();
-		System.out.println("----- HQL 11a -----");
-		
-		return liste1;}
 	
 	
 	}
 
-	public static void main (String[] args) throws ParseException
- 
-	{	
-		//TestHibernate.creationUtilisateur();
-		TestHibernate.affichage(hqlabsSc());;
-	}
-
-
-} /*----- Fin de la classe TestHibernate -----*/
+	
+/*----- Fin de la classe TestHibernate -----*/
