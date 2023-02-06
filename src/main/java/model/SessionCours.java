@@ -35,19 +35,18 @@ public class SessionCours {
 	private Utilisateur enseignant;
 	
 	// Relations 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name ="id_cours")
 	private Cours cours;
 	
 	@ManyToMany(mappedBy = "sessionsCours")
 	private Set<Utilisateur> etudiants = new HashSet<>();
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name ="id_groupe")
 	private Groupe groupe;
 	
 	public SessionCours() {
-		
 	}
 	
 	public SessionCours(OffsetDateTime debut, OffsetDateTime fin, Utilisateur enseignant, Cours cours, Groupe groupe) {

@@ -43,7 +43,7 @@ public class AccueilController extends HttpServlet {
 		CalendrierService calendrier = new CalendrierService();
 		Utilisateur utilisateur = (Utilisateur)request.getSession().getAttribute("utilisateur");
 		Statut statut = utilisateur.getStatut();
-		List<SessionCours> sessionsCours = null;
+		List<List<SessionCours>> sessionsCours = null;
 		
 		switch(statut) {
 		
@@ -52,14 +52,14 @@ public class AccueilController extends HttpServlet {
 			request.setAttribute("sessionsCours", sessionsCours);
 			break;
 		case Enseignant :
-			sessionsCours = calendrier.chercherSessionsCoursEnseignant(request, response);
-			request.setAttribute("sessionsCours", sessionsCours);
+//			sessionsCours = calendrier.chercherSessionsCoursEnseignant(request, response);
+//			request.setAttribute("sessionsCours", sessionsCours);
 			break;
 		case Scolarite :
 			break;
 		}
 		
-		request.getRequestDispatcher("/accueil.jsp").forward(request, response);
+		request.getRequestDispatcher("/accueil.ftl").forward(request, response);
 	}
 
 	/**
