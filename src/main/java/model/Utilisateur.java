@@ -86,6 +86,66 @@ public class Utilisateur {
 		return this.statut;
 	}
 
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public Boolean getEstAlternant() {
+		return estAlternant;
+	}
+
+	public void setEstAlternant(Boolean estAlternant) {
+		this.estAlternant = estAlternant;
+	}
+
+	public Long getNumEtudiant() {
+		return numEtudiant;
+	}
+
+	public void setNumEtudiant(Long numEtudiant) {
+		this.numEtudiant = numEtudiant;
+	}
+
+	public Set<SessionCours> getSessionCoursEnseigne() {
+		return sessionCoursEnseigne;
+	}
+
+	public void setSessionCoursEnseigne(Set<SessionCours> sessionCoursEnseigne) {
+		this.sessionCoursEnseigne = sessionCoursEnseigne;
+	}
+
+	public Set<Groupe> getGroupes() {
+		return groupes;
+	}
+
+	public void setGroupes(Set<Groupe> groupes) {
+		this.groupes = groupes;
+	}
+
+	public Set<SessionCours> getSessionsCours() {
+		return sessionsCours;
+	}
+
+	public void setSessionsCours(Set<SessionCours> sessionsCours) {
+		this.sessionsCours = sessionsCours;
+	}
+
+	public void setStatut(Statut statut) {
+		this.statut = statut;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, mail, mdp, statut);

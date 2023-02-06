@@ -50,9 +50,12 @@ public class SessionCours {
 		
 	}
 	
-	public SessionCours(OffsetDateTime debut, OffsetDateTime fin) {
+	public SessionCours(OffsetDateTime debut, OffsetDateTime fin, Utilisateur enseignant, Cours cours, Groupe groupe) {
 		this.debut = debut;
 		this.fin = fin;
+		this.enseignant = enseignant;
+		this.cours = cours;
+		this.groupe = groupe;
 	}
 
 	public Long getId() {
@@ -77,6 +80,38 @@ public class SessionCours {
 
 	public void setFin(OffsetDateTime fin) {
 		this.fin = fin;
+	}
+
+	public Utilisateur getEnseignant() {
+		return enseignant;
+	}
+
+	public void setEnseignant(Utilisateur enseignant) {
+		this.enseignant = enseignant;
+	}
+
+	public Cours getCours() {
+		return cours;
+	}
+
+	public void setCours(Cours cours) {
+		this.cours = cours;
+	}
+
+	public Set<Utilisateur> getEtudiants() {
+		return etudiants;
+	}
+
+	public void setEtudiants(Set<Utilisateur> etudiants) {
+		this.etudiants = etudiants;
+	}
+
+	public Groupe getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(Groupe groupe) {
+		this.groupe = groupe;
 	}
 
 	@Override

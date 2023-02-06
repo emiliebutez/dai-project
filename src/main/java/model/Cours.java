@@ -33,8 +33,7 @@ public class Cours {
 		
 	}
 
-	public Cours(Long id, String nom) {
-		this.id = id;
+	public Cours(String nom) {
 		this.nom = nom;
 	}
 
@@ -52,6 +51,14 @@ public class Cours {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+
+	public Set<SessionCours> getSessionCours() {
+		return sessionCours;
+	}
+
+	public void setSessionCours(Set<SessionCours> sessionCours) {
+		this.sessionCours = sessionCours;
 	}
 
 	@Override

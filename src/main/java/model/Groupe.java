@@ -49,9 +49,9 @@ public class Groupe {
 		
 	}
 
-	public Groupe(Long id, String nom) {
-		this.id = id;
+	public Groupe(String nom, Promo promo) {
 		this.nom = nom;
+		this.promo = promo;
 	}
 
 	public Long getId() {
@@ -68,6 +68,30 @@ public class Groupe {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+
+	public Promo getPromo() {
+		return promo;
+	}
+
+	public void setPromo(Promo promo) {
+		this.promo = promo;
+	}
+
+	public Set<Utilisateur> getEtudiantsGroupe() {
+		return etudiantsGroupe;
+	}
+
+	public void setEtudiantsGroupe(Set<Utilisateur> etudiantsGroupe) {
+		this.etudiantsGroupe = etudiantsGroupe;
+	}
+
+	public Set<SessionCours> getSessionsCours() {
+		return sessionsCours;
+	}
+
+	public void setSessionsCours(Set<SessionCours> sessionsCours) {
+		this.sessionsCours = sessionsCours;
 	}
 
 	@Override
