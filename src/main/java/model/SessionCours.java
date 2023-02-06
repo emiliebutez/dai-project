@@ -55,10 +55,9 @@ public class SessionCours {
 		this.fin = fin;
 	}
 	
-	public SessionCours(Long id, OffsetDateTime debut, OffsetDateTime fin, Utilisateur enseignant, Cours cours) {
+	public SessionCours(OffsetDateTime debut, OffsetDateTime fin, Utilisateur enseignant, Cours cours) {
 		this.debut = debut;
 		this.fin = fin;
-		this.id = id;
 		this.enseignant = enseignant;
 		this.cours = cours;
 	}

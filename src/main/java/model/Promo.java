@@ -32,6 +32,10 @@ public class Promo {
 	public Promo() {
 		
 	}
+	
+	public Promo(String nom) {
+		this.nom = nom;
+	}
 
 	public Promo(Long id, String nom) {
 		this.id = id;

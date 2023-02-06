@@ -2,47 +2,90 @@ package dao;
 
 import java.text.ParseException;
 import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
+import javax.persistence.*;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import model.*;
 
 public class EtudiantSessionDao {
 
-	public static Set<Utilisateur> chargerEtudiantsSession (long id){
+	public static void miseSessionDonnee (Long id){
 		try (Session session = HibernateUtil.getSessionFactory().getCurrentSession())
         {        	
-        	SessionCours s = session.load(SessionCours.class, id);
-        	Set<Utilisateur> etudiants = new HashSet<>();
-        	for (Utilisateur eleve: s.getGroupe().getEtudiantsGroupe()) {
-        		etudiants.add(eleve);
-        	}
-                	
-        	return etudiants;
+			/*----- Ouverture d'une transaction -----*/
+            Transaction t = session.beginTransaction();
+            
+            Query a = session.createQuery("SELECT u.id, u.nom, u.prenom "
+            							+ "FROM model.Groupe g, model.Utilisateur u "
+            							+ "WHERE g.id = u.etudiantsGroupe"
+            							+ "AND g.id = :id")
+            		.setParameter("id", id);
+            
+            List<Utilisateur> eleves = a.list();
+            
+            for (Utilisateur u: eleves) {
+            	System.out.println(u);
+            }
+            
+            //session.save(courTest);
+        	t.commit(); // Commit et flush automatique de la session.
+        	
         }
-    	
+    }
+	
+	public static void miseSession(){
+		try (Session session = HibernateUtil.getSessionFactory().getCurrentSession())
+        {        	
+			/*----- Ouverture d'une transaction -----*/
+            Transaction t = session.beginTransaction();
+            
+            SessionCours courTest = (SessionCours) session.createQuery("FROM model.SessionCours u WHERE u.id = :id")
+            		.setParameter("id", 2)
+            		.uniqueResult();
+            
+            session.save(courTest);
+        	t.commit(); // Commit et flush automatique de la session.
+        	
+        }
+    }
+	
+	public static Cours recupererSessionDonnee (Long id){
+		try (Session session = HibernateUtil.getSessionFactory().getCurrentSession()){
+			/*----- Ouverture d'une transaction -----*/
+            Transaction t = session.beginTransaction();
+            
+            Cours c = session.get(Cours.class, id);
+            
+            t.commit(); // Commit et flush automatique de la session.
+            return c;
+        }
     }
 	
 	public static void chargerDonnees() throws ParseException {
 		try (Session session = HibernateUtil.getSessionFactory().openSession())
         {  
-			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 			/*----- Ouverture d'une transaction -----*/
             Transaction t = session.beginTransaction();
             
-            Cours courTest = new Cours(1L, "courTest");
+            Cours courTest = new Cours("courTest");
             Utilisateur samyTest = new Utilisateur("samy.test@test.com", "test", "test", "samy", Statut.Enseignant, false,
         			null);
             
-            OffsetDateTime debutCours = OffsetDateTime.parse("2023-02-06T08:30:00");
-            OffsetDateTime finCours = OffsetDateTime.parse("2023-02-06T09:30:00");
-            SessionCours sessionCourTest = new SessionCours(1L, debutCours, finCours, samyTest, courTest);
+            ZoneOffset zone = ZoneOffset.of("+02:00");
+			OffsetDateTime dateDebut = OffsetDateTime.of(2023, 2, 6, 8, 0, 0, 0, zone);
+			OffsetDateTime dateFin = OffsetDateTime.of(2023, 2, 6, 9, 30, 0, 0, zone);
+            SessionCours sessionCourTest = new SessionCours(dateDebut, dateFin, samyTest, courTest);
             
-            Promo promoTest = new Promo(1L, "promoTest");
-            Groupe groupeTest= new Groupe(1L, "groupeTest");
+            Promo promoTest = new Promo("promoTest");
+            Groupe groupeTest= new Groupe("groupeTest");
             
             Utilisateur samyTest1 = new Utilisateur("samy1.test@test.com", "test", "test", "samy1", Statut.Etudiant, false,
         			22007246L);
@@ -86,8 +129,12 @@ public class EtudiantSessionDao {
         }
 	}
 	
+	
+	
 	public static void main (String[] args) throws ParseException{
-		EtudiantSessionDao.chargerDonnees();
+		EtudiantSessionDao.miseSession();
+		Cours c = EtudiantSessionDao.recupererSessionDonnee(1L);
+		EtudiantSessionDao.miseSessionDonnee(5L);
 	}
 	
 }

@@ -48,6 +48,10 @@ public class Groupe {
 	public Groupe() {
 		
 	}
+	
+	public Groupe(String nom) {
+		this.nom = nom;
+	}
 
 	public Groupe(Long id, String nom) {
 		this.id = id;
