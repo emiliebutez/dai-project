@@ -10,6 +10,7 @@ import javax.persistence.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import model.Statut;
 import model.Utilisateur;
 
 /**
@@ -28,9 +29,9 @@ public class TestHibernate
 		try (Session session = HibernateUtil.getSessionFactory().getCurrentSession()) {
 			Transaction t = session.beginTransaction();
 			
-			//Utilisateur u = new Utilisateur("emiliebutez.eb@gmail.com", "123");
+			Utilisateur u = new Utilisateur("emiliebutez.eb@gmail.com", "123", Statut.Etudiant);
 			
-			//session.save(u);
+			session.save(u);
 			
 			t.commit();
 		}
