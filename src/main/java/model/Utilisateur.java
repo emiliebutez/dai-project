@@ -113,4 +113,12 @@ public class Utilisateur {
 				&& Objects.equals(mdp, other.mdp)
 				&& Objects.equals(statut, other.statut);
 	}
+
+	@Override
+	public String toString() {
+		return "Utilisateur [id=" + id + ", mail=" + mail + ", nom=" + nom + ", prenom=" + prenom + ", statut=" + statut
+				+ "]";
+	}
+	
+	
 }

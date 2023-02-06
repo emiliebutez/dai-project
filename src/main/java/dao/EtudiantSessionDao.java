@@ -3,11 +3,8 @@ package dao;
 import java.text.ParseException;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import javax.persistence.*;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -16,30 +13,6 @@ import org.hibernate.query.Query;
 import model.*;
 
 public class EtudiantSessionDao {
-
-	public static void miseSessionDonnee (Long id){
-		try (Session session = HibernateUtil.getSessionFactory().getCurrentSession())
-        {        	
-			/*----- Ouverture d'une transaction -----*/
-            Transaction t = session.beginTransaction();
-            
-            Query a = session.createQuery("SELECT u.id, u.nom, u.prenom "
-            							+ "FROM model.Groupe g, model.Utilisateur u "
-            							+ "WHERE g.id = u.etudiantsGroupe"
-            							+ "AND g.id = :id")
-            		.setParameter("id", id);
-            
-            List<Utilisateur> eleves = a.list();
-            
-            for (Utilisateur u: eleves) {
-            	System.out.println(u);
-            }
-            
-            //session.save(courTest);
-        	t.commit(); // Commit et flush automatique de la session.
-        	
-        }
-    }
 	
 	public static void miseSession(){
 		try (Session session = HibernateUtil.getSessionFactory().getCurrentSession())
@@ -57,15 +30,16 @@ public class EtudiantSessionDao {
         }
     }
 	
-	public static Cours recupererSessionDonnee (Long id){
+	public static Set<Utilisateur> recupererSessionDonnee (Long id){
 		try (Session session = HibernateUtil.getSessionFactory().getCurrentSession()){
 			/*----- Ouverture d'une transaction -----*/
             Transaction t = session.beginTransaction();
             
-            Cours c = session.get(Cours.class, id);
+            SessionCours s = session.get(SessionCours.class, id);
+            Set<Utilisateur> eleves = s.getGroupe().getEtudiantsGroupe();
             
             t.commit(); // Commit et flush automatique de la session.
-            return c;
+            return eleves;
         }
     }
 	
@@ -132,9 +106,10 @@ public class EtudiantSessionDao {
 	
 	
 	public static void main (String[] args) throws ParseException{
-		EtudiantSessionDao.miseSession();
-		Cours c = EtudiantSessionDao.recupererSessionDonnee(1L);
-		EtudiantSessionDao.miseSessionDonnee(5L);
+		Set<Utilisateur> eleves = EtudiantSessionDao.recupererSessionDonnee(2L);
+		for (Utilisateur eleve: eleves) {
+			System.out.println(eleve);
+		}
 	}
 	
 }
