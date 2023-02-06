@@ -50,7 +50,6 @@ public class Utilisateur {
 	@OneToMany(mappedBy="enseignant", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<SessionCours> sessionCoursEnseigne = new HashSet<>();
 	
-	// Relations.
 	@ManyToMany(mappedBy = "etudiantsGroupe")
 	private Set<Groupe> groupes = new HashSet<>();
 	
@@ -58,15 +57,21 @@ public class Utilisateur {
 	@JoinTable (name = "retards",
 		joinColumns = @JoinColumn(name = "code_utilisateur"), 
 		inverseJoinColumns = @JoinColumn(name = "code_sessionCours"))
-	private Set<Utilisateur> sessionsCours = new HashSet<>();
+	private Set<SessionCours> sessionsCours = new HashSet<>();
 
 	public Utilisateur() {
 	}
 
-	public Utilisateur(String mail, String mdp, Statut statut) {
+	public Utilisateur(String mail, String mdp, String nom, String prenom, Statut statut, Boolean estAlternant,
+			Long numEtudiant) {
+		super();
 		this.mail = mail;
 		this.mdp = mdp;
+		this.nom = nom;
+		this.prenom = prenom;
 		this.statut = statut;
+		this.estAlternant = estAlternant;
+		this.numEtudiant = numEtudiant;
 	}
 
 	public String getMail() {

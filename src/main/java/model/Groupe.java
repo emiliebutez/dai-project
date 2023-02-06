@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -40,11 +42,8 @@ public class Groupe {
 		inverseJoinColumns = @JoinColumn(name = "code_utilisateurs"))
 	private Set<Utilisateur> etudiantsGroupe = new HashSet<>();
 	
-	@ManyToMany
-	@JoinTable (name = "assister",
-		joinColumns = @JoinColumn(name = "code_groupe"), 
-		inverseJoinColumns = @JoinColumn(name = "code_sessionCours"))
-	private Set<Utilisateur> sessionsCours = new HashSet<>();
+	@OneToMany(mappedBy="groupe", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Set<SessionCours> sessionsCours = new HashSet<>();
 	
 	public Groupe() {
 		
