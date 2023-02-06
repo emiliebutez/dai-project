@@ -24,8 +24,6 @@ public class Absence {
 	
 	@ManyToOne
 	SessionCours sessionCours;
-	private HashMap<Cours,Utilisateur> absMap = new HashMap<>();
-	@Column(name = "Justificatif")
 	private File justificatif = new File("C:\\Users\\amine\\Desktop\\pdf.pdf");
 	@Column(name = "validation")
 	private boolean validation = false ;
@@ -36,9 +34,27 @@ public class Absence {
 		
 	}
  
-	public Absence(Utilisateur utilisateur, SessionCours sessionCours) {
+	public Absence(Utilisateur utilisateur, SessionCours sessionCours,File justificatif,boolean validation) {
 		this.utilisateur = utilisateur;
 		this.sessionCours = sessionCours;
+		this.justificatif = justificatif ; 
+		this.validation = validation ;
+	}
+
+	public File getJustificatif() {
+		return justificatif;
+	}
+
+	public void setJustificatif(File justificatif) {
+		this.justificatif = justificatif;
+	}
+
+	public boolean isValidation() {
+		return validation;
+	}
+
+	public void setValidation(boolean validation) {
+		this.validation = validation;
 	}
 
 	public Long getId() {
@@ -69,6 +85,7 @@ public class Absence {
 	public int hashCode() {
 		return Objects.hash(id);
 	}
+	
 
 	@Override
 	public boolean equals(Object obj) {

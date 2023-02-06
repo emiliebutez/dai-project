@@ -2,6 +2,7 @@ package dao;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -29,7 +30,7 @@ public class TestHibernate
 		try (Session session = HibernateUtil.getSessionFactory().getCurrentSession()) {
 			Transaction t = session.beginTransaction();
 			
-			Utilisateur u = new Utilisateur("emiliebutez.eb@gmail.com", "123", Statut.Etudiant);
+			Utilisateur u = new Utilisateur("emiliebutez.eb@gmail.com", "123","emilie","Butez",Statut.Etudiant ,true, 21705534L);
 			
 			session.save(u);
 			
@@ -41,18 +42,46 @@ public class TestHibernate
 	 * Programme de test.
 	 * @throws ParseException 
 	 */
-	public static void main (String[] args) throws ParseException
-		{
-			TestHibernate.creationUtilisateur();
-		}
+	
 	
 	public static void affichage (List l) {
 		System.out.println("------");
 		for(int i=0; i<l.size(); i++) {
 			for(Object o : (Object[])l.get(i))
 				System.out.println(o + " ");
+			ArrayList
 			System.out.println();
 		}
 	}
+	public static List<String> hqlabsSc(){
+	
+	/*----- Ouverture de la session -----*/
+	try (Session session = HibernateUtil.getSessionFactory().getCurrentSession())
+		{
+		/*----- Ouverture d'une transaction -----*/
+		session.beginTransaction();
+
+		/**
+		 * Liste des employés ayant fait plus de 2 demandes.
+		 */
+
+		/*----- Requête HQL, retour sous forme d'une liste de tableau d'objets  -----*/
+		List liste1 = session.createSQLQuery("select * " +
+										  		"From `absences`as a " +
+										  		"where a.justificatif is NOT null").list();
+		System.out.println("----- HQL 11a -----");
+		
+		return liste1;}
+	
+	
+	}
+
+	public static void main (String[] args) throws ParseException
+ 
+	{	
+		//TestHibernate.creationUtilisateur();
+		TestHibernate.affichage(hqlabsSc());;
+	}
+
 
 } /*----- Fin de la classe TestHibernate -----*/
