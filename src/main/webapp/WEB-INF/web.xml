@@ -30,6 +30,12 @@
 		<servlet-name>accueil.jsp</servlet-name>
 		<jsp-file>/accueil.jsp</jsp-file>
 	</servlet>
+	<servlet>
+		<servlet-name>CtrlListeAppel</servlet-name>
+		<display-name>CtrlListeAppel</display-name>
+		<description></description>
+		<servlet-class>controller.CtrlListeAppel</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>AccueilController</servlet-name>
@@ -42,5 +48,9 @@
 	<servlet-mapping>
 		<servlet-name>index</servlet-name>
 		<url-pattern>/index</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CtrlListeAppel</servlet-name>
+		<url-pattern>/CtrlListeAppel</url-pattern>
 	</servlet-mapping>
 </web-app>
