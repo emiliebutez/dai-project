@@ -89,6 +89,22 @@ public class TestHibernate
 		 }		
 	}
 	/**
+	 * 
+	 * @throws ParseException
+	 */
+	public static void ajoutJustificatif(String [] lstIdChk) throws ParseException {
+		try (Session session = HibernateUtil.
+                getSessionFactory().getCurrentSession()) {
+		 /*----- Ouverture d'une transaction -----*/
+            Transaction t = session.beginTransaction();
+            Query query = session.createQuery("INSERT INTO Absence (justificatif)"
+            								+ " Select la.file from LigneAbsence la, Absence a"
+            								+ "where a.id IN :ids ");
+            query.setParameterList("ids", lstIdChk);
+            t.commit();
+        }
+	}
+	/**
 	 * Programme de test.
 	 * @throws ParseException 
 	 */

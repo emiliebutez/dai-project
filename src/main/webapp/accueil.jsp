@@ -30,6 +30,7 @@ Statut s1 =Statut.Etudiant;//**if(u.getStatut() == s1){*/%>
 	
 
 	<% out.println(html); %>
+	<div class="msg_erreur">${msg_erreur}</div>
 </div>
 	</div>
 	</div>

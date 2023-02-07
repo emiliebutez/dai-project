@@ -63,10 +63,17 @@
 		<servlet-class>controller.ValidationController</servlet-class>
 	</servlet>
 	<servlet>
+
 		<servlet-name>Tabtruevalidation</servlet-name>
 		<display-name>Tabtruevalidation</display-name>
 		<description></description>
 		<servlet-class>controller.Tabtruevalidation</servlet-class>
+
+		<servlet-name>DepotJustificatifController</servlet-name>
+		<display-name>DepotJustificatifController</display-name>
+		<description></description>
+		<servlet-class>controller.DepotJustificatifController</servlet-class>
+
 	</servlet>
 	<servlet-mapping>
 	<servlet-name>justificatifDocument</servlet-name>
@@ -77,8 +84,13 @@
 		<url-pattern>/ValidationController</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
+
 		<servlet-name>Tabtruevalidation</servlet-name>
 		<url-pattern>/Tabtruevalidation</url-pattern>
+
+		<servlet-name>DepotJustificatifController</servlet-name>
+		<url-pattern>/DepotJustificatifController</url-pattern>
+
 	</servlet-mapping>
 	
 </web-app>

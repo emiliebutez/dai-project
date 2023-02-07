@@ -14,7 +14,7 @@
 <div class="container">
     <% Utilisateur u = (Utilisateur)session.getAttribute("utilisateur"); %>
     <% out.print("<p>" + u.getNom() + " " + u.getPrenom() + "</p>");%>
-    <form action="">
+    <form method="get" enctype="multipart/form-data" action="DepotJustificatifController">
     <table class="table">
       <thead>
       <tr>
@@ -45,8 +45,9 @@
         	out.println("<td>" + labs.getDtfin() +"</td>");
         	out.println("<td>" + labs.getNomGroupe()+"</td>");
         	out.println("<td> Aucun justificatif déposé.</td>");
-        	out.println("<td><input type=\"checkbox\" value= "+ labs.getAbsid() +" name=\"cb\"></input></td></tr>");
-        	
+
+        	out.println("<td><input type=\"checkbox\" value= "+ labs.getAbsid() +" name=\"cb_abs\"></input></td></tr>");
+
         } 
       
       %>
