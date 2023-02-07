@@ -33,10 +33,18 @@ public class TestHibernate
 		try (Session session = HibernateUtil.getSessionFactory().getCurrentSession()) {
 			Transaction t = session.beginTransaction();
 			
-			Utilisateur u = new Utilisateur("emiliebutez.eb@gmail.com", "123","butez", "emilie", Statut.Etudiant, true, 21801546L);
-
-			
+			Utilisateur u = new Utilisateur("emiliebutez.eb@ut-capitole.fr", "123","butez", "emilie", Statut.Etudiant, true, 21801546L);
+			Utilisateur u2 = new Utilisateur("nicolasgalceran@ut-capitole.fr","123","Galceran","nicolas",Statut.Etudiant,true,21874534L);
+			Utilisateur u3 = new Utilisateur("malikbelaiba@ut-capitole.fr","123","Belaiba","Malik",Statut.Etudiant,true,21854534L);
+			Utilisateur u4 = new Utilisateur("aminesaghir@ut-capitole.fr","123","Saghir","Amine",Statut.Etudiant,true,21709745L);
+			Utilisateur u5 = new Utilisateur("alainberro@ut-capitole.fr","123","Berro","Alain",Statut.Enseignant,true,21898455L);
+			Utilisateur u6 = new Utilisateur("scolarité_miage@ut-capitole.fr","123","Scolarite","miage",Statut.Scolarite,true,21874534L);
+			session.save(u2);
 			session.save(u);
+			session.save(u3);
+			session.save(u4);
+			session.save(u5);
+			session.save(u6);
 			
 			t.commit();
 		}
@@ -53,7 +61,7 @@ public class TestHibernate
 			 /*----- Ouverture d'une transaction -----*/
 	            Transaction t = session.beginTransaction();
 	         // Liste des abscence d'un etudiant "
-	            Query Liste = session.createQuery("Select new model.LigneAbsence(u.nom, u.prenom, a.id,s.debut, s.fin, c.nom, g.nom)" +
+	            Query Liste = session.createQuery("Select new model.LigneAbsence(a.justificatif, u.nom, u.prenom, a.id,s.debut, s.fin, c.nom, g.nom)" +
 	                    "from model.Utilisateur u, model.Absence a, model.SessionCours s, model.Cours c, model.Groupe g "+
 	            		"where u.id = a.utilisateur.id " +
 	                    "and a.sessionCours.id = s.id " +
@@ -76,8 +84,8 @@ public class TestHibernate
 
 	public static void main (String[] args) throws ParseException
 		{
-			
-			System.out.println(TestHibernate.recuperationAbs("ZFZEFZE@gmail.com"));
+			TestHibernate.creationUtilisateur();
+		
 			
 		
 		}
@@ -97,7 +105,7 @@ public class TestHibernate
 		 /*----- Ouverture d'une transaction -----*/
             Transaction t = session.beginTransaction();
          // Liste des abscence d'un etudiant "
-            Query Liste = session.createQuery("Select new model.LigneAbsence(u.nom, u.prenom, a.id,s.debut, s.fin, c.nom, g.nom)" +
+            Query Liste = session.createQuery("Select new model.LigneAbsence(a.justificatif, u.nom, u.prenom, a.id,s.debut, s.fin, c.nom, g.nom)" +
                     "from model.Utilisateur u, model.Absence a, model.SessionCours s, model.Cours c, model.Groupe g "+
             		"where u.id = a.utilisateur.id " +
                     "and a.sessionCours.id = s.id " +

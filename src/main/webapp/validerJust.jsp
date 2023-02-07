@@ -23,6 +23,8 @@
       <th scope="col"></th>
       <th scope="col"></th>
       <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
   </tr>
   </thead>
   <thead>
@@ -34,7 +36,7 @@
       <th scope="col">Fin</th>
       <th scope="col">Groupe</th>
       <th scope="col">Justificatifs</th>
-      <th scope="col"><input type="checkbox"></input>
+      <th scope="col"></th>
       
       
     </tr>
@@ -49,7 +51,7 @@
         	out.println("<td>" + labs.getDtdebut() +"</td>");
         	out.println("<td>" + labs.getDtfin() +"</td>");
         	out.println("<td>" + labs.getNomGroupe()+"</td>");
-        	out.println("<td> Aucun justificatif déposé.</td>");
+        	out.println("<td></td>");
         	out.println("<td><input type=\"checkbox\" value= "+ labs.getAbsid() +" name=\"cb\"></input></td></tr>");
         } 
       %>

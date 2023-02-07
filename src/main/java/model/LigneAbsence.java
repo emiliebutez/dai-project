@@ -1,7 +1,11 @@
 package model;
 
+import java.io.File;
 import java.time.OffsetDateTime;
 import java.util.Date;
+
+import javax.swing.text.Document;
+
 import model.Absence;
 
 public class LigneAbsence {
@@ -13,6 +17,7 @@ public class LigneAbsence {
 	String nomGroupe;
 	String nom;
 	String prenom;
+	String file;
 	
 	public LigneAbsence() {
 		
@@ -25,7 +30,8 @@ public class LigneAbsence {
 	 * @param nomCours
 	 * @param nomGroupe
 	 */
-	public LigneAbsence(String nom,String prenom,Long absid, OffsetDateTime dtdebut, OffsetDateTime dtfin, String nomCours, String nomGroupe) {
+	public LigneAbsence(String file, String nom,String prenom,Long absid, OffsetDateTime dtdebut, OffsetDateTime dtfin, String nomCours, String nomGroupe) {
+		this.file = file;
 		this.nom = nom;
 		this.prenom=prenom;
 		this.absid = absid;	
