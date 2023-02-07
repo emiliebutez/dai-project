@@ -27,7 +27,7 @@ public class Absence {
 
 	@Column(name = "Justificatif")
 
-	private File justificatif = new File("C:\\Users\\amine\\Desktop\\pdf.pdf");
+	private String justificatif ;
 	@Column(name = "validation")
 	private boolean validation = false ;
 	

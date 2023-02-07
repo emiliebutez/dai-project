@@ -84,7 +84,7 @@ public class TestHibernate
 
 	public static void main (String[] args) throws ParseException
 		{
-			TestHibernate.creationUtilisateur();
+			//TestHibernate.creationUtilisateur();
 		
 			
 		
