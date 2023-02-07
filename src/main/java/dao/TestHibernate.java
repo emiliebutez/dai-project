@@ -73,7 +73,7 @@ public class TestHibernate
 	 * 
 	 * @throws ParseException
 	 */
-	public static void ajoutJustificatif(String [] lstIdChk, String justificatifPath) throws ParseException {
+	public static void ajoutJustificatif(String[] lstIdChk, String justificatifPath) throws ParseException {
 		try (Session session = HibernateUtil.
                 getSessionFactory().getCurrentSession()) {
 		 /*----- Ouverture d'une transaction -----*/
