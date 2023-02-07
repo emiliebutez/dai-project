@@ -69,19 +69,22 @@
           		<div class="cd-schedule__top-info"><span>${seq[index]}</span></div>
 				<#assign index += 1 >
 				<ul class="coursJour coursJourColumn">
-				<#list sessionsCours[i] as sessionCours>
+				<#list sessionsCours.getJournee(i) as rendu>
 				
-					<li class="cours coursRadius">
+					<li class="cours coursRadius" style="height: ${rendu.h}px; top: ${rendu.y}px; width: ${rendu.w}%; left: ${rendu.x}%">
 					<a href="#0">
-						<em>${sessionCours.cours.nom}</em>
+						<em>${rendu.sessionCours.cours.nom}</em>
 						<p>
-							<span>${sessionCours.debut.hour?string["00"]}:${sessionCours.debut.minute?string["00"]}</span>
+							<span>${rendu.sessionCours.debut.hour?string["00"]}:${rendu.sessionCours.debut.minute?string["00"]}</span>
 							➔
-							<span>${sessionCours.fin.hour?string["00"]}:${sessionCours.fin.minute?string["00"]}</span>
+							<span>${rendu.sessionCours.fin.hour?string["00"]}:${rendu.sessionCours.fin.minute?string["00"]}</span>
 						</p>
 						
-							<p class="margin10">Enseignant: ${sessionCours.enseignant.nom} ${sessionCours.enseignant.prenom}</p>
-							<p class="margin">Groupe: ${sessionCours.groupe.nom}</p>
+							<p class="margin10">
+							<span>Enseignant: ${rendu.sessionCours.enseignant.nom} ${rendu.sessionCours.enseignant.prenom}</span>
+							<br>
+							<span class="margin">Groupe: ${rendu.sessionCours.groupe.nom}</span>
+							</p>
 					</a>
 					</li>
 					
@@ -114,6 +117,9 @@ ul {
 }
 
 .cours {
+ overflow: hidden;
+ text-overflow: ellipsis;
+position: absolute;
   background: #B6D8F2;
   z-index: 3;
  left: -1px;
@@ -134,10 +140,19 @@ border-width: thin;
 	flex-direction: row !important;
 	gap : 1em;
 }
+
+.cours {
+    position: relative;
+    top: unset !important;
+    left: unset !important;
+    width: fit-content !important;
+    height: fit-content !important;
+}
 }
 
 .coursJourColumn {
-	flex-direction: column;
+	position: relative;
+	display: block;
 }
 
 a {
