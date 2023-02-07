@@ -44,28 +44,13 @@ public class Tabtruevalidation extends HttpServlet {
 		int idjust = 1;
 		
 		String[] lstIdChk = (String[])request.getAttribute("cb_abs");
+		String action = request.getParameter("btn");
 		
-		File dossier = new File("C:\\Justif"); 
 		
 		try {
 			// si le directory n'existe pas le creer
-			if (dossier.exists()) {}
-			else {
-			 boolean res = dossier.mkdir();
-			}
-			//Créer une copie du PDF
-			Part filepart = request.getPart("justificatif");
 			
-			FileSystem fs = FileSystems.getDefault();
-			
-			File file = new File("C:\\Justif\\justificatif_" + nomPrenom + "_" + idjust + ".pdf");
-			
-			InputStream is = filepart.getInputStream();
-			
-			Files.copy(is, file.toPath(),StandardCopyOption.REPLACE_EXISTING);
-			
-//	        // Enregistre le liens d'acces du fichier en BDD 
-			TestHibernate.ajoutJustificatif(lstIdChk);
+			TestHibernate.validerJust(lstIdChk, action);
 //			//envoyer un mail a la scolarité
 			Mail.envoyerMail(nomPrenom);
 			//redirection
@@ -76,7 +61,7 @@ public class Tabtruevalidation extends HttpServlet {
 			}
 		}
 		
-	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

@@ -82,8 +82,8 @@ public class Utilisateur {
 		return mdp;
 	}
 	
-	public Statut getStatut() {
-		return this.statut;
+	public String getStatut() {
+		return this.statut.toString();
 	}
 	
 	public String getNom() {

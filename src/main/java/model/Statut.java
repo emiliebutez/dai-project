@@ -4,4 +4,6 @@ public enum Statut {
 	Etudiant,
 	Enseignant,
 	Scolarite
+	 
+	
 }

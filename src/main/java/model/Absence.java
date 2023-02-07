@@ -40,7 +40,7 @@ private String justificatif ;
 		this.id=id;
 	}
  
-	public Absence(Utilisateur utilisateur, SessionCours sessionCours,String justificatif,boolean validation) {
+	public Absence(Utilisateur utilisateur, SessionCours sessionCours,String just,boolean validation) {
 
 		this.utilisateur = utilisateur;
 		this.sessionCours = sessionCours;
