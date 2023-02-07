@@ -41,6 +41,14 @@ public class LigneAbsence {
 		this.nomGroupe = nomGroupe;
 	}
 	
+	public String getFile() {
+		return file;
+	}
+
+	public void setFile(String file) {
+		this.file = file;
+	}
+
 	public String getNom() {
 		return nom;
 	}

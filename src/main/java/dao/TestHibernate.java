@@ -104,6 +104,18 @@ public class TestHibernate
             t.commit();
         }
 	}
+	public static void validerJust(String [] lstIdChk) throws ParseException {
+		try (Session session = HibernateUtil.
+                getSessionFactory().getCurrentSession()) {
+		 /*----- Ouverture d'une transaction -----*/
+            Transaction t = session.beginTransaction();
+            Query query = session.createSQLQuery("INSERT INTO Absence (justificatif)"
+            								+ "Values ('1')"
+            								+ "where a.id IN :ids ");
+            query.setParameterList("ids", lstIdChk);
+            t.commit();
+        }
+	}
 	/**
 	 * Programme de test.
 	 * @throws ParseException 
@@ -112,6 +124,7 @@ public class TestHibernate
 	public static void main (String[] args) throws ParseException
 		{
 			//TestHibernate.creationUtilisateur();
+		//TestHibernate.validerJust(String[]);
 		
 			
 		
