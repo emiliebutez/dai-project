@@ -8,8 +8,26 @@
 <title>Accueil</title>
 </head>
 <body>
+<div id="content">
 	<h1>Accueil</h1>
 	<% Utilisateur u = (Utilisateur)session.getAttribute("utilisateur"); %>
 	<%= u.getMail() %>
+	<form>
+	    <input type=button name=print value="Print" id="btn-one"">
+	</form>
+	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+			integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+
+		
 </body>
 </html>
+<script src="pdf.js"></script>
