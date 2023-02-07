@@ -15,7 +15,7 @@
 Statut s1 =Statut.Etudiant;//**if(u.getStatut() == s1){*/%>
 <div class=”page-header-image” style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/67.jpg'); background-position: 50%; background-size: cover; min-height: 100vh; max-height: 999px; overflow: hidden; width: 100%;
 		z-index: 1;">
-<div class="container" style="margin-left: 520px">
+<div class="container" style="">
 <div class=”wrapper”>
 	 
 	<% out.println("<h1>  Bienvenue "+u.getPrenom()+"</h1>");%>
@@ -24,7 +24,7 @@ Statut s1 =Statut.Etudiant;//**if(u.getStatut() == s1){*/%>
 	<% 
 		String html ="<ul class=\'list-group'>"+
 		"<li class='list-group-item'><a href='JustificatifController'>Déposer un justificatif</a></li>"+
-		"<li class='list-group-item'><a href='ValidationController'>valider un justificatif</a> </li>"+
+		"<li class='list-group-item'><a href='ValidationController'>Valider un justificatif</a> </li>"+
 						"</ul>";	
 	 %>
 	

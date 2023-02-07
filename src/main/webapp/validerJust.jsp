@@ -55,7 +55,7 @@
       %>
   </tbody>
 </table>
-<button type="submit" class="btn btn-success"Style="margin-left: 100%;margin-top: 40px">Verifier</button>
+<button type="submit" class="btn btn-success"Style="margin-left: 100%;margin-top: 40px">Valider</button>
 </form>
 </div>
 </body>
