@@ -55,6 +55,17 @@ public class TestHibernate
 	 * @throws ParseException
 	 * @return lst
 	 */
+	public static List<String> listchck(){
+		List<String> lstk = new ArrayList<String>();
+		
+		try (Session session = HibernateUtil.
+                getSessionFactory().getCurrentSession()) 
+		{Transaction t = session.beginTransaction();
+		
+			
+		}
+		return lstk;
+	}
 	public static List<LigneAbsence> recuperationAbs(String email) throws ParseException {
 			try (Session session = HibernateUtil.
 	                getSessionFactory().getCurrentSession()) {
@@ -124,18 +135,7 @@ public class TestHibernate
 	
 			
 		}
-	public String getNomUsql(int id) {
-		try (Session session = HibernateUtil.
-                getSessionFactory().getCurrentSession()) {
-		 /*----- Ouverture d'une transaction -----*/
-            Transaction t = session.beginTransaction();
-            Query nom = session.createSQLQuery("SELECT utilisateurs.nom \r\n"
-				+ "FROM utilisateurs , absences\r\n"
-				+ "WHERE utilisateurs.id = absences.utilisateur_id;");
-		return nom.toString();
-}
-
-	}
+	
 
 
 } /*----- Fin de la classe TestHibernate -----*/

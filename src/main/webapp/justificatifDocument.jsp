@@ -46,12 +46,15 @@
         	out.println("<td>" + labs.getNomGroupe()+"</td>");
         	out.println("<td> Aucun justificatif déposé.</td>");
         	out.println("<td><input type=\"checkbox\" value= "+ labs.getAbsid() +" name=\"cb\"></input></td></tr>");
+        	
         } 
+      
       %>
+      
       </tbody>
     </table>
     <input type="File" id="justificatif" name="justificatif"/>
-    <button type="submit" class="btn btn-success">Valider</button>
+    <button type="submit" onclick="gettab()"class="btn btn-success">Valider</button>
     </form>
     </div>
     </body>
