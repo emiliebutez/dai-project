@@ -61,8 +61,8 @@
   </tbody>
 </table>
 
-<button type="submit" class="btn btn-success"value="OK"Style="margin-left: 100%;margin-top: 40px">Valider</button>
-<button type="submit" class="btn btn-danger" value="KO"Style="margin-left: 100%;margin-top: 40px">Rejeter</button>
+<button type="submit" class="btn btn-success" name="btn" id="btn" value="OK"Style="margin-left: 100%;margin-top: 40px">Valider</button>
+<button type="submit" class="btn btn-danger" name="btn" id="btn" value="KO"Style="margin-left: 100%;margin-top: 40px">Rejeter</button>
 </form>
 </div>
 </body>
