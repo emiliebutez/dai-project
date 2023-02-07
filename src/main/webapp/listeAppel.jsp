@@ -35,7 +35,7 @@
 				Set<Utilisateur> eleves = (Set<Utilisateur>)session.getAttribute("eleves");
 				for (Utilisateur eleve : eleves) {
 					out.write("<tr>" + 
-							  "<td>" + "<img src=\"" + "images/profil.png" + "\">" + "</td>" +
+							  "<td>" + "<img src=\"images?id=" + eleve.getId() + "\">" + "</td>" +
 							  "<td>" + eleve.getNom() + "</td>" +
 							  "<td>" + eleve.getPrenom() + "</td>" +
 							  "<td> <input type=\"checkbox\" name=\"absence\" value=\""+ eleve.getId() + "\"> </td>" +

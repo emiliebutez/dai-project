@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -45,6 +46,10 @@ public class Utilisateur {
 	
 	@Column(name = "numero_etudiant")
 	private Long numEtudiant;
+	
+	@Lob
+	@Column(name = "photo", columnDefinition = "mediumblob")
+	private byte[] photo;
 	
 	//Relations 
 	@OneToMany(mappedBy="enseignant", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -112,6 +117,14 @@ public class Utilisateur {
 
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
+	}
+
+	public byte[] getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
 	}
 
 	@Override

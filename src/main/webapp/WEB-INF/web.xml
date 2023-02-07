@@ -40,6 +40,13 @@
 		<servlet-name>listeAppel.jsp</servlet-name>
 		<jsp-file>/listeAppel.jsp</jsp-file>
 	</servlet>
+	
+	<servlet>
+		<servlet-name>ImageController</servlet-name>
+		<display-name>ImageController</display-name>
+		<description></description>
+		<servlet-class>controller.ImageController</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>AccueilController</servlet-name>
@@ -56,5 +63,10 @@
 	<servlet-mapping>
 		<servlet-name>CtrlListeAppel</servlet-name>
 		<url-pattern>/CtrlListeAppel</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>ImageController</servlet-name>
+		<url-pattern>/images</url-pattern>
 	</servlet-mapping>
 </web-app>
