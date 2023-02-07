@@ -11,7 +11,8 @@ public class LigneAbsence {
 	OffsetDateTime dtfin;
 	String nomCours;
 	String nomGroupe;
-	
+	String nom;
+	String prenom;
 	
 	public LigneAbsence() {
 		
@@ -24,7 +25,9 @@ public class LigneAbsence {
 	 * @param nomCours
 	 * @param nomGroupe
 	 */
-	public LigneAbsence(Long absid, OffsetDateTime dtdebut, OffsetDateTime dtfin, String nomCours, String nomGroupe) {
+	public LigneAbsence(String nom,String prenom,Long absid, OffsetDateTime dtdebut, OffsetDateTime dtfin, String nomCours, String nomGroupe) {
+		this.nom = nom;
+		this.prenom=prenom;
 		this.absid = absid;	
 		this.dtdebut = dtdebut;
 		this.dtfin = dtfin;
@@ -32,6 +35,22 @@ public class LigneAbsence {
 		this.nomGroupe = nomGroupe;
 	}
 	
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
 	public OffsetDateTime getDtdebut() {
 		return dtdebut;
 	}

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ page import="model.Utilisateur"%>
+<%@ page import="java.util.List"%>
+<%@ page import="model.LigneAbsence"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,10 +27,12 @@
   </thead>
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Etudiant</th>
+     <th scope="col">Prenom</th>
+      <th scope="col">Nom</th>
       <th scope="col">Cours</th>
-      <th scope="col">Date</th>
+      <th scope="col">Debut</th>
+      <th scope="col">Fin</th>
+      <th scope="col">Groupe</th>
       <th scope="col">Justificatifs</th>
       <th scope="col"><input type="checkbox"></input>
       
@@ -36,10 +41,21 @@
   </thead>
   
   <tbody>
-   
+   <% 
+        for (LigneAbsence labs : (List<LigneAbsence>)request.getAttribute("listeAbs") ) {
+        	out.println("<tr><td>"+labs.getPrenom()+"</td>");
+        	out.println("<td>"+labs.getNom()+"</td>");
+        	out.println("<td>" + labs.getNomCours() +"</td>");
+        	out.println("<td>" + labs.getDtdebut() +"</td>");
+        	out.println("<td>" + labs.getDtfin() +"</td>");
+        	out.println("<td>" + labs.getNomGroupe()+"</td>");
+        	out.println("<td> Aucun justificatif déposé.</td>");
+        	out.println("<td><input type=\"checkbox\" value= "+ labs.getAbsid() +" name=\"cb\"></input></td></tr>");
+        } 
+      %>
   </tbody>
 </table>
-<button type="submit" class="btn btn-success">Success</button>
+<button type="submit" class="btn btn-success"Style="margin-left: 100%;margin-top: 40px">Verifier</button>
 </form>
 </div>
 </body>

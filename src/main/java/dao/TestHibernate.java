@@ -32,9 +32,7 @@ public class TestHibernate
 	public static void creationUtilisateur () throws ParseException {
 		try (Session session = HibernateUtil.getSessionFactory().getCurrentSession()) {
 			Transaction t = session.beginTransaction();
-
-
-
+			
 			Utilisateur u = new Utilisateur("emiliebutez.eb@gmail.com", "123","butez", "emilie", Statut.Etudiant, true, 21801546L);
 
 			
@@ -55,7 +53,7 @@ public class TestHibernate
 			 /*----- Ouverture d'une transaction -----*/
 	            Transaction t = session.beginTransaction();
 	         // Liste des abscence d'un etudiant "
-	            Query Liste = session.createQuery("Select new model.LigneAbsence(a.id, s.debut, s.fin, c.nom, g.nom )" +
+	            Query Liste = session.createQuery("Select new model.LigneAbsence(u.nom, u.prenom, a.id,s.debut, s.fin, c.nom, g.nom)" +
 	                    "from model.Utilisateur u, model.Absence a, model.SessionCours s, model.Cours c, model.Groupe g "+
 	            		"where u.id = a.utilisateur.id " +
 	                    "and a.sessionCours.id = s.id " +
@@ -71,29 +69,6 @@ public class TestHibernate
 	            return lst;
 		 }		
 	}
-	
-	
-	public static List<LigneAbsence> hqlabsSc(){
-		try (Session session = HibernateUtil.getSessionFactory().getCurrentSession())
-		{
-	/*----- Ouverture d'une transaction -----*/
-			session.beginTransaction();
-
-	/*----- Requête HQL, retour sous forme d'une liste de tableau d'objets  -----*/
-		Query liste1 = session.createQuery("Select new model.LigneAbsence(u.id, a.id, s.debut, s.fin, c.nom, g.nom)" +
-            "from model.Utilisateur u, model.Absence a, model.SessionCours s, model.Cours c, model.Groupe g "+
-    		"where u.id = a.utilisateur.id " +
-            "and a.sessionCours.id = s.id " +
-    		"and s.cours.id = c.id " +
-            "and s.groupe.id = g.id "+
-            "and u.mail = :email " 
-            );
-	System.out.println("----- HQL 11a -----");
-	List<LigneAbsence> lste = liste1.list();
-	return lste;
-	}}
-	
-	
 	/**
 	 * Programme de test.
 	 * @throws ParseException 
@@ -103,6 +78,8 @@ public class TestHibernate
 		{
 			
 			System.out.println(TestHibernate.recuperationAbs("ZFZEFZE@gmail.com"));
+			
+		
 		}
 
 	public static void affichage (List l) {
@@ -110,14 +87,47 @@ public class TestHibernate
 		for(int i=0; i<l.size(); i++) {
 			for(Object o : (Object[])l.get(i))
 				System.out.println(o + " ");
-			ArrayList
 			System.out.println();
 		}
 	}
+	public static List<LigneAbsence> hqlabsSc(String  email){
 	
+		try (Session session = HibernateUtil.
+                getSessionFactory().getCurrentSession()) {
+		 /*----- Ouverture d'une transaction -----*/
+            Transaction t = session.beginTransaction();
+         // Liste des abscence d'un etudiant "
+            Query Liste = session.createQuery("Select new model.LigneAbsence(u.nom, u.prenom, a.id,s.debut, s.fin, c.nom, g.nom)" +
+                    "from model.Utilisateur u, model.Absence a, model.SessionCours s, model.Cours c, model.Groupe g "+
+            		"where u.id = a.utilisateur.id " +
+                    "and a.sessionCours.id = s.id " +
+            		"and s.cours.id = c.id " +
+                    "and s.groupe.id = g.id "
+            		//+"and a.justificatif is not null"
+                  //  "and u.mail = :email " 
+//                    +
+//                    "and a.validation = false"
+                    );
+            
+            //Liste.setParameter("email",email);
+            List<LigneAbsence> lst = Liste.list();
+            return lst;
+	 }		
 	
-	
+			
+		}
+	public String getNomUsql(int id) {
+		try (Session session = HibernateUtil.
+                getSessionFactory().getCurrentSession()) {
+		 /*----- Ouverture d'une transaction -----*/
+            Transaction t = session.beginTransaction();
+            Query nom = session.createSQLQuery("SELECT utilisateurs.nom \r\n"
+				+ "FROM utilisateurs , absences\r\n"
+				+ "WHERE utilisateurs.id = absences.utilisateur_id;");
+		return nom.toString();
+}
+
 	}
 
-	
-/*----- Fin de la classe TestHibernate -----*/
+
+} /*----- Fin de la classe TestHibernate -----*/
