@@ -26,7 +26,7 @@ public class Mail {
 	   * @param to
 	   */
 	  public final static void envoyerMail(String nomPrenomU) {
-		  String to = "emiliebutez.eb@gmail.com";
+		  String to = "xfourix@gmail.com";
 	   Properties props = new Properties();
 	   props.put("mail.smtp.host", HOST);
 	   props.put("mail.smtp.auth", "true");
@@ -45,7 +45,6 @@ public class Mail {
 	     message.setSubject("Justificatif a valider");
 	     message.setText("Vous avez un nouveau justificatif a valider : "
 	             + "Justificatif de " + nomPrenomU
-	             + " concernant les abscences suivante: " 
 	             + ".");
 	     
 	    Transport.send(message);

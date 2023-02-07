@@ -26,8 +26,7 @@ public class Absence {
 	SessionCours sessionCours;
 
 	@Column(name = "Justificatif")
-
-	private String justificatif ;
+private String justificatif ;
 	@Column(name = "validation")
 	private boolean validation = false ;
 	
@@ -36,11 +35,16 @@ public class Absence {
 		
 		
 	}
+	
+	public Absence(Long id) {
+		this.id=id;
+	}
  
 	public Absence(Utilisateur utilisateur, SessionCours sessionCours,String justificatif,boolean validation) {
+
 		this.utilisateur = utilisateur;
 		this.sessionCours = sessionCours;
-		this.justificatif = justificatif ; 
+		this.justificatif=just; 
 		this.validation = validation ;
 	}
 

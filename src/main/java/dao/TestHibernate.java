@@ -92,15 +92,16 @@ public class TestHibernate
 	 * 
 	 * @throws ParseException
 	 */
-	public static void ajoutJustificatif(String [] lstIdChk) throws ParseException {
+	public static void ajoutJustificatif(String[] lstIdChk, String justificatifPath) throws ParseException {
 		try (Session session = HibernateUtil.
                 getSessionFactory().getCurrentSession()) {
 		 /*----- Ouverture d'une transaction -----*/
             Transaction t = session.beginTransaction();
-            Query query = session.createQuery("INSERT INTO Absence (justificatif)"
-            								+ " Select la.file from LigneAbsence la, Absence a"
-            								+ "where a.id IN :ids ");
+            Query query = session.createQuery("From model.Absence a "
+            								+"where a.id IN :ids ");
             query.setParameterList("ids", lstIdChk);
+            for (Object abs : query.list())
+            	((Absence)abs).setJustificatif(justificatifPath);
             t.commit();
         }
 	}
@@ -123,11 +124,18 @@ public class TestHibernate
 
 	public static void main (String[] args) throws ParseException
 		{
+
 			//TestHibernate.creationUtilisateur();
 		//TestHibernate.validerJust(String[]);
 		
 			
 		
+
+		String[] lst = new String[1];
+		lst[0]="1";
+		TestHibernate.ajoutJustificatif(lst,"TEST/document");
+			
+
 		}
 
 	public static void affichage (List l) {
