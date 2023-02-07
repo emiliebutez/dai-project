@@ -37,18 +37,18 @@ public class Absence {
 		
 	}
  
-	public Absence(Utilisateur utilisateur, SessionCours sessionCours,File justificatif,boolean validation) {
+	public Absence(Utilisateur utilisateur, SessionCours sessionCours,String justificatif,boolean validation) {
 		this.utilisateur = utilisateur;
 		this.sessionCours = sessionCours;
 		this.justificatif = justificatif ; 
 		this.validation = validation ;
 	}
 
-	public File getJustificatif() {
+	public String getJustificatif() {
 		return justificatif;
 	}
 
-	public void setJustificatif(File justificatif) {
+	public void setJustificatif(String justificatif) {
 		this.justificatif = justificatif;
 	}
 
