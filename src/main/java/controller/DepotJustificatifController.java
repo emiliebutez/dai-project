@@ -64,9 +64,10 @@ public class DepotJustificatifController extends HttpServlet {
 			InputStream is = filepart.getInputStream();
 			
 			Files.copy(is, file.toPath(),StandardCopyOption.REPLACE_EXISTING);
+			String chemin = file.toPath().toString();
 			
 //	        // Enregistre le liens d'acces du fichier en BDD 
-			TestHibernate.ajoutJustificatif(lstIdChk);
+			TestHibernate.ajoutJustificatif(lstIdChk,chemin);
 //			//envoyer un mail a la scolarité
 			Mail.envoyerMail(nomPrenom);
 			//redirection

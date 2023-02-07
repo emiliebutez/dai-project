@@ -27,7 +27,7 @@ public class Absence {
 
 	@Column(name = "Justificatif")
 
-	private File justificatif = new File("C:\\Users\\amine\\Desktop\\pdf.pdf");
+	private String justificatif;
 	@Column(name = "validation")
 	private boolean validation = false ;
 	
@@ -36,19 +36,23 @@ public class Absence {
 		
 		
 	}
+	
+	public Absence(Long id) {
+		this.id=id;
+	}
  
-	public Absence(Utilisateur utilisateur, SessionCours sessionCours,File justificatif,boolean validation) {
+	public Absence(Utilisateur utilisateur, SessionCours sessionCours, String just,boolean validation) {
 		this.utilisateur = utilisateur;
 		this.sessionCours = sessionCours;
-		this.justificatif = justificatif ; 
+		this.justificatif=just; 
 		this.validation = validation ;
 	}
 
-	public File getJustificatif() {
+	public String getJustificatif() {
 		return justificatif;
 	}
 
-	public void setJustificatif(File justificatif) {
+	public void setJustificatif(String justificatif) {
 		this.justificatif = justificatif;
 	}
 
