@@ -32,6 +32,10 @@ public class Cours {
 	public Cours() {
 		
 	}
+	
+	public Cours(String nom) {
+		this.nom = nom;
+	}
 
 	public Cours(Long id, String nom) {
 		this.id = id;
@@ -53,6 +57,10 @@ public class Cours {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+	
+	public void addSessionCours(SessionCours session) {
+		this.sessionCours.add(session);
+	}
 
 	@Override
 	public int hashCode() {
@@ -70,4 +78,13 @@ public class Cours {
 		Cours other = (Cours) obj;
 		return Objects.equals(id, other.id) && Objects.equals(nom, other.nom);
 	}
+
+	@Override
+	public String toString() {
+		return "Cours [id=" + id + ", nom=" + nom + "]";
+	}
+
+	
+	
+	
 }

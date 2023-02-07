@@ -28,6 +28,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
 
 		
+	<a href="CtrlListeAppel">ici</a>
 </body>
 </html>
 <script src="pdf.js"></script>

@@ -36,7 +36,7 @@ public class Groupe {
 	@JoinColumn(name ="id_promo")
 	private Promo promo;
 	
-	@ManyToMany
+	@ManyToMany (fetch = FetchType.EAGER)
 	@JoinTable (name = "composer",
 		joinColumns = @JoinColumn(name = "code_groupe"), 
 		inverseJoinColumns = @JoinColumn(name = "code_utilisateurs"))
@@ -47,6 +47,10 @@ public class Groupe {
 	
 	public Groupe() {
 		
+	}
+	
+	public Groupe(String nom) {
+		this.nom = nom;
 	}
 
 	public Groupe(Long id, String nom) {
@@ -70,6 +74,22 @@ public class Groupe {
 		this.nom = nom;
 	}
 
+	public void setPromo(Promo promo) {
+		this.promo = promo;
+	}
+	
+	public void addEtudiant(Utilisateur etudiant) {
+		this.etudiantsGroupe.add(etudiant);
+	}
+	
+	public void addSession (SessionCours session) {
+		this.sessionsCours.add(session);
+	}
+
+	public Set<Utilisateur> getEtudiantsGroupe() {
+		return etudiantsGroupe;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id, nom);
@@ -86,4 +106,11 @@ public class Groupe {
 		Groupe other = (Groupe) obj;
 		return Objects.equals(id, other.id) && Objects.equals(nom, other.nom);
 	}
+
+	@Override
+	public String toString() {
+		return "Groupe [id=" + id + ", nom=" + nom + "]";
+	}
+	
+	
 }

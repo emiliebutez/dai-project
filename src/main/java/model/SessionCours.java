@@ -54,6 +54,13 @@ public class SessionCours {
 		this.debut = debut;
 		this.fin = fin;
 	}
+	
+	public SessionCours(OffsetDateTime debut, OffsetDateTime fin, Utilisateur enseignant, Cours cours) {
+		this.debut = debut;
+		this.fin = fin;
+		this.enseignant = enseignant;
+		this.cours = cours;
+	}
 
 	public Long getId() {
 		return id;
@@ -79,6 +86,14 @@ public class SessionCours {
 		this.fin = fin;
 	}
 
+	public Groupe getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(Groupe groupe) {
+		this.groupe = groupe;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(debut, fin, id);
@@ -95,5 +110,12 @@ public class SessionCours {
 		SessionCours other = (SessionCours) obj;
 		return Objects.equals(debut, other.debut) && Objects.equals(fin, other.fin) && Objects.equals(id, other.id);
 	}
+
+	@Override
+	public String toString() {
+		return "SessionCours [id=" + id + ", debut=" + debut + ", fin=" + fin + "]";
+	}
+	
+	
 	
 }

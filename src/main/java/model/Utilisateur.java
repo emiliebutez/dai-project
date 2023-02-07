@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -46,6 +47,10 @@ public class Utilisateur {
 	@Column(name = "numero_etudiant")
 	private Long numEtudiant;
 	
+	@Lob
+	@Column(name = "photo", columnDefinition = "mediumblob")
+	private byte[] photo;
+	
 	//Relations 
 	@OneToMany(mappedBy="enseignant", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<SessionCours> sessionCoursEnseigne = new HashSet<>();
@@ -74,6 +79,10 @@ public class Utilisateur {
 		this.numEtudiant = numEtudiant;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
 	public String getMail() {
 		return mail;
 	}
@@ -84,6 +93,38 @@ public class Utilisateur {
 	
 	public Statut getStatut() {
 		return this.statut;
+	}
+	
+	public void addSessionsCours(SessionCours session) {
+		this.sessionCoursEnseigne.add(session);
+	}
+	
+	public  void addGroupe(Groupe groupe) {
+		this.groupes.add(groupe);
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+	public byte[] getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
 	}
 
 	@Override
@@ -105,4 +146,12 @@ public class Utilisateur {
 				&& Objects.equals(mdp, other.mdp)
 				&& Objects.equals(statut, other.statut);
 	}
+
+	@Override
+	public String toString() {
+		return "Utilisateur [id=" + id + ", mail=" + mail + ", nom=" + nom + ", prenom=" + prenom + ", statut=" + statut
+				+ "]";
+	}
+	
+	
 }
