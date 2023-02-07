@@ -110,5 +110,12 @@ public class SessionCours {
 		SessionCours other = (SessionCours) obj;
 		return Objects.equals(debut, other.debut) && Objects.equals(fin, other.fin) && Objects.equals(id, other.id);
 	}
+
+	@Override
+	public String toString() {
+		return "SessionCours [id=" + id + ", debut=" + debut + ", fin=" + fin + "]";
+	}
+	
+	
 	
 }

@@ -74,6 +74,10 @@ public class Utilisateur {
 		this.numEtudiant = numEtudiant;
 	}
 
+	public Long getId() {
+		return id;
+	}
+
 	public String getMail() {
 		return mail;
 	}

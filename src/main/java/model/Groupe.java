@@ -36,7 +36,7 @@ public class Groupe {
 	@JoinColumn(name ="id_promo")
 	private Promo promo;
 	
-	@ManyToMany
+	@ManyToMany (fetch = FetchType.EAGER)
 	@JoinTable (name = "composer",
 		joinColumns = @JoinColumn(name = "code_groupe"), 
 		inverseJoinColumns = @JoinColumn(name = "code_utilisateurs"))
@@ -106,4 +106,11 @@ public class Groupe {
 		Groupe other = (Groupe) obj;
 		return Objects.equals(id, other.id) && Objects.equals(nom, other.nom);
 	}
+
+	@Override
+	public String toString() {
+		return "Groupe [id=" + id + ", nom=" + nom + "]";
+	}
+	
+	
 }

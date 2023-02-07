@@ -14,32 +14,59 @@ import model.*;
 
 public class EtudiantSessionDao {
 	
-	public static void miseSession(){
-		try (Session session = HibernateUtil.getSessionFactory().getCurrentSession())
+	public static void miseSessionSession(Long id){
+		try (Session session = HibernateUtil.getSessionFactory().openSession())
         {        	
 			/*----- Ouverture d'une transaction -----*/
             Transaction t = session.beginTransaction();
             
-            SessionCours courTest = (SessionCours) session.createQuery("FROM model.SessionCours u WHERE u.id = :id")
-            		.setParameter("id", 2)
+            SessionCours sessionC = (SessionCours) session.createQuery("FROM model.SessionCours u WHERE u.id = :id")
+            		.setParameter("id", id)
             		.uniqueResult();
             
-            session.save(courTest);
+            session.save(sessionC);
         	t.commit(); // Commit et flush automatique de la session.
         	
         }
     }
 	
-	public static Set<Utilisateur> recupererSessionDonnee (Long id){
-		try (Session session = HibernateUtil.getSessionFactory().getCurrentSession()){
+	public static void miseSessionGroupe(SessionCours sessionC){
+		try (Session session = HibernateUtil.getSessionFactory().openSession())
+        {        	
+			/*----- Ouverture d'une transaction -----*/
+            Transaction t = session.beginTransaction();
+            
+            Groupe groupe = (Groupe) session.createQuery("FROM model.Groupe grp WHERE grp.id = :id")
+            		.setParameter("id", sessionC.getGroupe().getId())
+            		.uniqueResult();
+            
+            session.save(groupe);
+        	t.commit(); // Commit et flush automatique de la session.
+        	
+        }
+    }
+	
+	public static SessionCours recupererSessionDonnee (Long id){
+		try (Session session = HibernateUtil.getSessionFactory().openSession()){
 			/*----- Ouverture d'une transaction -----*/
             Transaction t = session.beginTransaction();
             
             SessionCours s = session.get(SessionCours.class, id);
-            Set<Utilisateur> eleves = s.getGroupe().getEtudiantsGroupe();
             
             t.commit(); // Commit et flush automatique de la session.
-            return eleves;
+            return s;
+        }
+    }
+	
+	public static Groupe recupererGroupe (Long id){
+		try (Session session = HibernateUtil.getSessionFactory().openSession()){
+			/*----- Ouverture d'une transaction -----*/
+            Transaction t = session.beginTransaction();
+            
+            Groupe grp = session.get(Groupe.class, id);
+            
+            t.commit(); // Commit et flush automatique de la session.
+            return grp;
         }
     }
 	
@@ -106,8 +133,12 @@ public class EtudiantSessionDao {
 	
 	
 	public static void main (String[] args) throws ParseException{
-		Set<Utilisateur> eleves = EtudiantSessionDao.recupererSessionDonnee(2L);
-		for (Utilisateur eleve: eleves) {
+		EtudiantSessionDao.miseSessionSession(2L);
+		SessionCours s = EtudiantSessionDao.recupererSessionDonnee(2L);
+		System.out.println(s);
+		EtudiantSessionDao.miseSessionGroupe(s);
+		Groupe grp = EtudiantSessionDao.recupererGroupe(s.getGroupe().getId());
+		for (Utilisateur eleve: grp.getEtudiantsGroupe()) {
 			System.out.println(eleve);
 		}
 	}
