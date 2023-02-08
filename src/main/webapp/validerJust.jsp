@@ -54,7 +54,7 @@
         	out.println("<td>" + labs.getDtdebut() +"</td>");
         	out.println("<td>" + labs.getDtfin() +"</td>");
         	out.println("<td>" + labs.getNomGroupe()+"</td>");
-        	out.println("<td><a href=http://\""+labs.getFile()+"\">Document</a></td>");
+        	out.println("<td><a href=http://\""+labs.getJustificatif()+"\">Document</a></td>");
         	out.println("<td><input type=\"checkbox\" value= "+ labs.getAbsid() +" name=\"cb_abs\"></input></td></tr>");
         } 
       %>

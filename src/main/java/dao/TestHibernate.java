@@ -68,26 +68,26 @@ public class TestHibernate
 	}
 	public static List<LigneAbsence> recuperationAbs(String email) throws ParseException {
 
-			try (Session session = HibernateUtil.
-	                getSessionFactory().getCurrentSession()) {
-			 /*----- Ouverture d'une transaction -----*/
-	            Transaction t = session.beginTransaction();
-	         // Liste des abscence d'un etudiant "
-	            Query Liste = session.createQuery("Select new model.LigneAbsence(u.nom, u.prenom, a.id,s.debut, s.fin, c.nom, g.nom, a.justificatif)" +
-	                    "from model.Utilisateur u, model.Absence a, model.SessionCours s, model.Cours c, model.Groupe g "+
-	            		"where u.id = a.utilisateur.id " +
-	                    "and a.sessionCours.id = s.id " +
-	            		"and s.cours.id = c.id " +
-	                    "and s.groupe.id = g.id "+
-	                    "and u.mail = :email " 
-//	                    +
-//	                    "and a.validation = false"
-	                    );
-	            
-	            Liste.setParameter("email",email);
-	            List<LigneAbsence> lst = Liste.list();
-	            return lst;
-		 }		
+		try (Session session = HibernateUtil.
+				getSessionFactory().getCurrentSession()) {
+			/*----- Ouverture d'une transaction -----*/
+			Transaction t = session.beginTransaction();
+			// Liste des abscence d'un etudiant "
+			Query Liste = session.createQuery("Select new model.LigneAbsence(u.nom, u.prenom, a.id,s.debut, s.fin, c.nom, g.nom, a.justificatif)" +
+					"from model.Utilisateur u, model.Absence a, model.SessionCours s, model.Cours c, model.Groupe g "+
+					"where u.id = a.utilisateur.id " +
+					"and a.sessionCours.id = s.id " +
+					"and s.cours.id = c.id " +
+					"and s.groupe.id = g.id "+
+					"and u.mail = :email " 
+					+
+					"and a.validation = false"
+					);
+
+			Liste.setParameter("email",email);
+			List<LigneAbsence> lst = Liste.list();
+			return lst;
+		}		
 
 	}
 	/**
@@ -131,19 +131,19 @@ public class TestHibernate
 			Transaction t = session.beginTransaction();
 			if (action.contains("OK")){
 				System.out.println("ifXXX");
-				
+
 				Query query = session.createQuery("From model.Absence a "
 						+"where a.id IN :ids ");
 				query.setParameterList("ids", lstIdChk);
 				for (Object abs : query.list()) {
 					((Absence)abs).setValidation(true);
 					System.out.println("XXX");
-					
-					}}
+
+				}}
 
 			else if (action.contains("KO")) {
 				System.out.println("AHAHA");
-				
+
 				Query query = session.createQuery("From model.Absence a "
 						+"where a.id IN :ids ");
 				query.setParameterList("ids", lstIdChk);
@@ -151,10 +151,10 @@ public class TestHibernate
 					((Absence)abs).setJustificatif(null);
 					System.out.println("XXX");
 
-					
+
+				}
+
 			}
-			
-		}
 			t.commit();}
 	}
 	/**
@@ -194,15 +194,14 @@ public class TestHibernate
 			/*----- Ouverture d'une transaction -----*/
 			Transaction t = session.beginTransaction();
 			// Liste des abscence d'un etudiant "
-			Query Liste = session.createQuery("Select new model.LigneAbsence(a.justificatif, u.nom, u.prenom, a.id,s.debut, s.fin, c.nom, g.nom)" +
+			Query Liste = session.createQuery("Select new model.LigneAbsence(u.nom, u.prenom, a.id,s.debut, s.fin, c.nom, g.nom, a.justificatif)" +
 					"from model.Utilisateur u, model.Absence a, model.SessionCours s, model.Cours c, model.Groupe g "+
 					"where u.id = a.utilisateur.id " +
 					"and a.sessionCours.id = s.id " +
 					"and s.cours.id = c.id " +
 					"and s.groupe.id = g.id "
-					//+"and a.justificatif is not null"
-					//  "and u.mail = :email " 
-					//+ "and a.validation = 0 "
+					+"and a.justificatif is not null"
+					+ "and a.validation = false "
 					//                   
 					);
 
