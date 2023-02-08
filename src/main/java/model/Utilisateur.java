@@ -95,8 +95,17 @@ public class Utilisateur {
 		return mdp;
 	}
 	
-	public Statut getStatut() {
-		return this.statut;
+	public String getStatut() {
+		return this.statut.toString();
+	}
+	
+	public String getNom() {
+		return nom;
+	}
+
+	
+	public String getPrenom() {
+		return prenom;
 	}
 	
 	public void addSessionsCours(SessionCours session) {

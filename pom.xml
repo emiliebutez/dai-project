@@ -56,6 +56,12 @@
 			<version>2.3.32</version>
 		</dependency>
 	</dependencies>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+  </dependencies>
+  		
 
 	<build>
 		<finalName>m2-dai</finalName>

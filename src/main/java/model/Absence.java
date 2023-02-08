@@ -1,7 +1,10 @@
 package model;
 
+import java.io.File;
+import java.util.HashMap;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,14 +24,45 @@ public class Absence {
 	
 	@ManyToOne
 	SessionCours sessionCours;
+
+	@Column(name = "Justificatif")
+private String justificatif ;
+	@Column(name = "validation")
+	private boolean validation = false ;
+	
 	
 	public Absence() {
 		
+		
 	}
 	
-	public Absence(Utilisateur utilisateur, SessionCours sessionCours) {
+	public Absence(Long id) {
+		this.id=id;
+	}
+ 
+
+	public Absence(Utilisateur utilisateur, SessionCours sessionCours, String justificatif,boolean validation) {
+
 		this.utilisateur = utilisateur;
 		this.sessionCours = sessionCours;
+		this.justificatif=justificatif; 
+		this.validation = validation ;
+	}
+
+	public String getJustificatif() {
+		return justificatif;
+	}
+
+	public void setJustificatif(String justificatif) {
+		this.justificatif = justificatif;
+	}
+
+	public boolean isValidation() {
+		return validation;
+	}
+
+	public void setValidation(boolean validation) {
+		this.validation = validation;
 	}
 
 	public Long getId() {
@@ -59,6 +93,7 @@ public class Absence {
 	public int hashCode() {
 		return Objects.hash(id);
 	}
+	
 
 	@Override
 	public boolean equals(Object obj) {
