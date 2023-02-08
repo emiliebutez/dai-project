@@ -17,7 +17,9 @@ public class LigneAbsence {
 	String nomGroupe;
 	String nom;
 	String prenom;
-	String file;
+
+	String justificatif;
+
 	
 	public LigneAbsence() {
 		
@@ -29,9 +31,11 @@ public class LigneAbsence {
 	 * @param dtfin
 	 * @param nomCours
 	 * @param nomGroupe
+	 * @param justificatif
 	 */
-	public LigneAbsence(String file, String nom,String prenom,Long absid, OffsetDateTime dtdebut, OffsetDateTime dtfin, String nomCours, String nomGroupe) {
-		this.file = file;
+
+	public LigneAbsence(String nom,String prenom,Long absid, OffsetDateTime dtdebut, OffsetDateTime dtfin, String nomCours, String nomGroupe, String justificatif) {
+
 		this.nom = nom;
 		this.prenom=prenom;
 		this.absid = absid;	
@@ -39,6 +43,7 @@ public class LigneAbsence {
 		this.dtfin = dtfin;
 		this.nomCours = nomCours;
 		this.nomGroupe = nomGroupe;
+		this.justificatif = justificatif;
 	}
 	
 	public String getFile() {
@@ -59,6 +64,16 @@ public class LigneAbsence {
 
 	public String getPrenom() {
 		return prenom;
+	}
+	
+	
+
+	public String getJustificatif() {
+		return justificatif;
+	}
+
+	public void setJustificatif(String justificatif) {
+		this.justificatif = justificatif;
 	}
 
 	public void setPrenom(String prenom) {

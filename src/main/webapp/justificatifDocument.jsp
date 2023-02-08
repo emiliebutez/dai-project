@@ -14,7 +14,7 @@
 <div class="container">
     <% Utilisateur u = (Utilisateur)session.getAttribute("utilisateur"); %>
     <% out.print("<p>" + u.getNom() + " " + u.getPrenom() + "</p>");%>
-    <form method="get" enctype="multipart/form-data" action="DepotJustificatifController">
+    <form method="post" enctype="multipart/form-data" action="DepotJustificatifController">
     <table class="table">
       <thead>
       <tr>
@@ -44,7 +44,12 @@
         	out.println("<td>" + labs.getDtdebut() +"</td>");
         	out.println("<td>" + labs.getDtfin() +"</td>");
         	out.println("<td>" + labs.getNomGroupe()+"</td>");
-        	out.println("<td> Aucun justificatif déposé.</td>");
+
+        	if (labs.getJustificatif() != null) {
+        	out.println("<td><a href = http://"+labs.getJustificatif()+">Voir justificatif</a></td>");
+        	} else {
+        		out.println("<td> Aucun justificatif déposé </td>");
+        	}
 
         	out.println("<td><input type=\"checkbox\" value= "+ labs.getAbsid() +" name=\"cb_abs\"></input></td></tr>");
 
@@ -54,8 +59,11 @@
       
       </tbody>
     </table>
+    
     <input type="File" id="justificatif" name="justificatif"/>
-    <button type="submit" onclick="gettab()"class="btn btn-success">Valider</button>
+
+    <button type="submit" value="upload" class="btn btn-success">Valider</button>
+
     </form>
     </div>
     </body>

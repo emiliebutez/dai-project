@@ -67,26 +67,28 @@ public class TestHibernate
 		return lstk;
 	}
 	public static List<LigneAbsence> recuperationAbs(String email) throws ParseException {
-		try (Session session = HibernateUtil.
-				getSessionFactory().getCurrentSession()) {
-			/*----- Ouverture d'une transaction -----*/
-			Transaction t = session.beginTransaction();
-			// Liste des abscence d'un etudiant "
-			Query Liste = session.createQuery("Select new model.LigneAbsence(a.justificatif, u.nom, u.prenom, a.id,s.debut, s.fin, c.nom, g.nom)" +
-					"from model.Utilisateur u, model.Absence a, model.SessionCours s, model.Cours c, model.Groupe g "+
-					"where u.id = a.utilisateur.id " +
-					"and a.sessionCours.id = s.id " +
-					"and s.cours.id = c.id " +
-					"and s.groupe.id = g.id "+
-					"and u.mail = :email " 
-					//	                    +
-					//	                    "and a.validation = false"
-					);
 
-			Liste.setParameter("email",email);
-			List<LigneAbsence> lst = Liste.list();
-			return lst;
-		}		
+			try (Session session = HibernateUtil.
+	                getSessionFactory().getCurrentSession()) {
+			 /*----- Ouverture d'une transaction -----*/
+	            Transaction t = session.beginTransaction();
+	         // Liste des abscence d'un etudiant "
+	            Query Liste = session.createQuery("Select new model.LigneAbsence(u.nom, u.prenom, a.id,s.debut, s.fin, c.nom, g.nom, a.justificatif)" +
+	                    "from model.Utilisateur u, model.Absence a, model.SessionCours s, model.Cours c, model.Groupe g "+
+	            		"where u.id = a.utilisateur.id " +
+	                    "and a.sessionCours.id = s.id " +
+	            		"and s.cours.id = c.id " +
+	                    "and s.groupe.id = g.id "+
+	                    "and u.mail = :email " 
+//	                    +
+//	                    "and a.validation = false"
+	                    );
+	            
+	            Liste.setParameter("email",email);
+	            List<LigneAbsence> lst = Liste.list();
+	            return lst;
+		 }		
+
 	}
 	/**
 	 * 
