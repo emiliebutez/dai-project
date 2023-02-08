@@ -14,7 +14,7 @@
 <div class="container">
     <% Utilisateur u = (Utilisateur)session.getAttribute("utilisateur"); %>
     <% out.print("<p>" + u.getNom() + " " + u.getPrenom() + "</p>");%>
-    <form method="get" enctype="multipart/form-data" action="DepotJustificatifController">
+    <form method="post" enctype="multipart/form-data" action="DepotJustificatifController">
     <table class="table">
       <thead>
       <tr>
@@ -51,7 +51,7 @@
       </tbody>
     </table>
     <input type="File" id="justificatif" name="justificatif"/>
-    <button type="submit" class="btn btn-success">Valider</button>
+    <button type="submit" value="upload" class="btn btn-success">Valider</button>
     </form>
     </div>
     </body>
