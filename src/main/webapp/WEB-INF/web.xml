@@ -67,8 +67,10 @@
 		<servlet-name>Tabtruevalidation</servlet-name>
 		<display-name>Tabtruevalidation</display-name>
 		<description></description>
+		
 		<servlet-class>controller.Tabtruevalidation</servlet-class>
-
+		</servlet>
+<servlet>
 		<servlet-name>DepotJustificatifController</servlet-name>
 		<display-name>DepotJustificatifController</display-name>
 		<description></description>
@@ -87,7 +89,8 @@
 
 		<servlet-name>Tabtruevalidation</servlet-name>
 		<url-pattern>/Tabtruevalidation</url-pattern>
-
+</servlet-mapping>
+<servlet-mapping>
 		<servlet-name>DepotJustificatifController</servlet-name>
 		<url-pattern>/DepotJustificatifController</url-pattern>
 

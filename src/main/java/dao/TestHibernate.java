@@ -105,32 +105,55 @@ public class TestHibernate
 			t.commit();
 		}
 	}
+	public static ArrayList<String> rejectgetmail(String[] lstIdChk) throws ParseException {
+		try (Session session = HibernateUtil.
+				getSessionFactory().getCurrentSession()) {
+			/*----- Ouverture d'une transaction -----*/
+			Transaction t = session.beginTransaction();
+			Query query = session.createQuery("From model.Absence a "
+					+"where a.id IN :ids ");
+			query.setParameterList("ids", lstIdChk);
+			ArrayList<String>emaillst = new ArrayList<String>();
+			for (Object abs : query.list())
+				emaillst.add(((Absence)abs).getUtilisateur().getMail());
+
+			t.commit();
+			return emaillst;
+		}
+	}
 	public static void validerJust(String [] lstIdChk,String action) throws ParseException {
 		try (Session session = HibernateUtil.
 				getSessionFactory().getCurrentSession()) {
 			/*----- Ouverture d'une transaction -----*/
-			if (action=="OK"){
-				Transaction t = session.beginTransaction();
+			System.out.println(action);
+			Transaction t = session.beginTransaction();
+			if (action.contains("OK")){
+				System.out.println("ifXXX");
+				
 				Query query = session.createQuery("From model.Absence a "
 						+"where a.id IN :ids ");
 				query.setParameterList("ids", lstIdChk);
-				for (Object abs : query.list())
+				for (Object abs : query.list()) {
 					((Absence)abs).setValidation(true);
-				t.commit();
-				System.out.println(action+lstIdChk.toString());
-			}
+					System.out.println("XXX");
+					
+					}}
 
-			else if (action=="KO") {
-				Transaction t = session.beginTransaction();
+			else if (action.contains("KO")) {
+				System.out.println("AHAHA");
+				
 				Query query = session.createQuery("From model.Absence a "
 						+"where a.id IN :ids ");
 				query.setParameterList("ids", lstIdChk);
-				for (Object abs : query.list())
+				for (Object abs : query.list()) {
 					((Absence)abs).setJustificatif(null);
-				t.commit();
-				System.out.println(action+lstIdChk.toString());
+					System.out.println("XXX");
+
+					
 			}
+			
 		}
+			t.commit();}
 	}
 	/**
 	 * Programme de test.
@@ -177,11 +200,11 @@ public class TestHibernate
 					"and s.groupe.id = g.id "
 					//+"and a.justificatif is not null"
 					//  "and u.mail = :email " 
-					+ "and a.validation = 0 "
+					//+ "and a.validation = 0 "
 					//                   
 					);
 
-			//Liste.setParameter("email",email);
+
 			List<LigneAbsence> lst = Liste.list();
 			return lst;
 		}		

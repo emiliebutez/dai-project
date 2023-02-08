@@ -46,6 +46,7 @@ public class DepotJustificatifController extends HttpServlet {
 		
 		String[] lstIdChk = (String[])request.getAttribute("cb_abs");
 		
+		
 		File dossier = new File("C:\\Justif"); 
 		
 		try {

@@ -16,7 +16,7 @@
 
 
 <div class="container">
-<form action="Tabtruevalidation">
+<form action="Tabtruevalidation"method="get">
 <table class="table"id="table1">
   <thead>
   <tr>
@@ -54,8 +54,8 @@
         	out.println("<td>" + labs.getDtdebut() +"</td>");
         	out.println("<td>" + labs.getDtfin() +"</td>");
         	out.println("<td>" + labs.getNomGroupe()+"</td>");
-        	out.println("<td>"+labs.getFile()+"</td>");
-        	out.println("<td><input type=\"checkbox\" value= "+ labs.getAbsid() +" name=\"cb\"></input></td></tr>");
+        	out.println("<td><a href=http://\""+labs.getFile()+"\">Document</a></td>");
+        	out.println("<td><input type=\"checkbox\" value= "+ labs.getAbsid() +" name=\"cb_abs\"></input></td></tr>");
         } 
       %>
   </tbody>

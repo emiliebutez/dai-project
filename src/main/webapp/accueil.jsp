@@ -19,7 +19,7 @@ Statut s1 =Statut.Etudiant;//**if(u.getStatut() == s1){*/%>
 <div class=”wrapper”>
 	 
 	<% out.println("<h1>  Bienvenue "+u.getPrenom()+"</h1>");%>
-	out.println(u);%>
+	
 	
 	<% 
 		String html ="<ul class=\'list-group'>"+
