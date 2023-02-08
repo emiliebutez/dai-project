@@ -4,6 +4,7 @@
    	pageEncoding="UTF-8"%>
 <%@ page import="java.util.Set"%>
 <%@ page import="model.Utilisateur"%>
+<%@ page import="model.SessionCours"%>
    	
 <!DOCTYPE html>
 <html>
@@ -66,17 +67,28 @@
 							  <td><%=eleve.getNom()%></td>
 							  <td><%=eleve.getPrenom()%></td>
 							  <td> <input type="checkbox" name="absence" value="<%=eleve.getId()%>" > </td>
-							  <td> <input type=checkbox name="retard"value="<%=eleve.getId()%>"></td>
+							  <% 
+								SessionCours sessionCours = (SessionCours)request.getSession().getAttribute("sessionCours");
+							  System.out.println(sessionCours.getCours().getNom());
+							  if(eleve.getSessionsCours().contains(sessionCours)) {
+								  %>
+								  <td> <input type=checkbox name="retard"value="<%=eleve.getId()%>" checked></td>
+							  <% } else { %>
+							  	<td> <input type=checkbox name="retard"value="<%=eleve.getId()%>"></td>
+							  <%}%>
+							  
 							  <td> <input type="checkbox" name="présent"> </td>
 							 </tr>
 			  <%
 				}
 				%>
 		</table>
+		<div class="form-check form-switch">
+		<input class="form-check-input" name="validation" type="checkbox" id="flexSwitchCheckDefault">
+  	<label class="form-check-label" for="flexSwitchCheckDefault">Valider l'appel</label>
+  	</div>
 		<input type="submit" value="Enregistrer" class="btn btn-primary"/>
-		<a class="btn">Valider</a>
 	</form>	
-	
 
 </body>
 </html>

@@ -58,7 +58,7 @@ public class Utilisateur {
 	@ManyToMany(mappedBy = "etudiantsGroupe")
 	private Set<Groupe> groupes = new HashSet<>();
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable (name = "retards",
 		joinColumns = @JoinColumn(name = "code_utilisateur"), 
 		inverseJoinColumns = @JoinColumn(name = "code_sessionCours"))

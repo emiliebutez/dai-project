@@ -13,6 +13,7 @@ import dao.EtudiantSessionDao;
 import model.Groupe;
 import model.SessionCours;
 import model.Utilisateur;
+import services.SessionService;
 
 /**
  * CtrlListeAppel
@@ -25,7 +26,13 @@ public class CtrlListeAppel extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		Long id = Long.parseLong(request.getParameter("idSession"));
-		request.getSession(true).setAttribute("session", id);
+		
+		SessionService sessionService = new SessionService();
+		SessionCours sessionCours = sessionService.retrouverSession(id);
+		request.getSession(true).setAttribute("sessionCours", sessionCours);
+		
+		System.out.println(sessionCours.getCours().getNom());
+		
 		EtudiantSessionDao.miseSessionSession(id);
 		SessionCours s = EtudiantSessionDao.recupererSessionDonnee(id);
 		EtudiantSessionDao.miseSessionGroupe(s);
@@ -39,8 +46,8 @@ public class CtrlListeAppel extends HttpServlet {
 			//request.getRequestDispatcher("/accueil.jsp").forward(request, response);
 		//} else {
 			// Si ok mise en session et envoie vers la page de liste d'appel
-			session.setAttribute("eleves", eleves);
-			request.getRequestDispatcher("/listeAppel.jsp").forward(request, response);
+		request.getSession(true).setAttribute("eleves", eleves);
+		request.getRequestDispatcher("/listeAppel.jsp").forward(request, response);
 		//}        
 	}
 

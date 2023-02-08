@@ -149,6 +149,12 @@
 		<description></description>
 		<servlet-class>controller.EnregistrementAbsenceRetardController</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>ValidationAbsenceRetardController</servlet-name>
+		<display-name>ValidationAbsenceRetardController</display-name>
+		<description></description>
+		<servlet-class>controller.ValidationAbsenceRetardController</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>AccueilController</servlet-name>
@@ -174,5 +180,9 @@
 	<servlet-mapping>
 		<servlet-name>EnregistrementAbsenceRetardController</servlet-name>
 		<url-pattern>/EnregistrementAbsenceRetardController</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ValidationAbsenceRetardController</servlet-name>
+		<url-pattern>/ValidationAbsenceRetardController</url-pattern>
 	</servlet-mapping>
 </web-app>

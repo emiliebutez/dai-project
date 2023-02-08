@@ -7,12 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.SessionCours;
 import model.Utilisateur;
 import services.EnregistrementAbsenceService;
 import services.EnregistrementRetardService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Servlet implementation class EnregistrementAbsenceRetard
@@ -34,7 +36,10 @@ public class EnregistrementAbsenceRetardController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String[] checkboxAbsence = (String[])request.getParameterValues("absence");
 		String[] checkboxRetard = (String[])request.getParameterValues("retard");
-		Long idSession = (Long)request.getSession().getAttribute("session");
+		SessionCours sessionCours = (SessionCours)request.getSession().getAttribute("sessionCours");
+		Long idSession = sessionCours.getId();
+		
+		Set<Utilisateur> eleves = (Set<Utilisateur>)request.getSession().getAttribute("eleves");
 		
 		if ( checkboxAbsence != null) {
 			List<Long> listCheckboxAbsence = new ArrayList<>();
@@ -46,13 +51,15 @@ public class EnregistrementAbsenceRetardController extends HttpServlet {
 			absenceService.enregistrementListAbsence(listCheckboxAbsence, idSession);
 		}
 		
+		EnregistrementRetardService retardService = new EnregistrementRetardService();
+		retardService.supprimerRetard(eleves, idSession);
+		
 		if (checkboxRetard != null) {
 			List<Long> listcheckboxRetard = new ArrayList<>();		
 			
 			for (int i = 0; i < checkboxRetard.length; i++) {
 				listcheckboxRetard.add(Long.parseLong(checkboxRetard[i]));
 			}
-			EnregistrementRetardService retardService = new EnregistrementRetardService();
 			retardService.enregistrementListRetard(listcheckboxRetard, idSession);
 		} 
 	}

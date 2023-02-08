@@ -27,10 +27,9 @@ public class EnregistrementAbsenceService {
         		Utilisateur eleve = session.get(Utilisateur.class, id);
         		SessionCours sessionCours = session.get(SessionCours.class, idSession);
         		
+        		
         		Absence absence = new Absence(eleve, sessionCours);
         		
-        		System.out.println(absence.getSessionCours().getId());
-        		System.out.println(absence.getUtilisateur().getMail());
         		session.save(absence);
         	}
         	t.commit();
