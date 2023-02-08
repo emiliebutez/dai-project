@@ -72,17 +72,21 @@ public class DepotJustificatifController extends HttpServlet {
 			ecrireFichier(filepart, nomfichier, CHEMIN_FICHIERS );
 			String chemin = "localhost:8080/m2-dai/justif/" + nomfichier;
 			// Enregistre le liens d'acces du fichier en BDD 
-			for(String s : lstIdChk) {
-			System.out.println(s); }
 			TestHibernate.ajoutJustificatif(lstIdChk,chemin);
 			//envoyer un mail a la scolarité
 			Mail.envoyerMail(nomPrenom);
 			//redirection
-			
+			url = "accueil";
+			request.setAttribute("msg_info", "Le justificatif a bien été déposé.");
 			}
 		catch (Exception e) {
-				
+			{
+				url = "accueil";
+				request.setAttribute("msg_erreur", e.getMessage());
+				}	
 			}
+		// Chainage.
+					request.getRequestDispatcher(url).forward(request, response);
 	}
 	
 	/**

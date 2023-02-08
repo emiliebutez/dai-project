@@ -41,10 +41,10 @@ public class Absence {
 		this.id=id;
 	}
  
-	public Absence(Utilisateur utilisateur, SessionCours sessionCours, String just,boolean validation) {
+	public Absence(Utilisateur utilisateur, SessionCours sessionCours, String justificatif,boolean validation) {
 		this.utilisateur = utilisateur;
 		this.sessionCours = sessionCours;
-		this.justificatif=just; 
+		this.justificatif=justificatif; 
 		this.validation = validation ;
 	}
 

@@ -44,12 +44,17 @@
         	out.println("<td>" + labs.getDtdebut() +"</td>");
         	out.println("<td>" + labs.getDtfin() +"</td>");
         	out.println("<td>" + labs.getNomGroupe()+"</td>");
-        	out.println("<td> Aucun justificatif déposé.</td>");
+        	if (labs.getJustificatif() != null) {
+        	out.println("<td><a href ="+labs.getJustificatif()+">Voir justificatif</a></td>");
+        	} else {
+        		out.println("<td> Aucun justificatif déposé </td>");
+        	}
         	out.println("<td><input type=\"checkbox\" value= "+ labs.getAbsid() +" name=\"cb_abs\"></input></td></tr>");
         } 
       %>
       </tbody>
     </table>
+    
     <input type="File" id="justificatif" name="justificatif"/>
     <button type="submit" value="upload" class="btn btn-success">Valider</button>
     </form>

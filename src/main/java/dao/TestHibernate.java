@@ -53,7 +53,7 @@ public class TestHibernate
 			 /*----- Ouverture d'une transaction -----*/
 	            Transaction t = session.beginTransaction();
 	         // Liste des abscence d'un etudiant "
-	            Query Liste = session.createQuery("Select new model.LigneAbsence(u.nom, u.prenom, a.id,s.debut, s.fin, c.nom, g.nom)" +
+	            Query Liste = session.createQuery("Select new model.LigneAbsence(u.nom, u.prenom, a.id,s.debut, s.fin, c.nom, g.nom, a.justificatif)" +
 	                    "from model.Utilisateur u, model.Absence a, model.SessionCours s, model.Cours c, model.Groupe g "+
 	            		"where u.id = a.utilisateur.id " +
 	                    "and a.sessionCours.id = s.id " +
