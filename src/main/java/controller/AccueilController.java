@@ -54,16 +54,17 @@ public class AccueilController extends HttpServlet {
 		case Etudiant : 
 			sessionsCours = calendrier.chercherSessionsCoursEtudiant(request, response);
 			request.setAttribute("sessionsCours", new Week(sessionsCours));
+			request.getRequestDispatcher("/accueil.ftl").forward(request, response);
 			break;
 		case Enseignant :
 			sessionsCours = calendrier.chercherSessionsCoursEnseignant(request, response);
 			request.setAttribute("sessionsCours", new Week(sessionsCours));
+			request.getRequestDispatcher("/accueil.ftl").forward(request, response);
 			break;
 		case Scolarite :
+			request.getRequestDispatcher("/accueil.jsp").forward(request, response);
 			break;
 		}
-		
-		request.getRequestDispatcher("/accueil.ftl").forward(request, response);
 	}
 
 	/**

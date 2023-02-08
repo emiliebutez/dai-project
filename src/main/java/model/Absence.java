@@ -48,6 +48,12 @@ private String justificatif ;
 		this.justificatif=justificatif; 
 		this.validation = validation ;
 	}
+	
+	public Absence(Utilisateur utilisateur, SessionCours sessionCours) {
+
+		this.utilisateur = utilisateur;
+		this.sessionCours = sessionCours;
+	}
 
 	public String getJustificatif() {
 		return justificatif;
