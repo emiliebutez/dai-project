@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.Absence;
+import model.Mail;
 import model.SessionCours;
 import model.Utilisateur;
 import services.EnregistrementAbsenceService;
@@ -50,6 +52,10 @@ public class EnregistrementAbsenceRetardController extends HttpServlet {
 				listCheckboxAbsence.add(Long.parseLong(checkboxAbsence[i]));
 			}
 			absenceService.enregistrementListAbsence(listCheckboxAbsence, idSession);
+			
+			if(request.getParameter("validation") != null){
+				envoiMail(sessionCours);
+			}
 		}
 		
 		EnregistrementRetardService retardService = new EnregistrementRetardService();
@@ -73,6 +79,16 @@ public class EnregistrementAbsenceRetardController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	public void envoiMail(SessionCours sessionCours) {
+		EnregistrementAbsenceService absenceService = new EnregistrementAbsenceService();
+		List<Absence> absences = absenceService.recupererAbsence(sessionCours.getId());
+		Mail mailService = new Mail();
+		
+		for(Absence absence : absences) {
+			mailService.envoyerMailAbsenceEtudiants(absence.getUtilisateur().getMail(), sessionCours);
+		}
 	}
 
 }

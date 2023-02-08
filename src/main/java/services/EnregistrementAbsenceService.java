@@ -58,4 +58,14 @@ public class EnregistrementAbsenceService {
         	return queryResult;
         }
 	}
+	
+	@Transactional
+	public List<Absence> recupererUneAbsence (Long idSession) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        	List<Absence> queryResult = session.createQuery("FROM Absence a "
+								+ "WHERE a.sessionCours.id = :idSession ", Absence.class).setParameter("idSession", idSession).list();
+        	
+        	return queryResult;
+        }
+	}
 }
