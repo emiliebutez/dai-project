@@ -61,6 +61,7 @@ public class DepotJustificatifController extends HttpServlet {
 		File dossier = new File("C://Justif/"); 
 		
 		try { 
+			System.out.println(lstIdChk);
 			if(lstIdChk != null) {
 				// si le directory n'existe pas le creer
 				if (!dossier.exists()) {
@@ -69,6 +70,7 @@ public class DepotJustificatifController extends HttpServlet {
 				//Créer une copie du PDF
 				//on recupere le pdf
 				String nomfichier = getNomFichier(filepart);
+				System.out.println(nomfichier);
 				if (nomfichier!= null) {
 						ecrireFichier(filepart, nomfichier, CHEMIN_FICHIERS );
 						String chemin = "localhost:8080/m2-dai/justif/" + nomfichier;
