@@ -95,9 +95,7 @@ public class Utilisateur {
 		return mdp;
 	}
 	
-	public String getStatut() {
-		return this.statut.toString();
-	}
+
 	
 	public String getNom() {
 		return nom;
@@ -169,6 +167,10 @@ public class Utilisateur {
 
 	public void setSessionsCours(Set<SessionCours> sessionsCours) {
 		this.sessionsCours = sessionsCours;
+	}
+
+	public Statut getStatut() {
+		return statut;
 	}
 
 	public void setStatut(Statut statut) {
