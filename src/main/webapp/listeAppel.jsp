@@ -63,7 +63,7 @@
 			</tr>
 
 			<%
-			Set<Utilisateur> eleves = (Set<Utilisateur>) session.getAttribute("eleves");
+			List<Utilisateur> eleves = (List<Utilisateur>) session.getAttribute("eleves");
 			List<Absence> absences = (List<Absence>) session.getAttribute("absences");
 			for (Absence absence: absences) {
 				System.out.println(absence.getUtilisateur().getId());

@@ -36,22 +36,33 @@ public class EnregistrementAbsenceRetardController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String[] checkboxAbsence = (String[])request.getParameterValues("absence");
-		String[] checkboxRetard = (String[])request.getParameterValues("retard");
+		String[] statuts = (String[])request.getParameterValues("statut");
 		SessionCours sessionCours = (SessionCours)request.getSession().getAttribute("sessionCours");
 		Long idSession = sessionCours.getId();
 		
-		Set<Utilisateur> eleves = (Set<Utilisateur>)request.getSession().getAttribute("eleves");
+		List<Long> listAbsence = new ArrayList<>();
+		List<Long> listRetard = new ArrayList<>();
+		
+		if ( statuts != null) {
+			for (int i = 0; i < statuts.length; i++) {
+				 String[] statutIdEleve = statuts[i].split(":");
+				 String statusEleve = statutIdEleve[0];
+				 Long idEleve = Long.parseLong(statutIdEleve[1]);
+				 
+				 switch (statusEleve) {
+					 case "absent" : 	listAbsence.add(idEleve); 	break;
+					 case "retard" : 	listRetard.add(idEleve); 		break;
+				 }
+			}
+		}
+		
+		List<Utilisateur> eleves = (List<Utilisateur>)request.getSession().getAttribute("eleves");
 		
 		EnregistrementAbsenceService absenceService = new EnregistrementAbsenceService();
 		absenceService.supprimerAbsence(idSession);
-		if ( checkboxAbsence != null) {
-			List<Long> listCheckboxAbsence = new ArrayList<>();
+		if (!listAbsence.isEmpty()) {
 			
-			for (int i = 0; i < checkboxAbsence.length; i++) {
-				listCheckboxAbsence.add(Long.parseLong(checkboxAbsence[i]));
-			}
-			absenceService.enregistrementListAbsence(listCheckboxAbsence, idSession);
+			absenceService.enregistrementListAbsence(listAbsence, idSession);
 			
 			if(request.getParameter("validation") != null){
 				envoiMail(sessionCours);
@@ -61,13 +72,8 @@ public class EnregistrementAbsenceRetardController extends HttpServlet {
 		EnregistrementRetardService retardService = new EnregistrementRetardService();
 		retardService.supprimerRetard(eleves, idSession);
 		
-		if (checkboxRetard != null) {
-			List<Long> listcheckboxRetard = new ArrayList<>();		
-			
-			for (int i = 0; i < checkboxRetard.length; i++) {
-				listcheckboxRetard.add(Long.parseLong(checkboxRetard[i]));
-			}
-			retardService.enregistrementListRetard(listcheckboxRetard, idSession);
+		if (!listRetard.isEmpty()) {
+			retardService.enregistrementListRetard(listRetard, idSession);
 		} 
 		String link = "/CtrlListeAppel?idSession=" + idSession;
 		request.getRequestDispatcher(link).forward(request, response);

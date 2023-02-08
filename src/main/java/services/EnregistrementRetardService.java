@@ -34,7 +34,7 @@ public class EnregistrementRetardService {
 	}
 	
 	@Transactional
-	public void supprimerRetard (Set<Utilisateur> listUtilisateur, Long idSession) {
+	public void supprimerRetard (List<Utilisateur> listUtilisateur, Long idSession) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
         	Transaction t = session.beginTransaction();
         	for (Utilisateur utilisateur : listUtilisateur) {

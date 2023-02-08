@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.ServletException;
@@ -38,15 +40,10 @@ public class CtrlListeAppel extends HttpServlet {
 		SessionCours s = EtudiantSessionDao.recupererSessionDonnee(id);
 		EtudiantSessionDao.miseSessionGroupe(s);
 		Groupe grp = EtudiantSessionDao.recupererGroupe(s.getGroupe().getId());
-		Set<Utilisateur> eleves = grp.getEtudiantsGroupe();
-		for (Utilisateur eleve: eleves) {
-			System.out.println(eleve);
-		}
+		List<Utilisateur> eleves = new ArrayList<>(grp.getEtudiantsGroupe());
 		
-		//if (eleves.size() == 0) {
-			//request.getRequestDispatcher("/accueil.jsp").forward(request, response);
-		//} else {
-			// Si ok mise en session et envoie vers la page de liste d'appel
+		eleves.sort((u1, u2) -> u1.getNom().compareTo(u2.getNom()));
+		
 		request.getSession(true).setAttribute("eleves", eleves);
 		EnregistrementAbsenceService absenceService = new EnregistrementAbsenceService();
 		request.getSession(true).setAttribute("absences", absenceService.recupererAbsence(id));
