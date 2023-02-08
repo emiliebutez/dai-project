@@ -26,7 +26,7 @@ public class Mail {
 	   * @param to
 	   */
 	  public final static void envoyerMail(String nomPrenomU) {
-		  String to = "xfourix@gmail.com";
+		  String to = "nicolas.galceran@ut-capitole.fr";
 	   Properties props = new Properties();
 	   props.put("mail.smtp.host", HOST);
 	   props.put("mail.smtp.auth", "true");
