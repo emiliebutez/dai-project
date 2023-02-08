@@ -27,13 +27,10 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active text-white" aria-current="page" href="#">Accueil</a>
+          <a class="nav-link active text-white" aria-current="page" href="accueil">Accueil</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white">Disabled</a>
+          <a class="nav-link text-white" href='JustificatifController'>Déposer un justificatif</a>
         </li>
       </ul>
       <form class="d-flex" role="search">
