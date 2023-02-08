@@ -60,7 +60,7 @@ public class Tabtruevalidation extends HttpServlet {
 			ArrayList<String> lstmail = new ArrayList<>();
 			lstmail = TestHibernate.rejectgetmail(lstIdChk);
 			for (String eml : lstmail) {
-				Mail.envoyerMail(eml);
+				Mail.envoyerMail2(eml);
 			}
 
 

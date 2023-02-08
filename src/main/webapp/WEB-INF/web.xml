@@ -189,6 +189,7 @@
 		<servlet-name>ValidationAbsenceRetardController</servlet-name>
 		<url-pattern>/ValidationAbsenceRetardController</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>JustificatifController</servlet-name>
 		<url-pattern>/JustificatifController</url-pattern>
 	</servlet-mapping>
@@ -209,7 +210,7 @@
 		<display-name>Tabtruevalidation</display-name>
 		<description></description>
 		<servlet-class>controller.Tabtruevalidation</servlet-class>
-		</servlet>
+	</servlet>
 <servlet>
 		<servlet-name>DepotJustificatifController</servlet-name>
 		<display-name>DepotJustificatifController</display-name>
