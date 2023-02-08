@@ -121,7 +121,6 @@ public class Week {
 		private float h = 0f;
 		
 		public RenduSessionCours(SessionCours sessionCours) {
-			System.out.println(sessionCours);
 			this.sessionCours = sessionCours;
 		}
 		

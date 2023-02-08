@@ -37,10 +37,6 @@ public class Promo {
 		this.nom = nom;
 	}
 
-	public Promo(String nom) {
-		this.nom = nom;
-	}
-
 	public Long getId() {
 		return id;
 	}

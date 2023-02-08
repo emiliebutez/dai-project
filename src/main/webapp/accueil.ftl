@@ -72,7 +72,7 @@
 				<#list sessionsCours.getJournee(i) as rendu>
 				
 					<li class="cours coursRadius" style="height: ${rendu.h}px; top: ${rendu.y}px; width: ${rendu.w}%; left: ${rendu.x}%">
-					<a href="#0">
+					<a href="CtrlListeAppel?idSession=${rendu.sessionCours.id}">
 						<em>${rendu.sessionCours.cours.nom}</em>
 						<p>
 							<span>${rendu.sessionCours.debut.hour?string["00"]}:${rendu.sessionCours.debut.minute?string["00"]}</span>

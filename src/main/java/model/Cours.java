@@ -37,10 +37,6 @@ public class Cours {
 		this.nom = nom;
 	}
 
-	public Cours(String nom) {
-		this.nom = nom;
-	}
-
 	public Long getId() {
 		return id;
 	}

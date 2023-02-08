@@ -24,7 +24,7 @@ public class CtrlListeAppel extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
-		Long id = 2L;
+		Long id = Long.parseLong(request.getParameter("idSession"));
 		EtudiantSessionDao.miseSessionSession(id);
 		SessionCours s = EtudiantSessionDao.recupererSessionDonnee(id);
 		EtudiantSessionDao.miseSessionGroupe(s);
