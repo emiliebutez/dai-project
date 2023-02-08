@@ -56,6 +56,13 @@ public class SessionCours {
 		this.cours = cours;
 		this.groupe = groupe;
 	}
+	
+	public SessionCours(OffsetDateTime debut, OffsetDateTime fin, Utilisateur enseignant, Cours cours) {
+		this.debut = debut;
+		this.fin = fin;
+		this.enseignant = enseignant;
+		this.cours = cours;
+	}
 
 	public Long getId() {
 		return id;

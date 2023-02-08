@@ -32,6 +32,10 @@ public class Promo {
 	public Promo() {
 		
 	}
+	
+	public Promo(String nom) {
+		this.nom = nom;
+	}
 
 	public Promo(String nom) {
 		this.nom = nom;
@@ -51,6 +55,10 @@ public class Promo {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+	
+	public void addGroupe(Groupe groupe) {
+		this.groupes.add(groupe);
 	}
 
 	public Set<Groupe> getGroupes() {

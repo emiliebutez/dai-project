@@ -15,5 +15,6 @@
 	<%= u.getMail() %>
 	<% List<SessionCours> s = (List<SessionCours>)session.getAttribute("sessionsCours"); %>
 	<%= s.get(0).getId() %>
+	<a href="CtrlListeAppel">ici</a>
 </body>
 </html>
