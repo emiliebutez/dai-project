@@ -33,10 +33,10 @@ public class TestHibernate
 		try (Session session = HibernateUtil.getSessionFactory().getCurrentSession()) {
 			Transaction t = session.beginTransaction();
 
-			Utilisateur u = new Utilisateur("emiliebutez.eb@ut-capitole.fr", "123","butez", "emilie", Statut.Etudiant, true, 21801546L);
-			Utilisateur u2 = new Utilisateur("nicolasgalceran@ut-capitole.fr","123","Galceran","nicolas",Statut.Etudiant,true,21874534L);
-			Utilisateur u3 = new Utilisateur("malikbelaiba@ut-capitole.fr","123","Belaiba","Malik",Statut.Etudiant,true,21854534L);
-			Utilisateur u4 = new Utilisateur("aminesaghir@ut-capitole.fr","123","Saghir","Amine",Statut.Etudiant,true,21709745L);
+			Utilisateur u = new Utilisateur("emiliebutez.eb@ut-capitole.fr", "123","Butez", "Emilie", Statut.Etudiant, true, 21801546L);
+			Utilisateur u2 = new Utilisateur("nicolas.galceran@ut-capitole.fr","123","Galceran","Nicolas",Statut.Etudiant,true,21874534L);
+			Utilisateur u3 = new Utilisateur("malik.belaiba@ut-capitole.fr","123","Belaiba","Malik",Statut.Etudiant,true,21854534L);
+			Utilisateur u4 = new Utilisateur("amine.saghir@ut-capitole.fr","123","Saghir","Amine",Statut.Etudiant,true,21709745L);
 			Utilisateur u5 = new Utilisateur("alainberro@ut-capitole.fr","123","Berro","Alain",Statut.Enseignant,true,21898455L);
 			Utilisateur u6 = new Utilisateur("scolarité_miage@ut-capitole.fr","123","Scolarite","miage",Statut.Scolarite,true,21874534L);
 			session.save(u2);
@@ -146,9 +146,9 @@ public class TestHibernate
 
 
 
-		String[] lst = new String[1];
+		String[] lst = new String[2];
 		lst[0]="1";
-		lst[0]="2";
+		lst[1]="2";
 		TestHibernate.validerJust(lst,"OK");
 
 
