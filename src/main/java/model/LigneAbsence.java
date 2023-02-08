@@ -46,13 +46,8 @@ public class LigneAbsence {
 		this.justificatif = justificatif;
 	}
 	
-	public String getFile() {
-		return file;
-	}
-
-	public void setFile(String file) {
-		this.file = file;
-	}
+	
+	
 
 	public String getNom() {
 		return nom;
