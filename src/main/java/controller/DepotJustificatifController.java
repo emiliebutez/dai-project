@@ -54,30 +54,37 @@ public class DepotJustificatifController extends HttpServlet {
 		Utilisateur u = (Utilisateur)session.getAttribute("utilisateur");
 		String nomPrenom = u.getNom() + u.getPrenom();
 		String url;
-		int idjust = 1;
+		int id = 1;
 		Part filepart = request.getPart("justificatif");
 		String[] lstIdChk = (String[])request.getParameterValues("cb_abs");
 		
 		File dossier = new File("C://Justif/"); 
 		
 		try { 
-			// si le directory n'existe pas le creer
-			if (!dossier.exists()) {
-			 boolean res = dossier.mkdir();
-			}
-			//Créer une copie du PDF
-			//on recupere le pdf
-			String nomfichier = getNomFichier(filepart);
-			
-			ecrireFichier(filepart, nomfichier, CHEMIN_FICHIERS );
-			String chemin = "localhost:8080/m2-dai/justif/" + nomfichier;
-			// Enregistre le liens d'acces du fichier en BDD 
-			TestHibernate.ajoutJustificatif(lstIdChk,chemin);
-			//envoyer un mail a la scolarité
-			Mail.envoyerMail(nomPrenom);
-			//redirection
+			if(lstIdChk != null) {
+				// si le directory n'existe pas le creer
+				if (!dossier.exists()) {
+					boolean res = dossier.mkdir();
+				}
+				//Créer une copie du PDF
+				//on recupere le pdf
+				String nomfichier = getNomFichier(filepart);
+				if (nomfichier!= null) {
+						ecrireFichier(filepart, nomfichier, CHEMIN_FICHIERS );
+						String chemin = "localhost:8080/m2-dai/justif/" + nomfichier;
+						// Enregistre le liens d'acces du fichier en BDD 
+						TestHibernate.ajoutJustificatif(lstIdChk,chemin);
+						//envoyer un mail a la scolarité
+						Mail.envoyerMail(nomPrenom);
+						//redirection
+						url = "accueil";
+						request.setAttribute("msg_info", "Le justificatif a bien été déposé.");
+				}else {
+				url = "accueil";
+				request.setAttribute("msg_erreur", "veuillez déposer un fichier");}
+			}else {
 			url = "accueil";
-			request.setAttribute("msg_info", "Le justificatif a bien été déposé.");
+			request.setAttribute("msg_erreur", "veuillez cocher au moins une absence");}
 			}
 		catch (Exception e) {
 			{

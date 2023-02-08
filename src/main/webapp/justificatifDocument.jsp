@@ -45,7 +45,7 @@
         	out.println("<td>" + labs.getDtfin() +"</td>");
         	out.println("<td>" + labs.getNomGroupe()+"</td>");
         	if (labs.getJustificatif() != null) {
-        	out.println("<td><a href ="+labs.getJustificatif()+">Voir justificatif</a></td>");
+        	out.println("<td><a href = http://"+labs.getJustificatif()+">Voir justificatif</a></td>");
         	} else {
         		out.println("<td> Aucun justificatif déposé </td>");
         	}

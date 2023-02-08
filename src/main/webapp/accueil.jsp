@@ -33,15 +33,14 @@ Statut s1 =Statut.Etudiant;//**if(u.getStatut() == s1){*/%>
 	<%
 	String msg_erreur = (String)request.getAttribute("msg_erreur");
 	String msg_info = (String)request.getAttribute("msg_info");
-	if (msg_erreur != null ) {
-%>
-<div class="form-text"><%= msg_erreur %></div>
-
-<% 	if (msg_info != null ) {
+	if (msg_info != null ) { 
 	%>
-	<div class="from-text"><%= msg_info%></div>
-}
-	
+		<div class="form-text"><%= msg_erreur %></div>
+	<% } %>
+	<% if (msg_info != null ) { 
+	%>
+		<div class="form-text"><%= msg_info %></div>
+	<% } %>
 </div>
 	</div>
 	</div>
