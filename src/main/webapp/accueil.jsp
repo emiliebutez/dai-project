@@ -25,7 +25,6 @@ Statut s1 =Statut.Etudiant;//**if(u.getStatut() == s1){*/%>
 	
 	<% 
 		String html ="<ul class=\'list-group'>"+
-		"<li class='list-group-item'><a href='JustificatifController'>Déposer un justificatif</a></li>"+
 		"<li class='list-group-item'><a href='ValidationController'>Valider un justificatif</a> </li>"+
 						"</ul>";	
 	 %>
