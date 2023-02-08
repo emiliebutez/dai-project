@@ -41,13 +41,14 @@ public class EnregistrementAbsenceRetardController extends HttpServlet {
 		
 		Set<Utilisateur> eleves = (Set<Utilisateur>)request.getSession().getAttribute("eleves");
 		
+		EnregistrementAbsenceService absenceService = new EnregistrementAbsenceService();
+		absenceService.supprimerAbsence(idSession);
 		if ( checkboxAbsence != null) {
 			List<Long> listCheckboxAbsence = new ArrayList<>();
 			
 			for (int i = 0; i < checkboxAbsence.length; i++) {
 				listCheckboxAbsence.add(Long.parseLong(checkboxAbsence[i]));
 			}
-			EnregistrementAbsenceService absenceService = new EnregistrementAbsenceService();
 			absenceService.enregistrementListAbsence(listCheckboxAbsence, idSession);
 		}
 		
@@ -62,6 +63,8 @@ public class EnregistrementAbsenceRetardController extends HttpServlet {
 			}
 			retardService.enregistrementListRetard(listcheckboxRetard, idSession);
 		} 
+		String link = "/CtrlListeAppel?idSession=" + idSession;
+		request.getRequestDispatcher(link).forward(request, response);
 	}
 
 	/**

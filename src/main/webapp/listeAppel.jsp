@@ -3,6 +3,8 @@
 	contentType="text/html; charset=UTF-8"
    	pageEncoding="UTF-8"%>
 <%@ page import="java.util.Set"%>
+<%@ page import="java.util.List"%>
+<%@ page import="model.Absence"%>
 <%@ page import="model.Utilisateur"%>
 <%@ page import="model.SessionCours"%>
    	
@@ -60,16 +62,21 @@
 				
 				<%
 				Set<Utilisateur> eleves = (Set<Utilisateur>)session.getAttribute("eleves");
+				List<Absence> absences = (List<Absence>)session.getAttribute("absences");
 				for (Utilisateur eleve : eleves) {
 				%>
 					<tr> 
 							  <td><img src="images?id=<%=eleve.getId()%>"></td>
 							  <td><%=eleve.getNom()%></td>
 							  <td><%=eleve.getPrenom()%></td>
-							  <td> <input type="checkbox" name="absence" value="<%=eleve.getId()%>" > </td>
+							  <% if(absences.stream().anyMatch(a -> a.getUtilisateur().equals(eleve))) {
+								  %>
+							  <td> <input type="checkbox" name="absence" value="<%=eleve.getId()%>" checked> </td>
+							  <% } else { %>
+							  <td> <input type="checkbox" name="absence" value="<%=eleve.getId()%>"> </td>
+							  <% } %>
 							  <% 
 								SessionCours sessionCours = (SessionCours)request.getSession().getAttribute("sessionCours");
-							  System.out.println(sessionCours.getCours().getNom());
 							  if(eleve.getSessionsCours().contains(sessionCours)) {
 								  %>
 								  <td> <input type=checkbox name="retard"value="<%=eleve.getId()%>" checked></td>
@@ -77,7 +84,14 @@
 							  	<td> <input type=checkbox name="retard"value="<%=eleve.getId()%>"></td>
 							  <%}%>
 							  
-							  <td> <input type="checkbox" name="présent"> </td>
+							  <%if(eleve.getSessionsCours().contains(sessionCours) || absences.stream().anyMatch(a -> a.getUtilisateur().equals(eleve))) {
+								  %>
+								  <td> <input type="checkbox" name="présent"> </td>
+							  <% } else { %>
+							  	<td> <input type="checkbox" name="présent" checked></td>
+							  <%}%>
+							  
+							  
 							 </tr>
 			  <%
 				}

@@ -13,6 +13,7 @@ import dao.EtudiantSessionDao;
 import model.Groupe;
 import model.SessionCours;
 import model.Utilisateur;
+import services.EnregistrementAbsenceService;
 import services.SessionService;
 
 /**
@@ -47,6 +48,9 @@ public class CtrlListeAppel extends HttpServlet {
 		//} else {
 			// Si ok mise en session et envoie vers la page de liste d'appel
 		request.getSession(true).setAttribute("eleves", eleves);
+		EnregistrementAbsenceService absenceService = new EnregistrementAbsenceService();
+		request.getSession(true).setAttribute("absences", absenceService.recupererAbsence(id));
+		
 		request.getRequestDispatcher("/listeAppel.jsp").forward(request, response);
 		//}        
 	}
