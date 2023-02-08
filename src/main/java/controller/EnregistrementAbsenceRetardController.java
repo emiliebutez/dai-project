@@ -13,6 +13,7 @@ import model.SessionCours;
 import model.Utilisateur;
 import services.EnregistrementAbsenceService;
 import services.EnregistrementRetardService;
+import services.SessionService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,6 +76,12 @@ public class EnregistrementAbsenceRetardController extends HttpServlet {
 		if (!listRetard.isEmpty()) {
 			retardService.enregistrementListRetard(listRetard, idSession);
 		} 
+		
+		if(request.getParameter("validation") != null){
+			SessionService sessionService = new SessionService();
+			sessionService.appelValide(sessionCours);
+		}
+		
 		String link = "/CtrlListeAppel?idSession=" + idSession;
 		request.getRequestDispatcher(link).forward(request, response);
 	}

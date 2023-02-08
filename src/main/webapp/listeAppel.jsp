@@ -79,7 +79,7 @@
 					<% boolean absent = absences.stream().anyMatch(a -> a.getUtilisateur().equals(eleve)); %>
 					<% boolean retard = !absent && eleve.getSessionsCours().contains(sessionCours); %>
 					<% boolean present = !(absent || retard); %> 
-					<select name="statut"id="hall">
+					<select name="statut"id="hall" <%= (sessionCours.isAppelTermine() ? "disabled" : "") %>>
 						<option value="absent:<%=eleve.getId()%>" <%= (absent ? "selected" : "") %>>Absent(e)</option>
 						<option value="retard:<%=eleve.getId()%>" <%= (retard ? "selected" : "") %>>Retard</option>
 						<option value="present:<%=eleve.getId()%>" <%= (present ? "selected" : "") %>>Présent(e)</option>
@@ -90,12 +90,16 @@
 			}
 			%>
 		</table>
-		<div class="form-check form-switch">
+		<% if(!sessionCours.isAppelTermine()) { %>
+			<div class="form-check form-switch">
 			<input class="form-check-input" name="validation" type="checkbox"
-				id="flexSwitchCheckDefault"> <label class="form-check-label"
-				for="flexSwitchCheckDefault">Valider l'appel</label>
-		</div>
-		<input type="submit" value="Enregistrer" class="btn btn-primary" />
+				id="flexSwitchCheckDefault"> 
+				<label class="form-check-label" for="flexSwitchCheckDefault">Valider l'appel (Attention cette opération est irréversible vous ne pourrez plus modifier la liste)</label>
+			</div>
+			<input type="submit" value="Enregistrer" class="btn btn-primary" />
+			<% } else { %>
+				<a href="tel:+123456789">Télécharger</a>
+			<% } %>
 	</form>
 
 </body>

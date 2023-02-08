@@ -19,4 +19,13 @@ public class SessionService {
         	return session.get(SessionCours.class, id);
         }
 	}
+	
+	public void appelValide(SessionCours sessionCours) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        	Transaction t = session.beginTransaction();
+        	sessionCours.setAppelTermine(true);
+        	session.update(sessionCours);
+        	t.commit();
+        }
+	}
 }
