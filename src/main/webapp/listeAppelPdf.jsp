@@ -68,7 +68,7 @@
 			</div>
 		</div>
 	</nav>
-	<div id="pdf" style="background: white;">>
+	<div id="pdf" style="background: white;">
 	<form action="EnregistrementAbsenceRetardController" method="GET">
 		<table class="table text-center align-middle">
 		<% SessionCours sessionCours = (SessionCours)request.getSession().getAttribute("sessionCours"); %>

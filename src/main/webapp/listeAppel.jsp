@@ -82,7 +82,7 @@
 							<% index += 1; %>
 							<td> <input class="checkbox" id="<%=index%>" type=checkbox name="statut" data-name="Retard" value="retard:<%=eleve.getId()%>" <%= (sessionCours.isAppelTermine() ? "disabled" : "") %> <%= (retard ? "checked" : "") %> onclick="selectOnlyThis(this.id, 'deuxieme')"></td>
 						  	<% index += 1; %>
-						  	<td><input class="checkbox" id="<%=index%>" type="checkbox" name="statut" data-name="Présent(e)" <%= (sessionCours.isAppelTermine() ? "disabled" : "") %> <%= (present ? "checked" : "") %> onclick="selectOnlyThis(this.id), 'troisieme'"> </td>
+						  	<td><input class="checkbox" id="<%=index%>" type="checkbox" data-name="Présent(e)" <%= (sessionCours.isAppelTermine() ? "disabled" : "") %> <%= (present ? "checked" : "") %> onclick="selectOnlyThis(this.id), 'troisieme'"> </td>
 
 					 </tr>
 			  <%
