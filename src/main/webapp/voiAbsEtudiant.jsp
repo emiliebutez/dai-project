@@ -39,22 +39,48 @@
   
   <select name="mois" id="mois">
     <option value="">Selectionner un mois ...</option>
-    <option value="">Janvier</option>
-    <option value="">Fevrier</option>
-    <option value="">Mars</option>
-    <option value="">Avril</option>
-    <option value="">Mai</option>
-    <option value="">Juin</option>
-    <option value="">Juillet</option>
-    <option value="">Aout</option>
-    <option value="">Septembre</option>
-    <option value="">Octobre</option>
-    <option value="">Novembre</option>
-    <option value="">Decembre</option>
+    <option value="01">Janvier</option>
+    <option value="02">Fevrier</option>
+    <option value="03">Mars</option>
+    <option value="04">Avril</option>
+    <option value="05">Mai</option>
+    <option value="06">Juin</option>
+    <option value="07">Juillet</option>
+    <option value="08">Aout</option>
+    <option value="09">Septembre</option>
+    <option value="10">Octobre</option>
+    <option value="11">Novembre</option>
+    <option value="12">Decembre</option>
 </select>
+<h3 class="display-1"> Liste abscence : </h3>
+<table class="table">
+      <thead>
+      <tr>
+        <th scope="col"></th>
+          <th scope="col">Absences</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+      </tr>
+      </thead>
+      <thead>
+        <tr>
+          <th scope="col">Cours</th>
+          <th scope="col">Debut</th>
+          <th scope="col">Fin</th>
+          <th scope="col">Groupe</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+      
+      </tbody>
+    </table>
 </div>
 
 
 </div>
+<script type="text/JavaScript" src="js/fctxml.js"></script>
 </body>
 </html>

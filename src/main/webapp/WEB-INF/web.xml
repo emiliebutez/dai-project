@@ -227,6 +227,12 @@
      		<file-size-threshold>1048576</file-size-threshold>
 		</multipart-config>
 	</servlet>
+<servlet>
+	<servlet-name>AbsenceEtuController</servlet-name>
+	<display-name>AbsenceEtuController</display-name>
+	<description></description>
+	<servlet-class>controller.AbsenceEtuController</servlet-class>
+</servlet>
 	<servlet-mapping>
 	<servlet-name>justificatifDocument</servlet-name>
 	<url-pattern>/justificatifDocument</url-pattern>
@@ -243,6 +249,10 @@
 <servlet-mapping>
 		<servlet-name>DepotJustificatifController</servlet-name>
 		<url-pattern>/DepotJustificatifController</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>AbsenceEtuController</servlet-name>
+	<url-pattern>/AbsenceEtuController</url-pattern>
 </servlet-mapping>
 	
 	
