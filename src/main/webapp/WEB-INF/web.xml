@@ -276,12 +276,4 @@
 		<servlet-name>CtrlProfil</servlet-name>
 		<url-pattern>/CtrlProfil</url-pattern>
 	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>ModifPhoto</servlet-name>
-		<url-pattern>/ModifPhoto</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>CtrlModifPhoto</servlet-name>
-		<url-pattern>/CtrlModifPhoto</url-pattern>
-	</servlet-mapping>
 </web-app>
