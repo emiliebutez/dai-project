@@ -103,10 +103,8 @@
 	
 		<script> 
 		function selectOnlyThis(id, ordre) {
-			console.log(id);
 			let debut = parseInt(id);
 			
-			console.log(ordre);
 			if (ordre === "deuxieme") {
 				debut = id - 1;
 			} else if (id % 3 === 0) {
@@ -114,7 +112,6 @@
 			} 
 			
 			let fin = debut + 3; 
-			console.log(fin);
 			for (var i = debut ;i < fin; i++) {
 		    	if (i != id) {
 		    		document.getElementById(i).checked = false;
