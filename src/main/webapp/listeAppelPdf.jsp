@@ -57,13 +57,11 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active text-white"
 						aria-current="page" href="accueil">Accueil</a></li>
-					<li class="nav-item"><a class="nav-link text-white"
-						href='JustificatifController'>Déposer un justificatif</a></li>
 				</ul>
-				<form class="d-flex" role="search">
-					<input class="form-control me-2" type="search" placeholder="Search"
-						aria-label="Search">
-					<button class="btn btn-outline-success" type="submit">Search</button>
+				<form action="Deconnexion" method="get">
+		            <div>
+		                 <button class="btn btn-danger" type="submit">Déconnexion</button>
+		            </div>
 				</form>
 			</div>
 		</div>

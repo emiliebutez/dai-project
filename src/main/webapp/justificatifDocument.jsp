@@ -3,6 +3,7 @@
 <%@ page import="model.Utilisateur"%>
 <%@ page import="java.util.List"%>
 <%@ page import="model.LigneAbsence"%>
+<%@ page import="model.Statut"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,13 +29,23 @@
         <li class="nav-item">
           <a class="nav-link active text-white" aria-current="page" href="accueil">Accueil</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href='JustificatifController'>Déposer un justificatif</a>
-        </li>
+        <%
+				Utilisateur utilisateur = (Utilisateur)session.getAttribute("utilisateur");
+				if (utilisateur.getStatut() == Statut.Etudiant) {
+					
+				%>
+	        <li class="nav-item">
+	          <a class="nav-link text-white" href='JustificatifController'>Déposer un justificatif</a>
+	        </li>
+			<li class="nav-item">
+          		<a class="nav-link text-white" href="CtrlProfil?type_action=profil">Profil</a>
+			</li>
+        <% } %>
       </ul>
       <form action="Deconnexion" method="get">
 		            <div>
-		             	<button class="btn btn-danger" type="submit">Déconnexion</button>
+		             
+		                <button class="btn btn-danger" type="submit">Déconnexion</button>
 		            </div>
 	</form>
     </div>
