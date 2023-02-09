@@ -73,7 +73,7 @@
 		<table class="table text-center align-middle">
 		<% SessionCours sessionCours = (SessionCours)request.getSession().getAttribute("sessionCours"); %>
 			<tr>
-				<th colspan="3">Fiche d'appel du groupe <%=sessionCours.getGroupe().getNom() %> du cours : <%=sessionCours.getCours().getNom() %> du <%=sessionCours.getDebut().getDayOfMonth() + "/" + sessionCours.getDebut().getMonthValue() + "/" + sessionCours.getDebut().getYear() + " à " + sessionCours.getDebut().getHour() + ":" + sessionCours.getDebut().getMinute()%></th>
+				<th colspan="3">Fiche d'appel du groupe <%=sessionCours.getGroupe().getNom() %>  du cours : <%=sessionCours.getCours().getNom() %> du <%=sessionCours.getDebut().getDayOfMonth() + "/" + sessionCours.getDebut().getMonthValue() + "/" + sessionCours.getDebut().getYear() + " à " + sessionCours.getDebut().getHour() + ":" + sessionCours.getDebut().getMinute()%></th>
 			</tr>
 			<tr>
 				<th rowspan="2">Photo</th>
