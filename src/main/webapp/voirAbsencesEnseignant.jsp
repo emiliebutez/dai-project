@@ -12,23 +12,23 @@
 <table>
 <tr>
 <td>
-<label for="pet-select">Promo</label>
+<label for="Promo">Promo</label>
 </td>
 <td>
 
-<select name="pets" id="pet-select" style="margin-top: 3%; margin-left: 3%">
- <option value="">--Please choose an option--</option>
+<select name="Promo" id="Promo" style="margin-top: 3%; margin-left: 3%">
+ <option value="">--veuillez choisir une option--</option>
        <option value="goldfish">Goldfish</option>
 </select>
 <td>
 </tr>
 <tr>
 <td>
-<label for="pet-select">Groupe</label>
+<label for="Groupe">Groupe</label>
 </td>
 <td>
-<select name="pets" id="pet-select" style="margin-top: 3%; margin-left: 3%">
-    <option value="">--Please choose an option--</option>
+<select name="Groupe" id="Groupe" style="margin-top: 3%; margin-left: 3%">
+    <option value="">--veuillez choisir une option--</option>
     <option value="dog">Dog</option>
     
 </select>
@@ -36,11 +36,11 @@
 </tr>
 <tr>
 <td>
-<label for="pet-select">Etudiant</label>
+<label for="Etudiant">Etudiant</label>
 </td>
 <td>
-<select name="pets" id="pet-select" style="margin-top: 3%; margin-left: 3%">
-    <option value="">--Please choose an option--</option>
+<select name="Etudiant" id="Etudiant" style="margin-top: 3%; margin-left: 3%">
+    <option value="">--veuillez choisir une option--</option>
     <option value="dog">Dog</option>
     <option value="cat">Cat</option>
     
@@ -49,19 +49,55 @@
 </tr>
 <tr>
 <td>
-<label for="pet-select">Cours</label>
+<label for="Cours">Cour</label>
 </td>
 <td>
-<select name="pets" id="pet-select" style="margin-top: 3%; margin-left: 3%">
-    <option value="">--Please choose an option--</option>
+<select name="Cour" id="Cour" style="margin-top: 3%; margin-left: 3%">
+    <option value="">--veuillez choisir une option--</option>
     <option value="dog">Dog</option>
     <option value="cat">Cat</option>
     <option value="hamster">Hamster</option>
-   
-</select>
-</td>
+    </select>
+    <br>
+    </td>
 </tr>
 </table>
+<br>
+    
+   <table class="table"id="table1">
+  <thead>
+  <tr>
+    <th scope="col"></th>
+      <th scope="col">Absences</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+  </tr>
+  </thead>
+  <thead>
+    <tr>
+     <th scope="col">Prenom</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Cours</th>
+      <th scope="col">Debut</th>
+      <th scope="col">Fin</th>
+      <th scope="col">Groupe</th>
+      <th scope="col">Justificatifs</th>
+      <th scope="col"></th>
+      
+      
+    </tr>
+  </thead>
+  
+  <tbody>
+   
+  </tbody>
+</table>
+
+
 
 
 
