@@ -9,53 +9,61 @@
 </head>
 <body>
 <div class="container">
-<br>
-<label for="pet-select">Choose a pet:</label>
+<table>
+<tr>
+<td>
+<label for="pet-select">Promo</label>
+</td>
+<td>
 
-<select name="pets" id="pet-select">
+<select name="pets" id="pet-select" style="margin-top: 3%; margin-left: 3%">
+ <option value="">--Please choose an option--</option>
+       <option value="goldfish">Goldfish</option>
+</select>
+<td>
+</tr>
+<tr>
+<td>
+<label for="pet-select">Groupe</label>
+</td>
+<td>
+<select name="pets" id="pet-select" style="margin-top: 3%; margin-left: 3%">
+    <option value="">--Please choose an option--</option>
+    <option value="dog">Dog</option>
+    
+</select>
+</td>
+</tr>
+<tr>
+<td>
+<label for="pet-select">Etudiant</label>
+</td>
+<td>
+<select name="pets" id="pet-select" style="margin-top: 3%; margin-left: 3%">
+    <option value="">--Please choose an option--</option>
+    <option value="dog">Dog</option>
+    <option value="cat">Cat</option>
+    
+</select>
+</td>
+</tr>
+<tr>
+<td>
+<label for="pet-select">Cours</label>
+</td>
+<td>
+<select name="pets" id="pet-select" style="margin-top: 3%; margin-left: 3%">
     <option value="">--Please choose an option--</option>
     <option value="dog">Dog</option>
     <option value="cat">Cat</option>
     <option value="hamster">Hamster</option>
-    <option value="parrot">Parrot</option>
-    <option value="spider">Spider</option>
-    <option value="goldfish">Goldfish</option>
+   
 </select>
-<br><br>
-<label for="pet-select">Choose a pet:</label>
-<select name="pets" id="pet-select">
-    <option value="">--Please choose an option--</option>
-    <option value="dog">Dog</option>
-    <option value="cat">Cat</option>
-    <option value="hamster">Hamster</option>
-    <option value="parrot">Parrot</option>
-    <option value="spider">Spider</option>
-    <option value="goldfish">Goldfish</option>
-</select>
-<br><br>
-<label for="pet-select">Choose a pet:</label>
+</td>
+</tr>
+</table>
 
-<select name="pets" id="pet-select">
-    <option value="">--Please choose an option--</option>
-    <option value="dog">Dog</option>
-    <option value="cat">Cat</option>
-    <option value="hamster">Hamster</option>
-    <option value="parrot">Parrot</option>
-    <option value="spider">Spider</option>
-    <option value="goldfish">Goldfish</option>
-</select>
-<br><br>
-<label for="pet-select">Choose a pet:</label>
-<select name="pets" id="pet-select">
-    <option value="">--Please choose an option--</option>
-    <option value="dog">Dog</option>
-    <option value="cat">Cat</option>
-    <option value="hamster">Hamster</option>
-    <option value="parrot">Parrot</option>
-    <option value="spider">Spider</option>
-    <option value="goldfish">Goldfish</option>
-</select>
-<br>
+
 
 
 
