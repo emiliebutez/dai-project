@@ -26,7 +26,7 @@ public class Mail {
 	   * @param to
 	   */
 	  public final static void envoyerMail(String nomPrenomU) {
-		  String to = "xfourix@gmail.com";
+		  String to = "emiliebutez.eb@gmail.com";
 	   Properties props = new Properties();
 	   props.put("mail.smtp.host", HOST);
 	   props.put("mail.smtp.auth", "true");
@@ -71,6 +71,34 @@ public class Mail {
 	     message.setSubject("Justificatif a valider");
 	     message.setText("Votre justificatif a été rejeté veuillez deposer un nouveau : "
 	             + "Justificatif de " 
+	             + ".");
+	     
+	    Transport.send(message);
+	   
+	     } catch (MessagingException e) {e.printStackTrace();}
+	 }
+	  
+	  public void envoyerMailAbsenceEtudiants(String email, SessionCours sessionCours) {
+		  String to = email;
+	   Properties props = new Properties();
+	   props.put("mail.smtp.host", HOST);
+	   props.put("mail.smtp.auth", "true");
+	   props.put("mail.smtp.starttls.enable", "true");
+	   Authenticator auth = new Authenticator() {
+	      protected PasswordAuthentication getPasswordAuthentication() {
+	              return new PasswordAuthentication(USER, MDP);
+	      }
+	    };
+	    Session session = Session.getInstance(props, auth);
+	    
+	    try {
+	     MimeMessage message = new MimeMessage(session);
+	     message.setFrom(new InternetAddress(USER));
+	     message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+	     message.setSubject("Absence");
+	     message.setText("Vous avez étez absent au cours de  "
+	    		 + sessionCours.getCours().getNom()
+	             + ". Veuillez déposer un justificatif sur l'application pour justifier de votre absence" 
 	             + ".");
 	     
 	    Transport.send(message);

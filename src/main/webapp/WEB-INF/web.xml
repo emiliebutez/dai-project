@@ -2,6 +2,102 @@
  "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 <web-app>
+<servlet>
+  <servlet-name>freemarker</servlet-name>
+  <servlet-class>freemarker.ext.servlet.FreemarkerServlet</servlet-class>
+
+  <!--
+    Init-param documentation:
+    https://freemarker.apache.org/docs/api/freemarker/ext/servlet/FreemarkerServlet.html
+  -->
+
+  <!-- FreemarkerServlet settings: -->
+  <init-param>
+    <param-name>TemplatePath</param-name>
+    <param-value>/</param-value>
+  </init-param>
+  <init-param>
+    <param-name>NoCache</param-name>
+    <param-value>true</param-value>
+  </init-param>
+  <init-param>
+    <param-name>ResponseCharacterEncoding</param-name>
+    <!-- Use the output_encoding setting of FreeMarker: -->
+    <param-value>fromTemplate</param-value>
+  </init-param>
+  <init-param>
+    <param-name>ExceptionOnMissingTemplate</param-name>
+    <!-- true => HTTP 500 on missing template, instead of HTTP 404. -->
+    <param-value>true</param-value>
+  </init-param>
+
+  <!-- FreeMarker engine settings: -->
+  <init-param>
+    <param-name>incompatible_improvements</param-name>
+    <param-value>2.3.27</param-value>
+    <!--
+      Recommended to set to a high value.
+      See: https://freemarker.apache.org/docs/pgui_config_incompatible_improvements.html
+    -->
+  </init-param>
+  <init-param>
+    <param-name>template_exception_handler</param-name>
+    <!-- Use "html_debug" during development! -->
+    <param-value>rethrow</param-value>
+  </init-param>
+  <init-param>
+    <param-name>template_update_delay</param-name>
+    <!-- Use 0 during development! Consider what value you need otherwise. -->
+    <param-value>30 s</param-value>
+  </init-param>
+  <init-param>
+    <param-name>default_encoding</param-name>
+    <!-- The encoding of the template files: -->
+    <param-value>UTF-8</param-value>
+  </init-param>
+  <init-param>
+    <param-name>output_encoding</param-name>
+    <!-- The encoding of the template output; Note that you must set
+         "ResponseCharacterEncodring" to "fromTemplate" for this to work! -->
+    <param-value>UTF-8</param-value>
+  </init-param>
+  <init-param>
+    <param-name>locale</param-name>
+    <!-- Influences number and date/time formatting, etc. -->
+    <param-value>en_US</param-value>
+  </init-param>
+  <init-param>
+    <param-name>number_format</param-name>
+    <param-value>0.##########</param-value>
+  </init-param>
+
+  <load-on-startup>1</load-on-startup>
+</servlet>
+
+<servlet-mapping>
+  <servlet-name>freemarker</servlet-name>
+  <url-pattern>*.ftl</url-pattern>
+  <!-- HTML and XML auto-escaped if incompatible_improvements >= 2.3.24: -->
+  <url-pattern>*.ftlh</url-pattern>
+  <url-pattern>*.ftlx</url-pattern>
+</servlet-mapping>
+
+<!--
+  Prevent the visiting of MVC Views from outside the servlet container.
+  RequestDispatcher.forward/include should, and will still work.
+  Removing this may open security holes!
+-->
+<security-constraint>
+  <web-resource-collection>
+    <web-resource-name>FreeMarker MVC Views</web-resource-name>
+    <url-pattern>*.ftl</url-pattern>
+    <url-pattern>*.ftlh</url-pattern>
+    <url-pattern>*.ftlx</url-pattern>
+  </web-resource-collection>
+  <auth-constraint>
+    <!-- Nobody is allowed to visit these directly. -->
+  </auth-constraint>
+</security-constraint>
 	<display-name>Archetype Created Web Application</display-name>
 	<servlet>
 		<servlet-name>HelloWordController</servlet-name>
@@ -33,7 +129,36 @@
 	</servlet>
 	<servlet>
 		<servlet-name>accueil.jsp</servlet-name>
-		<jsp-file>/accueil.jsp</jsp-file>
+		<jsp-file>/accueil.ftl</jsp-file>
+	</servlet>
+	<servlet>
+		<servlet-name>CtrlListeAppel</servlet-name>
+		<display-name>CtrlListeAppel</display-name>
+		<description></description>
+		<servlet-class>controller.CtrlListeAppel</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>listeAppel.jsp</servlet-name>
+		<jsp-file>/listeAppel.jsp</jsp-file>
+	</servlet>
+	
+	<servlet>
+		<servlet-name>ImageController</servlet-name>
+		<display-name>ImageController</display-name>
+		<description></description>
+		<servlet-class>controller.ImageController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>EnregistrementAbsenceRetardController</servlet-name>
+		<display-name>EnregistrementAbsenceRetardController</display-name>
+		<description></description>
+		<servlet-class>controller.EnregistrementAbsenceRetardController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ValidationAbsenceRetardController</servlet-name>
+		<display-name>ValidationAbsenceRetardController</display-name>
+		<description></description>
+		<servlet-class>controller.ValidationAbsenceRetardController</servlet-class>
 	</servlet>
 	<servlet>
 		<servlet-name>JustificatifController</servlet-name>
@@ -58,6 +183,23 @@
 		<url-pattern>/index</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
+		<servlet-name>CtrlListeAppel</servlet-name>
+		<url-pattern>/CtrlListeAppel</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>ImageController</servlet-name>
+		<url-pattern>/images</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EnregistrementAbsenceRetardController</servlet-name>
+		<url-pattern>/EnregistrementAbsenceRetardController</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ValidationAbsenceRetardController</servlet-name>
+		<url-pattern>/ValidationAbsenceRetardController</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>JustificatifController</servlet-name>
 		<url-pattern>/JustificatifController</url-pattern>
 	</servlet-mapping>
@@ -78,7 +220,7 @@
 		<display-name>Tabtruevalidation</display-name>
 		<description></description>
 		<servlet-class>controller.Tabtruevalidation</servlet-class>
-		</servlet>
+	</servlet>
 <servlet>
 		<servlet-name>DepotJustificatifController</servlet-name>
 		<display-name>DepotJustificatifController</display-name>

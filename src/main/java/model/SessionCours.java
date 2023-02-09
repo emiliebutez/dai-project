@@ -35,24 +35,36 @@ public class SessionCours {
 	private Utilisateur enseignant;
 	
 	// Relations 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name ="id_cours")
 	private Cours cours;
 	
-	@ManyToMany(mappedBy = "sessionsCours")
+	@ManyToMany(mappedBy = "sessionsCours", fetch = FetchType.EAGER)
 	private Set<Utilisateur> etudiants = new HashSet<>();
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name ="id_groupe")
 	private Groupe groupe;
 	
+	@Column(name = "appel_termine")
+	private boolean appelTermine;
+	
 	public SessionCours() {
-		
 	}
 	
-	public SessionCours(OffsetDateTime debut, OffsetDateTime fin) {
+	public SessionCours(OffsetDateTime debut, OffsetDateTime fin, Utilisateur enseignant, Cours cours, Groupe groupe) {
 		this.debut = debut;
 		this.fin = fin;
+		this.enseignant = enseignant;
+		this.cours = cours;
+		this.groupe = groupe;
+	}
+	
+	public SessionCours(OffsetDateTime debut, OffsetDateTime fin, Utilisateur enseignant, Cours cours) {
+		this.debut = debut;
+		this.fin = fin;
+		this.enseignant = enseignant;
+		this.cours = cours;
 	}
 
 	public Long getId() {
@@ -79,6 +91,46 @@ public class SessionCours {
 		this.fin = fin;
 	}
 
+	public Utilisateur getEnseignant() {
+		return enseignant;
+	}
+
+	public void setEnseignant(Utilisateur enseignant) {
+		this.enseignant = enseignant;
+	}
+
+	public Cours getCours() {
+		return cours;
+	}
+
+	public void setCours(Cours cours) {
+		this.cours = cours;
+	}
+
+	public Set<Utilisateur> getEtudiants() {
+		return etudiants;
+	}
+
+	public void setEtudiants(Set<Utilisateur> etudiants) {
+		this.etudiants = etudiants;
+	}
+
+	public Groupe getGroupe() {
+		return groupe;
+	}
+
+	public void setGroupe(Groupe groupe) {
+		this.groupe = groupe;
+	}
+
+	public boolean isAppelTermine() {
+		return appelTermine;
+	}
+
+	public void setAppelTermine(boolean appelTermine) {
+		this.appelTermine = appelTermine;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(debut, fin, id);
@@ -95,5 +147,12 @@ public class SessionCours {
 		SessionCours other = (SessionCours) obj;
 		return Objects.equals(debut, other.debut) && Objects.equals(fin, other.fin) && Objects.equals(id, other.id);
 	}
+
+	@Override
+	public String toString() {
+		return "SessionCours [debut=" + debut + ", fin=" + fin + ", enseignant=" + enseignant + ", cours=" + cours
+				+ ", etudiants=" + etudiants + ", groupe=" + groupe + "]";
+	}
+	
 	
 }

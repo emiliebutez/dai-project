@@ -32,9 +32,8 @@ public class Promo {
 	public Promo() {
 		
 	}
-
-	public Promo(Long id, String nom) {
-		this.id = id;
+	
+	public Promo(String nom) {
 		this.nom = nom;
 	}
 
@@ -52,6 +51,18 @@ public class Promo {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+	
+	public void addGroupe(Groupe groupe) {
+		this.groupes.add(groupe);
+	}
+
+	public Set<Groupe> getGroupes() {
+		return groupes;
+	}
+
+	public void setGroupes(Set<Groupe> groupes) {
+		this.groupes = groupes;
 	}
 
 	@Override
