@@ -2,6 +2,7 @@ package dao;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -170,6 +171,34 @@ public class TestHibernate
 		
 	}
 	/**
+	 * Recupere les lignes d'absence de l'etudiant pour un mois donné
+	 * @param mois
+	 * @param email
+	 * @throws ParseException
+	 */
+	public static List<LigneAbsence> afficherAbsEtu(String mois,String email) throws ParseException {
+		try (Session session = HibernateUtil.
+				getSessionFactory().getCurrentSession()) {
+			/*----- Ouverture d'une transaction -----*/
+			Transaction t = session.beginTransaction();
+			// Liste des abscence d'un etudiant "
+			Query Liste = session.createQuery("Select new model.LigneAbsence(u.nom, u.prenom, a.id,s.debut, s.fin, c.nom, g.nom, a.justificatif, a.validation)" +
+					"from model.Utilisateur u, model.Absence a, model.SessionCours s, model.Cours c, model.Groupe g "+
+					"where u.id = a.utilisateur.id " +
+					"and a.sessionCours.id = s.id " +
+					"and s.cours.id = c.id " +
+					"and s.groupe.id = g.id "+
+					"and u.mail = :email " + 
+					"and s.debut.getMonthValue()=:mois"
+					);
+
+			Liste.setParameter("email",email);
+			Liste.setParameter("mois",mois);
+			List<LigneAbsence> lst = Liste.list();
+			return lst;
+		}		
+	}
+	/**
 	 * Programme de test.
 	 * @throws ParseException 
 	 */
@@ -177,17 +206,7 @@ public class TestHibernate
 	public static void main (String[] args) throws ParseException
 	{
 
-		//TestHibernate.creationUtilisateur();
-		//TestHibernate.validerJust(String[]);
-
-
-
-
-		String[] lst = new String[2];
-		lst[0]="1";
-		lst[1]="2";
-		TestHibernate.validerJust(lst,"OK");
-
+		System.out.println(TestHibernate.afficherAbsEtu("02", "emiliebutez.eb@gmail.com"));
 
 	}
 

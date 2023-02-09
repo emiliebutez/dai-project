@@ -53,34 +53,12 @@
     <option value="12">Decembre</option>
 </select>
 <h3 class="display-1"> Liste abscence : </h3>
-<table class="table">
-      <thead>
-      <tr>
-        <th scope="col"></th>
-          <th scope="col">Absences</th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-      </tr>
-      </thead>
-      <thead>
-        <tr>
-          <th scope="col">Cours</th>
-          <th scope="col">Debut</th>
-          <th scope="col">Fin</th>
-          <th scope="col">Groupe</th>
-        </tr>
-      </thead>
-      
-      <tbody>
-      
-      </tbody>
-    </table>
+<table class="table" id="table1">
+</table>
 </div>
 
 
 </div>
-<script type="text/JavaScript" src="js/fctxml.js"></script>
+<script type="text/JavaScript" src="assets/js/fctxml.js"></script>
 </body>
 </html>

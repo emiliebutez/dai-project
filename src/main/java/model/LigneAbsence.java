@@ -17,6 +17,7 @@ public class LigneAbsence {
 	String nomGroupe;
 	String nom;
 	String prenom;
+	Boolean validation;
 
 	String justificatif;
 
@@ -46,8 +47,37 @@ public class LigneAbsence {
 		this.justificatif = justificatif;
 	}
 	
+	/**
+	 * Constructeur
+	 * @param dtdebut
+	 * @param dtfin
+	 * @param nomCours
+	 * @param nomGroupe
+	 * @param justificatif
+	 */
+
+	public LigneAbsence(String nom,String prenom,Long absid, OffsetDateTime dtdebut, OffsetDateTime dtfin, String nomCours, String nomGroupe, String justificatif, Boolean validation) {
+
+		this.nom = nom;
+		this.prenom=prenom;
+		this.absid = absid;	
+		this.dtdebut = dtdebut;
+		this.dtfin = dtfin;
+		this.nomCours = nomCours;
+		this.nomGroupe = nomGroupe;
+		this.justificatif = justificatif;
+		this.validation = validation;
+	}
 	
 	
+
+	public Boolean getValidation() {
+		return validation;
+	}
+
+	public void setValidation(Boolean validation) {
+		this.validation = validation;
+	}
 
 	public String getNom() {
 		return nom;
