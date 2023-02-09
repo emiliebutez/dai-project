@@ -16,6 +16,12 @@
 		<servlet-class>controller.ConnexionController</servlet-class>
 	</servlet>
 	<servlet>
+		<servlet-name>Deconnexion</servlet-name>
+		<display-name>Deconnexion</display-name>
+		<description></description>
+		<servlet-class>controller.Deconnexion</servlet-class>
+	</servlet>
+	<servlet>
 		<servlet-name>AccueilController</servlet-name>
 		<display-name>AccueilController</display-name>
 		<description></description>
@@ -42,6 +48,10 @@
 	<servlet-mapping>
 		<servlet-name>ConnexionController</servlet-name>
 		<url-pattern>/ConnexionController</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Deconnexion</servlet-name>
+		<url-pattern>/Deconnexion</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>index</servlet-name>

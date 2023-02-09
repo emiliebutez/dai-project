@@ -19,6 +19,13 @@ Statut s1 =Statut.Etudiant;//**if(u.getStatut() == s1){*/%>
 <div class=”wrapper”>
 	 
 	<% out.println("<h1>  Bienvenue "+u.getPrenom()+"</h1>");%>
+	<form action="Deconnexion" method="get">
+		            <div style= "position: absolute; top: 10px; right: 10px;" >
+		             
+		                <button class="btn btn-danger" type="submit">Déconnexion</button>
+		            </div>
+		            
+	</form>
 	
 	
 	<% 
