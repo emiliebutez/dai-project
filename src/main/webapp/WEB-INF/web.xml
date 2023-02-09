@@ -227,6 +227,12 @@
      		<file-size-threshold>1048576</file-size-threshold>
 		</multipart-config>
 	</servlet>
+<servlet>
+	<servlet-name>PdfController</servlet-name>
+	<display-name>PdfController</display-name>
+	<description></description>
+	<servlet-class>controller.PdfController</servlet-class>
+</servlet>
 	<servlet-mapping>
 	<servlet-name>justificatifDocument</servlet-name>
 	<url-pattern>/justificatifDocument</url-pattern>
@@ -243,6 +249,10 @@
 <servlet-mapping>
 		<servlet-name>DepotJustificatifController</servlet-name>
 		<url-pattern>/DepotJustificatifController</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>PdfController</servlet-name>
+	<url-pattern>/PdfController</url-pattern>
 </servlet-mapping>
 	
 	
