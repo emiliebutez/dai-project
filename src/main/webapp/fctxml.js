@@ -45,7 +45,7 @@
           							"<th scope='col'>Absence justifié </th>"+
         						"</tr></thead><tbody>";
         		for (var i=0; i<l_abs.length; i++){
-					texte += "<td>" + l_abs[i].getElementsByTagName("cours")[0].childNodes[0].nodeValue + + "</td>"+
+					texte += "<td>" + l_abs[i].getElementsByTagName("cours")[0].childNodes[0].nodeValue + "</td>"+
 							 "<td>" + l_abs[i].getElementsByTagName("debut")[0].childNodes[0].nodeValue + "</td>"+
 							 "<td>" + l_abs[i].getElementsByTagName("fin")[0].childNodes[0].nodeValue + "</td>"+
 							 "<td>" + l_abs[i].getElementsByTagName("groupe")[0].childNodes[0].nodeValue + "</td>" +
