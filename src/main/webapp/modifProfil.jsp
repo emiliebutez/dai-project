@@ -51,7 +51,7 @@
 		</tr>
 		<tr>
 			<%
-			Utilisateur user = (Utilisateur) session.getAttribute("utilisateur");
+			Utilisateur user = (Utilisateur) request.getAttribute("utilisateur");
 
 			String txt = "";
 
@@ -70,9 +70,9 @@
 	</table>
 
 
-	<form action="CtrlModifPhoto?type_action=modif" method="POST">
+	<form action="CtrlProfil" method="POST" enctype="multipart/form-data">
 		<input type="hidden" name="userID" value="<%= user.getId() %>" />
-		<input type="text" name="newName" /> 
+		<input type="file" name="file" /> 
 		<input type="submit" value="Changez votre photo de profil" />
 	</form>
 

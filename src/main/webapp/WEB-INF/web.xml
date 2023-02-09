@@ -149,18 +149,6 @@
 		<description></description>
 		<servlet-class>controller.CtrlProfil</servlet-class>
 	</servlet>
-	<servlet>
-		<servlet-name>ModifPhoto</servlet-name>
-		<display-name>ModifPhoto</display-name>
-		<description></description>
-		<servlet-class>controller.ModifPhoto</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>CtrlModifPhoto</servlet-name>
-		<display-name>CtrlModifPhoto</display-name>
-		<description></description>
-		<servlet-class>controller.CtrlModifPhoto</servlet-class>
-	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>AccueilController</servlet-name>
