@@ -68,8 +68,8 @@ public class Mail {
 	     MimeMessage message = new MimeMessage(session);
 	     message.setFrom(new InternetAddress(USER));
 	     message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-	     message.setSubject("Justificatif a valider");
-	     message.setText("Votre justificatif a été rejeté veuillez deposer un nouveau : "
+	     message.setSubject("Justificatif Rejeté");
+	     message.setText("Votre justificatif a été rejeté veuillez deposer un nouveau  "
 	             + "Justificatif de " 
 	             + ".");
 	     
@@ -77,7 +77,32 @@ public class Mail {
 	   
 	     } catch (MessagingException e) {e.printStackTrace();}
 	 }
-	  
+	  public final static void envoyerMail3(String email) {
+		  String to = email;
+	   Properties props = new Properties();
+	   props.put("mail.smtp.host", HOST);
+	   props.put("mail.smtp.auth", "true");
+	   props.put("mail.smtp.starttls.enable", "true");
+	   Authenticator auth = new Authenticator() {
+	      protected PasswordAuthentication getPasswordAuthentication() {
+	              return new PasswordAuthentication(USER, MDP);
+	      }
+	    };
+	    Session session = Session.getInstance(props, auth);
+	    
+	    try {
+	     MimeMessage message = new MimeMessage(session);
+	     message.setFrom(new InternetAddress(USER));
+	     message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+	     message.setSubject("Justificatif  validé");
+	     message.setText("Votre justificatif a été validé "
+	             + "Justificatif de " 
+	             + ".");
+	     
+	    Transport.send(message);
+	   
+	     } catch (MessagingException e) {e.printStackTrace();}
+	 }
 	  public void envoyerMailAbsenceEtudiants(String email, SessionCours sessionCours) {
 		  String to = email;
 	   Properties props = new Properties();

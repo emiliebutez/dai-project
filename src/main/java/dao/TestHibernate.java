@@ -14,6 +14,7 @@ import org.hibernate.query.Query;
 
 import model.Absence;
 import model.LigneAbsence;
+import model.Mail;
 import model.Statut;
 import model.Utilisateur;
 
@@ -139,6 +140,11 @@ public class TestHibernate
 					((Absence)abs).setValidation(true);
 					System.out.println("XXX");
 
+				}
+				ArrayList<String> lstmail = new ArrayList<>();
+				lstmail = TestHibernate.rejectgetmail(lstIdChk);
+				for (String eml : lstmail) {
+					Mail.envoyerMail3(eml);
 				}}
 
 			else if (action.contains("KO")) {
@@ -150,12 +156,18 @@ public class TestHibernate
 				for (Object abs : query.list()) {
 					((Absence)abs).setJustificatif(null);
 					System.out.println("XXX");
+           
 
-
+				}
+				ArrayList<String> lstmail = new ArrayList<>();
+				lstmail = TestHibernate.rejectgetmail(lstIdChk);
+				for (String eml : lstmail) {
+					Mail.envoyerMail2(eml);
 				}
 
 			}
 			t.commit();}
+		
 	}
 	/**
 	 * Programme de test.
