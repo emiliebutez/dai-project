@@ -126,6 +126,10 @@
 		<jsp-file>/accueil.ftl</jsp-file>
 	</servlet>
 	<servlet>
+		<servlet-name>voiAbsEtudiant</servlet-name>
+		<jsp-file>/voiAbsEtudiant.jsp</jsp-file>
+	</servlet>
+	<servlet>
 		<servlet-name>CtrlListeAppel</servlet-name>
 		<display-name>CtrlListeAppel</display-name>
 		<description></description>
@@ -163,6 +167,10 @@
 	<servlet-mapping>
 		<servlet-name>AccueilController</servlet-name>
 		<url-pattern>/accueil</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>voiAbsEtudiant</servlet-name>
+		<url-pattern>/voiAbsEtudiant</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>ConnexionController</servlet-name>
