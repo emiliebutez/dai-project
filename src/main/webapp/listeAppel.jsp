@@ -51,7 +51,8 @@
 	<form action="EnregistrementAbsenceRetardController" method="GET">
 		<table class="table text-center align-middle">
 			<tr>
-				<th colspan="3">Liste des élèves</th>
+			<% SessionCours sessionCours = (SessionCours)request.getSession().getAttribute("sessionCours"); %>
+				<th colspan="3">Fiche d'appel du groupe <%=sessionCours.getGroupe().getNom() %> du cours : <%=sessionCours.getCours().getNom() %> du <%=sessionCours.getDebut().getDayOfMonth() + "/" + sessionCours.getDebut().getMonthValue() + "/" + sessionCours.getDebut().getYear() + " à " + sessionCours.getDebut().getHour() + ":" + sessionCours.getDebut().getMinute()%></th>
 			</tr>
 			<tr>
 				<th rowspan="2">Photo</th>
@@ -66,7 +67,6 @@
 							<%
 				List<Utilisateur> eleves = (List<Utilisateur>)session.getAttribute("eleves");
 				List<Absence> absences = (List<Absence>)session.getAttribute("absences");
-				SessionCours sessionCours = (SessionCours)request.getSession().getAttribute("sessionCours");
 				int index = 3;
 				for (Utilisateur eleve : eleves) {
 					
@@ -83,7 +83,7 @@
 							<% index += 1; %>
 							<td> <input class="checkbox" id="<%=index%>" type=checkbox name="statut" data-name="Retard" value="retard:<%=eleve.getId()%>" <%= (sessionCours.isAppelTermine() ? "disabled" : "") %> <%= (retard ? "checked" : "") %> onclick="selectOnlyThis(this.id, 'deuxieme')"></td>
 						  	<% index += 1; %>
-						  	<td><input class="checkbox" id="<%=index%>" type="checkbox" name="statut" data-name="Présent(e)" <%= (sessionCours.isAppelTermine() ? "disabled" : "") %> <%= (present ? "checked" : "") %> onclick="selectOnlyThis(this.id), 'troisieme'"> </td>
+						  	<td><input class="checkbox" id="<%=index%>" type="checkbox" data-name="Présent(e)" <%= (sessionCours.isAppelTermine() ? "disabled" : "") %> <%= (present ? "checked" : "") %> onclick="selectOnlyThis(this.id), 'troisieme'"> </td>
 
 					 </tr>
 			  <%
@@ -97,8 +97,14 @@
 				<label class="form-check-label" for="flexSwitchCheckDefault">Valider l'appel (Attention cette opération est irréversible vous ne pourrez plus modifier la liste)</label>
 			</div>
 			<input type="submit" value="Enregistrer" class="btn btn-primary" />
-			<% } else { %>
-				<a href="tel:+123456789">Télécharger</a>
+			<% } else { 
+			String link = "PdfController?idSession=" + sessionCours.getId();
+    	response.sendRedirect(link);
+
+
+
+			%>
+				<a href="<%=link%>">Télécharger</a>
 			<% } %>
 	</form>
 	

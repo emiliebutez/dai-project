@@ -35,6 +35,8 @@
   </div>
 </nav>
 
+<input type="date" name="week" id="week" onChange="selectNewDate(event)">
+
 <div class="cd-schedule cd-schedule--loading margin-top-lg margin-bottom-lg js-cd-schedule">
     <div class="cd-schedule__timeline">
       <ul>
@@ -99,8 +101,30 @@
 	</div>
 	</div>
 	</div>
+	
+	<script>
+	setupInputDate();
+	
+	function selectNewDate(event) {
+	    const date = !!event ? new Date(event.target.value).toISOString() : new Date().toISOString();
+	    const href = new URL(window.location.href);
+	    href.searchParams.set('date', date);
+		window.location.href = href;
+	}
+	
+	function setupInputDate(event) {
+	    const href = new URL(window.location.href);
+	    const dateParam = href.searchParams.get('date');
+	    if (!dateParam) {
+	        selectNewDate(null)
+	    }
+	    
+	    const date = new Date(dateParam);
+	    const dateSelector = document.getElementById('week');
+	    dateSelector.valueAsDate  = date;
+	}
+	</script>
 </body>
-
 
 <style>
 * {
