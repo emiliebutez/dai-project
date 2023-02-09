@@ -11,6 +11,12 @@
 <title>Justifier absences</title>
 </head>
 <body>
+<form action="Deconnexion" method="get">
+		            <div style= "position: absolute; top: 10px; right: 10px;" >
+		             
+		                <button class="btn btn-danger" type="submit">Déconnexion</button>
+		            </div>
+</form>
 <nav class="navbar navbar-expand-lg bg-dark text-white">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,10 +32,11 @@
           <a class="nav-link text-white" href='JustificatifController'>Déposer un justificatif</a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <form action="Deconnexion" method="get">
+		            <div>
+		             	<button class="btn btn-danger" type="submit">Déconnexion</button>
+		            </div>
+	</form>
     </div>
   </div>
 </nav>
