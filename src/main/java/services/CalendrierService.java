@@ -73,8 +73,15 @@ public class CalendrierService {
 	
 	@Transactional
 	public List<List<SessionCours>> chercherSessionsCoursEnseignant (HttpServletRequest request, HttpServletResponse response) {
+		OffsetDateTime dateFromRequest = null;
+		if (request.getParameter("date") != null) {
+			dateFromRequest = OffsetDateTime.parse(request.getParameter("date"));
+		} else {
+			dateFromRequest = OffsetDateTime.now();
+		}
+		
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(new Date());
+        calendar.setTimeInMillis(dateFromRequest.toInstant().toEpochMilli());
         calendar.clear(Calendar.SECOND);
         calendar.clear(Calendar.MINUTE);
         calendar.set(Calendar.HOUR_OF_DAY, 0);
