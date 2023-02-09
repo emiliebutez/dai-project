@@ -21,9 +21,11 @@
         <li class="nav-item">
           <a class="nav-link active text-white" aria-current="page" href="accueil">Accueil</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href='JustificatifController'>Déposer un justificatif</a>
-        </li>
+        <#if Session.utilisateur.statut == "Etudiant">
+	        <li class="nav-item">
+	          <a class="nav-link text-white" href='JustificatifController'>Déposer un justificatif</a>
+	        </li>
+        </#if>
       </ul>
       <form action="Deconnexion" method="get">
 		            <div>
@@ -75,7 +77,7 @@
 				<#list sessionsCours.getJournee(i) as rendu>
 				
 					<li class="cours coursRadius" style="height: ${rendu.h}px; top: ${rendu.y}px; width: ${rendu.w}%; left: ${rendu.x}%">
-					<a href="CtrlListeAppel?idSession=${rendu.sessionCours.id}">
+					<a href="${(Session.utilisateur.statut == "Enseignant") ? then('CtrlListeAppel?idSession=' + rendu.sessionCours.id, '')}">
 						<em>${rendu.sessionCours.cours.nom}</em>
 						<p>
 							<span>${rendu.sessionCours.debut.hour?string["00"]}:${rendu.sessionCours.debut.minute?string["00"]}</span>

@@ -17,27 +17,31 @@
 Statut s1 =Statut.Etudiant;//**if(u.getStatut() == s1){*/%>
 <div class=”page-header-image” style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/67.jpg'); background-position: 50%; background-size: cover; min-height: 100vh; max-height: 999px; overflow: hidden; width: 100%;
 		z-index: 1;">
-<div class="container" style="">
-<div class=”wrapper”>
 	 
-	<% out.println("<h1>  Bienvenue "+u.getPrenom()+"</h1>");%>
-	<form action="Deconnexion" method="get">
-		            <div style= "position: absolute; top: 10px; right: 10px;" >
+<nav class="navbar navbar-expand-lg bg-dark text-white">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand text-white" href="#">Projet DAI</a>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page" href="accueil">Accueil</a>
+        </li>
+	        <li class="nav-item">
+	          <a class="nav-link text-white" href='ValidationController'>Valider un justificatif</a>
+	        </li>
+      </ul>
+      <form action="Deconnexion" method="get">
+		            <div>
 		             
 		                <button class="btn btn-danger" type="submit">Déconnexion</button>
 		            </div>
-		            
 	</form>
-	
-	
-	<% 
-		String html ="<ul class=\'list-group'>"+
-		"<li class='list-group-item'><a href='ValidationController'>Valider un justificatif</a> </li>"+
-						"</ul>";	
-	 %>
-	
-
-	<% out.println(html); %>
+    </div>
+  </div>
+</nav>
 	<%
 	String msg_erreur = (String)request.getAttribute("msg_erreur");
 	String msg_info = (String)request.getAttribute("msg_info");
@@ -50,7 +54,5 @@ Statut s1 =Statut.Etudiant;//**if(u.getStatut() == s1){*/%>
 		<div class="form-text"><%= msg_info %></div>
 	<% } %>
 </div>
-	</div>
-	</div>
 </body>
 </html>

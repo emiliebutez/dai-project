@@ -14,6 +14,31 @@
 </head>
 <body>
 
+<nav class="navbar navbar-expand-lg bg-dark text-white">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand text-white" href="#">Projet DAI</a>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page" href="accueil">Accueil</a>
+        </li>
+	        <li class="nav-item">
+	          <a class="nav-link text-white" href='ValidationController'>Valider un justificatif</a>
+	        </li>
+      </ul>
+      <form action="Deconnexion" method="get">
+		            <div>
+		             
+		                <button class="btn btn-danger" type="submit">Déconnexion</button>
+		            </div>
+	</form>
+    </div>
+  </div>
+</nav>
+
 <div class="container">
 <form action="Tabtruevalidation"method="get">
 <table class="table"id="table1">
