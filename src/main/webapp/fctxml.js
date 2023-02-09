@@ -42,20 +42,16 @@
           							"<th scope='col'>Debut</th>"+
           							"<th scope='col'>Fin</th>"+
           							"<th scope='col'>Groupe</th>"+
+          							"<th scope='col'>Absence justifié </th>"+
         						"</tr></thead><tbody>";
         		for (var i=0; i<l_abs.length; i++){
 					texte += "<td>" + l_abs[i].getElementsByTagName("cours")[0].childNodes[0].nodeValue + + "</td>"+
 							 "<td>" + l_abs[i].getElementsByTagName("debut")[0].childNodes[0].nodeValue + "</td>"+
 							 "<td>" + l_abs[i].getElementsByTagName("fin")[0].childNodes[0].nodeValue + "</td>"+
 							 "<td>" + l_abs[i].getElementsByTagName("groupe")[0].childNodes[0].nodeValue + "</td>" +
-							 "<td>" + l_abs[i].getElementsByTagName("validation")[0].childNodes[0].nodeValue + "</td>" +
+							  "<td>" + (l_abs[i].getElementsByTagName("validation")[0].childNodes[0].nodeValue ? "Non" : "Oui") + "</td>" +
 							 "</tr>"
-//					texte += "<tr><td>" + cours[i].firstChild.nodeValue + "</td>"+
-//							 "<td>" + debut[i].firstChild.nodeValue + "</td>"+
-//							 "<td>" + fin[i].firstChild.nodeValue + "</td>"+
-//							 "<td>" + groupe[i].firstChild.nodeValue + "</td>"+
-//							 "<td>" + validation[i].firstChild.nodeValue + "</td>" +
-//							 "</tr>"
+					 "</tr>"
 				}
 				texte+="</tbody>"
 				// Elément html que l'on va mettre à jour.
