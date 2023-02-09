@@ -97,6 +97,9 @@ public class EnregistrementAbsenceRetardController extends HttpServlet {
 	public void envoiMail(SessionCours sessionCours) {
 		EnregistrementAbsenceService absenceService = new EnregistrementAbsenceService();
 		List<Absence> absences = absenceService.recupererAbsence(sessionCours.getId());
+		System.out.println(absences.size());
+		System.out.println(absences.get(0).getUtilisateur().getMail());
+		System.out.println(absences.get(1).getUtilisateur().getMail());
 		Mail mailService = new Mail();
 		
 		for(Absence absence : absences) {

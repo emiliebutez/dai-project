@@ -32,6 +32,8 @@
   </div>
 </nav>
 
+    <h1>${Session.utilisateur.statut}</h1
+
 <div class="cd-schedule cd-schedule--loading margin-top-lg margin-bottom-lg js-cd-schedule">
     <div class="cd-schedule__timeline">
       <ul>
@@ -56,6 +58,7 @@
         <li><span>17:00</span></li>
       </ul>
     </div> <!-- .cd-schedule__timeline -->
+   
   
     <div class="cd-schedule__events">
 	<#assign seq = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche']>

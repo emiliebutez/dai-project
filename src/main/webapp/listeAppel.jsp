@@ -59,36 +59,35 @@
 				<th colspan="3"></th>
 			</tr>
 			<tr>
-				<th class="absence">Statut</th>
+				<th colspan="3" class="absence">Statut</th>
 			</tr>
 
-			<%
-			List<Utilisateur> eleves = (List<Utilisateur>) session.getAttribute("eleves");
-			List<Absence> absences = (List<Absence>) session.getAttribute("absences");
-			for (Absence absence: absences) {
-				System.out.println(absence.getUtilisateur().getId());
-			}
-			SessionCours sessionCours = (SessionCours)request.getSession().getAttribute("sessionCours");
-			for (Utilisateur eleve : eleves) {
-			%>
-			<tr>
-				<td><img src="images?id=<%=eleve.getId()%>"></td>
-				<td><%=eleve.getNom()%></td>
-				<td><%=eleve.getPrenom()%></td>
-				<td>
-					<% boolean absent = absences.stream().anyMatch(a -> a.getUtilisateur().equals(eleve)); %>
-					<% boolean retard = !absent && eleve.getSessionsCours().contains(sessionCours); %>
-					<% boolean present = !(absent || retard); %> 
-					<select name="statut"id="hall" <%= (sessionCours.isAppelTermine() ? "disabled" : "") %>>
-						<option value="absent:<%=eleve.getId()%>" <%= (absent ? "selected" : "") %>>Absent(e)</option>
-						<option value="retard:<%=eleve.getId()%>" <%= (retard ? "selected" : "") %>>Retard</option>
-						<option value="present:<%=eleve.getId()%>" <%= (present ? "selected" : "") %>>Présent(e)</option>
-				</select>
-				</td>
-			</tr>
-			<%
-			}
-			%>
+							<%
+				List<Utilisateur> eleves = (List<Utilisateur>)session.getAttribute("eleves");
+				List<Absence> absences = (List<Absence>)session.getAttribute("absences");
+				SessionCours sessionCours = (SessionCours)request.getSession().getAttribute("sessionCours");
+				int index = 3;
+				for (Utilisateur eleve : eleves) {
+					
+				%>
+					<tr> 
+							  <td><img src="images?id=<%=eleve.getId()%>"></td>
+							  <td><%=eleve.getNom()%></td>
+							  <td><%=eleve.getPrenom()%></td>
+	  						<% boolean absent = absences.stream().anyMatch(a -> a.getUtilisateur().equals(eleve)); %>
+							<% boolean retard = !absent && eleve.getSessionsCours().contains(sessionCours); %>
+							<% boolean present = !(absent || retard); %> 
+							<% index += 1; %>
+							<td> <input class="checkbox" id="<%=index%>" type="checkbox" name="statut" data-name="Absent(e)" value="absent:<%=eleve.getId()%>" <%= (sessionCours.isAppelTermine() ? "disabled" : "") %> <%= (absent ? "checked" : "") %> onclick="selectOnlyThis(this.id, 'premier')"> </td>
+							<% index += 1; %>
+							<td> <input class="checkbox" id="<%=index%>" type=checkbox name="statut" data-name="Retard" value="retard:<%=eleve.getId()%>" <%= (sessionCours.isAppelTermine() ? "disabled" : "") %> <%= (retard ? "checked" : "") %> onclick="selectOnlyThis(this.id, 'deuxieme')"></td>
+						  	<% index += 1; %>
+						  	<td><input class="checkbox" id="<%=index%>" type="checkbox" name="statut" data-name="Présent(e)" <%= (sessionCours.isAppelTermine() ? "disabled" : "") %> <%= (present ? "checked" : "") %> onclick="selectOnlyThis(this.id), 'troisieme'"> </td>
+
+					 </tr>
+			  <%
+				}
+				%>
 		</table>
 		<% if(!sessionCours.isAppelTermine()) { %>
 			<div class="form-check form-switch">
@@ -101,6 +100,29 @@
 				<a href="tel:+123456789">Télécharger</a>
 			<% } %>
 	</form>
+	
+		<script> 
+		function selectOnlyThis(id, ordre) {
+			console.log(id);
+			let debut = parseInt(id);
+			
+			console.log(ordre);
+			if (ordre === "deuxieme") {
+				debut = id - 1;
+			} else if (id % 3 === 0) {
+				debut = id - 2;
+			} 
+			
+			let fin = debut + 3; 
+			console.log(fin);
+			for (var i = debut ;i < fin; i++) {
+		    	if (i != id) {
+		    		document.getElementById(i).checked = false;
+		    	} 
+		    }
+		    //document.getElementById(id).checked = true;
+   		}
+		</script>
 
 </body>
 </html>
