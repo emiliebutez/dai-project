@@ -63,8 +63,9 @@ public class AccueilController extends HttpServlet {
 			break;
 		}
 		
-		request.getRequestDispatcher("/accueil.ftl").forward(request, response);
+		request.getRequestDispatcher("/accueil.ftl").forward(request, response);	
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

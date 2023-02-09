@@ -21,7 +21,7 @@
           <a class="nav-link active text-white" aria-current="page" href="#">Accueil</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Link</a>
+          <a class="nav-link text-white" href="CtrlProfil?type_action=profil">Profil</a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-white">Disabled</a>

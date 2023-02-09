@@ -143,6 +143,24 @@
 		<description></description>
 		<servlet-class>controller.ImageController</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>CtrlProfil</servlet-name>
+		<display-name>CtrlProfil</display-name>
+		<description></description>
+		<servlet-class>controller.CtrlProfil</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ModifPhoto</servlet-name>
+		<display-name>ModifPhoto</display-name>
+		<description></description>
+		<servlet-class>controller.ModifPhoto</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>CtrlModifPhoto</servlet-name>
+		<display-name>CtrlModifPhoto</display-name>
+		<description></description>
+		<servlet-class>controller.CtrlModifPhoto</servlet-class>
+	</servlet>
 
 	<servlet-mapping>
 		<servlet-name>AccueilController</servlet-name>
@@ -164,5 +182,17 @@
 	<servlet-mapping>
 		<servlet-name>ImageController</servlet-name>
 		<url-pattern>/images</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CtrlProfil</servlet-name>
+		<url-pattern>/CtrlProfil</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ModifPhoto</servlet-name>
+		<url-pattern>/ModifPhoto</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CtrlModifPhoto</servlet-name>
+		<url-pattern>/CtrlModifPhoto</url-pattern>
 	</servlet-mapping>
 </web-app>

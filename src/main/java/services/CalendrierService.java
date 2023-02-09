@@ -40,7 +40,7 @@ public class CalendrierService {
         
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
         	
-          Map<Integer, List<SessionCours>> queryResult = session.createQuery("SELECT s "
+        	Map<Integer, List<SessionCours>> queryResult = session.createQuery("SELECT s "
         		  													+ "FROM SessionCours s, Groupe g "
           															+ "JOIN g.etudiantsGroupe u "
 																	+ "WHERE s.debut >= :borneDebut "

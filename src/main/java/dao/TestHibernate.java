@@ -10,6 +10,7 @@ import javax.persistence.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import model.Statut;
 import model.Utilisateur;
 
 /**
@@ -29,12 +30,13 @@ public class TestHibernate
 			Transaction t = session.beginTransaction();
 			
 			//Utilisateur u = new Utilisateur("emiliebutez.eb@gmail.com", "123");
-			
-			//session.save(u);
+			Utilisateur u = new Utilisateur("moha.d@gmail.com", "test1234", "Djeddou", "Mohamed", Statut.Etudiant, true, 21605483L);
+			session.save(u);
 			
 			t.commit();
 		}
 	}
+	
 	
 	/**
 	 * Programme de test.
