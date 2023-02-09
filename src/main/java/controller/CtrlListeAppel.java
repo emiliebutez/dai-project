@@ -38,16 +38,8 @@ public class CtrlListeAppel extends HttpServlet {
 		SessionService sessionService = new SessionService();
 		SessionCours sessionCours = sessionService.retrouverSession(id);
 		request.getSession(true).setAttribute("sessionCours", sessionCours);
-		
-		System.out.println(sessionCours.getCours().getNom());
-		
-		EtudiantSessionDao.miseSessionSession(id);
-		SessionCours s = EtudiantSessionDao.recupererSessionDonnee(id);
-		EtudiantSessionDao.miseSessionGroupe(s);
-		Groupe grp = EtudiantSessionDao.recupererGroupe(s.getGroupe().getId());
-		List<Utilisateur> eleves = new ArrayList<>(grp.getEtudiantsGroupe());
-		
-		eleves.sort((u1, u2) -> u1.getNom().compareTo(u2.getNom()));
+
+		List<Utilisateur> eleves = sessionService.retrouverEtudiants(id);
 		
 		request.getSession(true).setAttribute("eleves", eleves);
 		EnregistrementAbsenceService absenceService = new EnregistrementAbsenceService();
