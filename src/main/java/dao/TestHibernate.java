@@ -188,8 +188,8 @@ public class TestHibernate
 					"and a.sessionCours.id = s.id " +
 					"and s.cours.id = c.id " +
 					"and s.groupe.id = g.id "+
-					"and u.mail = :email " + 
-					"and s.debut.getMonthValue()=:mois"
+					"and u.mail = :email " +
+					"and MONTH(s.debut) =:mois "
 					);
 
 			Liste.setParameter("email",email);
@@ -205,9 +205,8 @@ public class TestHibernate
 
 	public static void main (String[] args) throws ParseException
 	{
-
+		
 		System.out.println(TestHibernate.afficherAbsEtu("02", "emiliebutez.eb@gmail.com"));
-
 	}
 
 	public static void affichage (List l) {

@@ -56,9 +56,7 @@
 <table class="table" id="table1">
 </table>
 </div>
-
-
 </div>
-<script type="text/JavaScript" src="assets/js/fctxml.js"></script>
+<script type="text/JavaScript" src="fctxml.js"></script>
 </body>
 </html>

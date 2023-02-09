@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,13 +27,16 @@ public class AbsenceEtuController extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
     public AbsenceEtuController() {
+    
+    }
       
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -53,29 +57,41 @@ public class AbsenceEtuController extends HttpServlet {
 		/*----- Ecriture de la page XML -----*/
 		out.println("<?xml version=\"1.0\"?>");
 		out.println("<lstAbsence>");
-		out.println("Absence");
+		
 
 		/*----- Récupération des paramètres -----*/
 		String mois = request.getParameter("mois");
 		try {
 			/*----- Lecture de liste de mots dans la BD -----*/
+			System.out.println(mois + " " + email);
 			List<LigneAbsence> lstabs = TestHibernate.afficherAbsEtu(mois, email);
+			
+//			OffsetDateTime dt1=OffsetDateTime.parse("2023-02-20T12:00+01:00");
+//			OffsetDateTime dt2=OffsetDateTime.parse("2023-02-20T12:00+01:00");
+//			
+//			LigneAbsence abs1 = new LigneAbsence("nicolas", "nfer", 1L,dt1,dt2, "DAI", "G1", "k", false);
+//			List<LigneAbsence> lstabs2 = new ArrayList<>();
+//			lstabs2.add(abs1);
+			
 			for (LigneAbsence abs : lstabs) {
-				out.println("<cours><![CDATA[" + abs.getNomCours() + "]]></cours>");
+				out.println("<Absence><cours><![CDATA[" + abs.getNomCours() + "]]></cours>");
 				out.println("<debut><![CDATA[" + abs.getDtdebut() + "]]></debut>");
 				out.println("<fin><![CDATA[" + abs.getDtfin() + "]]></fin>");
 				out.println("<groupe><![CDATA[" + abs.getNomGroupe() + "]]></groupe>");
+				out.println("<validation><![CDATA[" + abs.getValidation() + "]]></validation></Absence>");
 			}
 			}
-		catch (ClassNotFoundException | SQLException ex)
+		catch (Exception e)
 		{
-		out.println("<lstAbsence>Erreur - " + ex.getMessage() + "</lstAbsence>");
+		out.println("<lstAbsence>Erreur - " + e.getMessage() + "</lstAbsence>");
 		}
-		out.println("Absence");
+		
 		out.println("</lstAbsence>");
 		}
 	}
 	
-	}
+}	
+
+
 
 
