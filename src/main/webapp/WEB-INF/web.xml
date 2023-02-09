@@ -233,6 +233,12 @@
 	<description></description>
 	<servlet-class>controller.AbsenceEtuController</servlet-class>
 </servlet>
+<servlet>
+	<servlet-name>EnseignantconsultationControleur</servlet-name>
+	<display-name>EnseignantconsultationControleur</display-name>
+	<description></description>
+	<servlet-class>controller.EnseignantconsultationControleur</servlet-class>
+</servlet>
 	<servlet-mapping>
 	<servlet-name>justificatifDocument</servlet-name>
 	<url-pattern>/justificatifDocument</url-pattern>
@@ -253,6 +259,10 @@
 <servlet-mapping>
 	<servlet-name>AbsenceEtuController</servlet-name>
 	<url-pattern>/AbsenceEtuController</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>EnseignantconsultationControleur</servlet-name>
+	<url-pattern>/EnseignantconsultationControleur</url-pattern>
 </servlet-mapping>
 	
 	
