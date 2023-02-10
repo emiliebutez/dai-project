@@ -191,6 +191,7 @@ public class TestHibernate
 					"and s.groupe.id = g.id "+
 					"and u.mail = :email " +
 					"and MONTH(s.debut) =:mois "
+					+ "and s.appelTermine = true "
 					);
 
 			Liste.setParameter("email",email);
