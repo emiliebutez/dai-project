@@ -81,7 +81,8 @@ public class TestHibernate
 					"and a.sessionCours.id = s.id " +
 					"and s.cours.id = c.id " +
 					"and s.groupe.id = g.id "+
-					"and u.mail = :email " 
+					"and u.mail = :email "
+					+ "and s.appelTermine = true " 
 					+
 					"and a.validation = false"
 					);
@@ -236,6 +237,7 @@ public class TestHibernate
 					"and s.groupe.id = g.id "
 					+"and a.justificatif is not null "
 					+ "and a.validation = false "
+					+ "and s.appelTermine = true " 
 					//                   
 					);
 

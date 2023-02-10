@@ -26,7 +26,7 @@ public class Mail {
 	   * @param to
 	   */
 	  public final static void envoyerMail(String nomPrenomU) {
-		  String to = "nicolas.galceran@ut-capitole.fr";
+		  String to = "emiliebutez.eb@gmail.com";
 	   Properties props = new Properties();
 	   props.put("mail.smtp.host", HOST);
 	   props.put("mail.smtp.auth", "true");
@@ -122,7 +122,9 @@ public class Mail {
 	     message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 	     message.setSubject("Absence");
 	     message.setText("Vous avez étez absent au cours de  "
-	    		 + sessionCours.getCours().getNom()
+	    		 + sessionCours.getCours().getNom() + " le " + sessionCours.getDebut().getDayOfMonth() + "/" + sessionCours.getDebut().getMonthValue() + "/" 
+	    		 + sessionCours.getDebut().getYear() + " de " + sessionCours.getDebut().getHour() + ":" + sessionCours.getDebut().getMinute()  + " -> " 
+	    		 + sessionCours.getFin().getHour() + ":" + sessionCours.getFin().getMinute()
 	             + ". Veuillez déposer un justificatif sur l'application pour justifier de votre absence" 
 	             + ".");
 	     

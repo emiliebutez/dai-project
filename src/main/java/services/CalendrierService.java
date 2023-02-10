@@ -1,6 +1,7 @@
 package services;
 
 
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,8 +24,15 @@ public class CalendrierService {
 	
 	@Transactional
 	public List<List<SessionCours>> chercherSessionsCoursEtudiant (HttpServletRequest request, HttpServletResponse response) {
+		OffsetDateTime dateFromRequest = null;
+		if (request.getParameter("date") != null) {
+			dateFromRequest = OffsetDateTime.parse(request.getParameter("date"));
+		} else {
+			dateFromRequest = OffsetDateTime.now();
+		}
+		
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(new Date());
+        calendar.setTimeInMillis(dateFromRequest.toInstant().toEpochMilli());
         calendar.clear(Calendar.SECOND);
         calendar.clear(Calendar.MINUTE);
         calendar.set(Calendar.HOUR_OF_DAY, 0);
@@ -40,7 +48,7 @@ public class CalendrierService {
         
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
         	
-          Map<Integer, List<SessionCours>> queryResult = session.createQuery("SELECT s "
+        	Map<Integer, List<SessionCours>> queryResult = session.createQuery("SELECT s "
         		  													+ "FROM SessionCours s, Groupe g "
           															+ "JOIN g.etudiantsGroupe u "
 																	+ "WHERE s.debut >= :borneDebut "
@@ -65,8 +73,15 @@ public class CalendrierService {
 	
 	@Transactional
 	public List<List<SessionCours>> chercherSessionsCoursEnseignant (HttpServletRequest request, HttpServletResponse response) {
+		OffsetDateTime dateFromRequest = null;
+		if (request.getParameter("date") != null) {
+			dateFromRequest = OffsetDateTime.parse(request.getParameter("date"));
+		} else {
+			dateFromRequest = OffsetDateTime.now();
+		}
+		
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(new Date());
+        calendar.setTimeInMillis(dateFromRequest.toInstant().toEpochMilli());
         calendar.clear(Calendar.SECOND);
         calendar.clear(Calendar.MINUTE);
         calendar.set(Calendar.HOUR_OF_DAY, 0);

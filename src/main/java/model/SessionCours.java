@@ -46,6 +46,9 @@ public class SessionCours {
 	@JoinColumn(name ="id_groupe")
 	private Groupe groupe;
 	
+	@Column(name = "appel_termine")
+	private boolean appelTermine;
+	
 	public SessionCours() {
 	}
 	
@@ -118,6 +121,14 @@ public class SessionCours {
 
 	public void setGroupe(Groupe groupe) {
 		this.groupe = groupe;
+	}
+
+	public boolean isAppelTermine() {
+		return appelTermine;
+	}
+
+	public void setAppelTermine(boolean appelTermine) {
+		this.appelTermine = appelTermine;
 	}
 
 	@Override

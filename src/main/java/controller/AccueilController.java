@@ -66,6 +66,7 @@ public class AccueilController extends HttpServlet {
 			break;
 		}
 	}
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

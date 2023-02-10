@@ -9,6 +9,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </head>
 <body>
+
 <nav class="navbar navbar-expand-lg bg-dark text-white">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -20,20 +21,29 @@
         <li class="nav-item">
           <a class="nav-link active text-white" aria-current="page" href="accueil">Accueil</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href='JustificatifController'>Déposer un justificatif</a>
-        </li>
-         <li class="nav-item">
-          <a class="nav-link text-white" href='voiAbsEtudiant.jsp'>Déposer un justificatif</a>
-        </li>
+        <#if Session.utilisateur.statut == "Etudiant">
+	        <li class="nav-item">
+	          <a class="nav-link text-white" href='JustificatifController'>Déposer un justificatif</a>
+	        </li>
+			<li class="nav-item">
+          		<a class="nav-link text-white" href="CtrlProfil?type_action=profil">Profil</a>
+			</li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href='voiAbsEtudiant.jsp'>Voir mes absences</a>
+            </li>
+        </#if>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <form action="Deconnexion" method="get">
+		            <div>
+		             
+		                <button class="btn btn-danger" type="submit">Déconnexion</button>
+		            </div>
+	</form>
     </div>
   </div>
 </nav>
+
+<input type="date" name="week" id="week" onChange="selectNewDate(event)">
 
 <div class="cd-schedule cd-schedule--loading margin-top-lg margin-bottom-lg js-cd-schedule">
     <div class="cd-schedule__timeline">
@@ -59,6 +69,7 @@
         <li><span>17:00</span></li>
       </ul>
     </div> <!-- .cd-schedule__timeline -->
+   
   
     <div class="cd-schedule__events">
 	<#assign seq = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche']>
@@ -72,7 +83,7 @@
 				<#list sessionsCours.getJournee(i) as rendu>
 				
 					<li class="cours coursRadius" style="height: ${rendu.h}px; top: ${rendu.y}px; width: ${rendu.w}%; left: ${rendu.x}%">
-					<a href="CtrlListeAppel?idSession=${rendu.sessionCours.id}">
+					<a href="${(Session.utilisateur.statut == "Enseignant") ? then('CtrlListeAppel?idSession=' + rendu.sessionCours.id, '')}">
 						<em>${rendu.sessionCours.cours.nom}</em>
 						<p>
 							<span>${rendu.sessionCours.debut.hour?string["00"]}:${rendu.sessionCours.debut.minute?string["00"]}</span>
@@ -83,7 +94,7 @@
 							<p class="margin10">
 							<span>Enseignant: ${rendu.sessionCours.enseignant.nom} ${rendu.sessionCours.enseignant.prenom}</span>
 							<br>
-							<span class="margin">Groupe: ${rendu.sessionCours.groupe.nom}</span>
+							<span class="margin">Groupe: ${rendu.sessionCours.groupe.nom} - ${rendu.sessionCours.groupe.promo.nom}</span>
 							</p>
 					</a>
 					</li>
@@ -98,8 +109,30 @@
 	</div>
 	</div>
 	</div>
+	
+	<script>
+	setupInputDate();
+	
+	function selectNewDate(event) {
+	    const date = !!event ? new Date(event.target.value).toISOString() : new Date().toISOString();
+	    const href = new URL(window.location.href);
+	    href.searchParams.set('date', date);
+		window.location.href = href;
+	}
+	
+	function setupInputDate(event) {
+	    const href = new URL(window.location.href);
+	    const dateParam = href.searchParams.get('date');
+	    if (!dateParam) {
+	        selectNewDate(null)
+	    }
+	    
+	    const date = new Date(dateParam);
+	    const dateSelector = document.getElementById('week');
+	    dateSelector.valueAsDate  = date;
+	}
+	</script>
 </body>
-
 
 <style>
 * {

@@ -21,9 +21,29 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
 	crossorigin="anonymous"></script>
+	
+	<script>
+	document.addEventListener('DOMContentLoaded', function () {
+
+	    const specialElementHandlers = {
+	        '#editor': function (element, renderer) {
+	            return true;
+	        }
+	    };
+		
+		document.querySelector('#content').addEventListener('click', event => {
+			const pdf = new jsPDF('p', 'pt', 'a4');
+			pdf.addHTML(document.getElementById("pdf"), function() {
+				pdf.setFont("helvetica");
+				pdf.setFontType("bold");
+				pdf.setFontSize(900);
+			  	pdf.save('web.pdf');
+			});
+		});
+	});
+	</script>
 </head>
 <body>
-
 	<nav class="navbar navbar-expand-lg bg-dark text-white">
 		<div class="container-fluid">
 			<button class="navbar-toggler" type="button"
@@ -46,10 +66,11 @@
 			</div>
 		</div>
 	</nav>
+	<div id="pdf" style="background: white;">
 	<form action="EnregistrementAbsenceRetardController" method="GET">
 		<table class="table text-center align-middle">
+		<% SessionCours sessionCours = (SessionCours)request.getSession().getAttribute("sessionCours"); %>
 			<tr>
-			<% SessionCours sessionCours = (SessionCours)request.getSession().getAttribute("sessionCours"); %>
 				<th colspan="6">Fiche d'appel du groupe <%=sessionCours.getGroupe().getNom() %> de la promo <%=sessionCours.getGroupe().getPromo().getNom() %> du cours : <%=sessionCours.getCours().getNom() %> du <%=sessionCours.getDebut().getDayOfMonth() + "/" + sessionCours.getDebut().getMonthValue() + "/" + sessionCours.getDebut().getYear() + " " + sessionCours.getDebut().getHour() + ":" + sessionCours.getDebut().getMinute()%> -> <%=sessionCours.getFin().getHour() + ":" + sessionCours.getFin().getMinute()%></th>
 			</tr>
 			<tr>
@@ -59,13 +80,13 @@
 				<th colspan="3"></th>
 			</tr>
 			<tr>
-				<th colspan="3" class="absence">Statut</th>
+				<th class="absence">Statut</th>
 			</tr>
 
 							<%
 				List<Utilisateur> eleves = (List<Utilisateur>)session.getAttribute("eleves");
 				List<Absence> absences = (List<Absence>)session.getAttribute("absences");
-				int index = 3;
+				
 				for (Utilisateur eleve : eleves) {
 					
 				%>
@@ -74,57 +95,27 @@
 							  <td><%=eleve.getNom()%></td>
 							  <td><%=eleve.getPrenom()%></td>
 	  						<% boolean absent = absences.stream().anyMatch(a -> a.getUtilisateur().equals(eleve)); %>
-							<% boolean retard = !absent && eleve.getSessionsCours().contains(sessionCours); %>
-							<% boolean present = !(absent || retard); %> 
-							<% index += 1; %>
-							<td> <input class="checkbox" id="<%=index%>" type="checkbox" name="statut" data-name="Absent(e)" value="absent:<%=eleve.getId()%>" <%= (sessionCours.isAppelTermine() ? "disabled" : "") %> <%= (absent ? "checked" : "") %> onclick="selectOnlyThis(this.id, 'premier')"> </td>
-							<% index += 1; %>
-							<td> <input class="checkbox" id="<%=index%>" type=checkbox name="statut" data-name="Retard" value="retard:<%=eleve.getId()%>" <%= (sessionCours.isAppelTermine() ? "disabled" : "") %> <%= (retard ? "checked" : "") %> onclick="selectOnlyThis(this.id, 'deuxieme')"></td>
-						  	<% index += 1; %>
-						  	<td><input class="checkbox" id="<%=index%>" type="checkbox" data-name="Présent(e)" <%= (sessionCours.isAppelTermine() ? "disabled" : "") %> <%= (present ? "checked" : "") %> onclick="selectOnlyThis(this.id), 'troisieme'"> </td>
-
+							<td><p><%= (absent ? "Absent(e)" : "Présent(e)") %></p></td>
 					 </tr>
 			  <%
 				}
 				%>
 		</table>
-		<% if(!sessionCours.isAppelTermine()) { %>
-			<div class="form-check form-switch">
-			<input class="form-check-input" name="validation" type="checkbox"
-				id="flexSwitchCheckDefault"> 
-				<label class="form-check-label" for="flexSwitchCheckDefault">Valider l'appel (Attention cette opération est irréversible vous ne pourrez plus modifier la liste)</label>
-			</div>
-			<input type="submit" value="Enregistrer" class="btn btn-primary" />
-			<% } else { 
-			String link = "PdfController?idSession=" + sessionCours.getId();
-    	response.sendRedirect(link);
-
-
-
-			%>
-				<a href="<%=link%>">Télécharger</a>
-			<% } %>
 	</form>
+	</div>
+	<button id="content" class="btn btn-primary" >telecharger</button>
 	
-		<script> 
-		function selectOnlyThis(id, ordre) {
-			let debut = parseInt(id);
-			
-			if (ordre === "deuxieme") {
-				debut = id - 1;
-			} else if (id % 3 === 0) {
-				debut = id - 2;
-			} 
-			
-			let fin = debut + 3; 
-			for (var i = debut ;i < fin; i++) {
-		    	if (i != id) {
-		    		document.getElementById(i).checked = false;
-		    	} 
-		    }
-		    //document.getElementById(id).checked = true;
-   		}
-		</script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>
+
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+			integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
 
 </body>
 </html>
+
