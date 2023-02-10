@@ -136,6 +136,13 @@
 		<servlet-class>controller.CtrlListeAppel</servlet-class>
 	</servlet>
 	<servlet>
+		<servlet-name>Dropcourcontroller</servlet-name>
+		<display-name>Dropcourcontroller</display-name>
+		<description></description>
+		<servlet-class>controller.Dropcourcontroller</servlet-class>
+	</servlet>
+	
+	<servlet>
 		<servlet-name>listeAppel.jsp</servlet-name>
 		<jsp-file>/listeAppel.jsp</jsp-file>
 	</servlet>
@@ -194,6 +201,10 @@
 		<url-pattern>/EnregistrementAbsenceRetardController</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
+		<servlet-name>Dropcourcontroller</servlet-name>
+		<url-pattern>/Dropcourcontroller</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>ValidationAbsenceRetardController</servlet-name>
 		<url-pattern>/ValidationAbsenceRetardController</url-pattern>
 	</servlet-mapping>
@@ -247,6 +258,30 @@
 	<description></description>
 	<servlet-class>controller.EnseignantconsultationControleur</servlet-class>
 </servlet>
+<servlet>
+	<servlet-name>Dropgroupcontroller</servlet-name>
+	<display-name>Dropgroupcontroller</display-name>
+	<description></description>
+	<servlet-class>controller.Dropgroupcontroller</servlet-class>
+</servlet>
+<servlet>
+	<servlet-name>Dropetudiantcontroller</servlet-name>
+	<display-name>Dropetudiantcontroller</display-name>
+	<description></description>
+	<servlet-class>controller.Dropetudiantcontroller</servlet-class>
+</servlet>
+<servlet>
+	<servlet-name>cour</servlet-name>
+	<display-name>cour</display-name>
+	<description></description>
+	<servlet-class>controller.cour</servlet-class>
+</servlet>
+<servlet>
+	<servlet-name>Droppromocontroller</servlet-name>
+	<display-name>Droppromocontroller</display-name>
+	<description></description>
+	<servlet-class>controller.Droppromocontroller</servlet-class>
+</servlet>
 	<servlet-mapping>
 	<servlet-name>justificatifDocument</servlet-name>
 	<url-pattern>/justificatifDocument</url-pattern>
@@ -271,6 +306,22 @@
 <servlet-mapping>
 	<servlet-name>EnseignantconsultationControleur</servlet-name>
 	<url-pattern>/EnseignantconsultationControleur</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>Dropgroupcontroller</servlet-name>
+	<url-pattern>/Dropgroupcontroller</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>Dropetudiantcontroller</servlet-name>
+	<url-pattern>/Dropetudiantcontroller</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>cour</servlet-name>
+	<url-pattern>/cour</url-pattern>
+</servlet-mapping>
+<servlet-mapping>
+	<servlet-name>Droppromocontroller</servlet-name>
+	<url-pattern>/Droppromocontroller</url-pattern>
 </servlet-mapping>
 	
 	

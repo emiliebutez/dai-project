@@ -12,54 +12,53 @@
 <table>
 <tr>
 <td>
-<label for="Promo">Promo</label>
+<label for="promo">Promo</label>
 </td>
 <td>
 
-<select name="Promo" id="Promo" style="margin-top: 3%; margin-left: 3%">
+<select name="promo" id="promo" style="margin-top: 3%; margin-left: 3%" onclick="getgroupe()">
  <option value="">--veuillez choisir une option--</option>
-       <option value="goldfish">Goldfish</option>
+       <option value="1">Miage 2023</option>
+       <option value="2">Miage 2022</option>
 </select>
 <td>
 </tr>
 <tr>
 <td>
-<label for="Groupe">Groupe</label>
+<label for="groupe">Groupe</label>
 </td>
 <td>
-<select name="Groupe" id="Groupe" style="margin-top: 3%; margin-left: 3%">
+<select name="groupe" id="groupe" style="margin-top: 3%; margin-left: 3%"onclick="getcour()">
     <option value="">--veuillez choisir une option--</option>
-    <option value="dog">Dog</option>
+    
     
 </select>
 </td>
 </tr>
+
 <tr>
 <td>
-<label for="Etudiant">Etudiant</label>
+<label for="cour">Cour</label>
 </td>
 <td>
-<select name="Etudiant" id="Etudiant" style="margin-top: 3%; margin-left: 3%">
+<select name="cour" id="cour" style="margin-top: 3%; margin-left: 3%"onclick="getetudiant()">
     <option value="">--veuillez choisir une option--</option>
-    <option value="dog">Dog</option>
-    <option value="cat">Cat</option>
     
-</select>
-</td>
-</tr>
-<tr>
-<td>
-<label for="Cours">Cour</label>
-</td>
-<td>
-<select name="Cour" id="Cour" style="margin-top: 3%; margin-left: 3%">
-    <option value="">--veuillez choisir une option--</option>
-    <option value="dog">Dog</option>
-    <option value="cat">Cat</option>
-    <option value="hamster">Hamster</option>
-    </select>
+       </select>
     <br>
     </td>
+</tr>
+<tr>
+<td>
+<label for="etudiant">Etudiant</label>
+</td>
+<td>
+<select name="etudiant" id="etudiant" style="margin-top: 3%; margin-left: 3%">
+    <option value="">--veuillez choisir une option--</option>
+   
+    
+</select>
+</td>
 </tr>
 </table>
 <br>
@@ -110,5 +109,6 @@
 
 
 </div>
+<script type="text/JavaScript" src="fctxml2.js"></script>
 </body>
 </html>

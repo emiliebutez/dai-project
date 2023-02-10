@@ -71,10 +71,13 @@
 		}
 	}
 	
+	
+	
 	/**
  * Lancement après le chargement du DOM.
  */
 document.addEventListener("DOMContentLoaded", () => {
-	document.getElementById("mois").addEventListener("change",afficherTableau);
+	//document.getElementById("mois").addEventListener("change",afficherTableau);
+	document.getElementById("mois").addEventListener("change",getgroupe);
 	});	
 	

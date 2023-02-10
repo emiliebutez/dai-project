@@ -14,10 +14,13 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import model.Absence;
+import model.Cours;
+import model.Groupe;
 import model.LigneAbsence;
 import model.Mail;
 import model.Statut;
 import model.Utilisateur;
+import model.Promo;
 
 /**
  * Classe de test pour Hibernate.
@@ -81,9 +84,9 @@ public class TestHibernate
 					"and a.sessionCours.id = s.id " +
 					"and s.cours.id = c.id " +
 					"and s.groupe.id = g.id "+
-					"and u.mail = :email " 
-					+
+					"and u.mail = :email " +
 					"and a.validation = false"
+					
 					);
 
 			Liste.setParameter("email",email);
@@ -157,7 +160,7 @@ public class TestHibernate
 				for (Object abs : query.list()) {
 					((Absence)abs).setJustificatif(null);
 					System.out.println("XXX");
-           
+
 
 				}
 				ArrayList<String> lstmail = new ArrayList<>();
@@ -168,7 +171,7 @@ public class TestHibernate
 
 			}
 			t.commit();}
-		
+
 	}
 	/**
 	 * Recupere les lignes d'absence de l'etudiant pour un mois donné
@@ -198,6 +201,96 @@ public class TestHibernate
 			return lst;
 		}		
 	}
+	public static List<Groupe> getgroupe(String promo) throws ParseException {
+		try (Session session = HibernateUtil.
+				getSessionFactory().getCurrentSession()) {
+			/*----- Ouverture d'une transaction -----*/
+			Transaction t = session.beginTransaction();
+			// Liste des abscence d'un etudiant "
+			Query Liste = session.createQuery("Select new model.Groupe(g.nom)" +
+					"from model.Groupe g, model.Promo p "+
+					"where p.id =:promo ");
+			Liste.setParameter("promo",promo);
+
+			List<Groupe> lst = Liste.list();
+			return lst;
+		}		
+	}
+	public static List<Cours> getCour(String groupe) throws ParseException {
+		try (Session session = HibernateUtil.
+				getSessionFactory().getCurrentSession()) {
+			/*----- Ouverture d'une transaction -----*/
+			Transaction t = session.beginTransaction();
+			// Liste des abscence d'un etudiant "
+			Query Liste = session.createQuery("Select new model.Cours(c.nom)" +
+					"from model.Cours c, model.Groupe g, model.SessionCours s "+
+					"where s.cours.id = c.id " +
+					"and s.groupe.id = g.id " +
+					"and s.groupe.id = g.id "+
+					"and g.nom =:groupe ");
+			Liste.setParameter("groupe",groupe);
+
+			List<Cours> lst = Liste.list();
+			return lst;}
+		}		
+		public static List<Promo> getPromo() throws ParseException {
+			try (Session session = HibernateUtil.
+					getSessionFactory().getCurrentSession()) {
+				/*----- Ouverture d'une transaction -----*/
+				Transaction t = session.beginTransaction();
+				// Liste des abscence d'un etudiant "
+				Query Liste = session.createQuery("Select new model.Promo(p.nom) " +
+						"from model.Promo p ");
+				//Liste.setParameter("groupe",groupe);
+
+				List<Promo> lst = Liste.list();
+				return lst;
+			}		
+		
+	}
+	public static List<Utilisateur> getEtudiant(String groupe) throws ParseException {
+		try (Session session = HibernateUtil.
+				getSessionFactory().getCurrentSession()) {
+			/*----- Ouverture d'une transaction -----*/
+			Transaction t = session.beginTransaction();
+			// Liste des abscence d'un etudiant "
+			Query Liste = session.createQuery("Select u " +
+					"from model.Utilisateur u "+ 
+					"JOIN u.groupes g "+
+					"where g.nom=:groupe "
+					, Utilisateur.class);
+			Liste.setParameter("groupe",groupe);
+
+			List<Utilisateur> lst = Liste.list();
+			return lst;
+		}		
+	}
+	public static List<LigneAbsence> afficherAbsEns(String promo,String groupe,String etudiant,String cour) throws ParseException {
+		try (Session session = HibernateUtil.
+				getSessionFactory().getCurrentSession()) {
+			/*----- Ouverture d'une transaction -----*/
+			Transaction t = session.beginTransaction();
+			String hql= "Select new model.LigneAbsence(u.nom, u.prenom, a.id,s.debut, s.fin, c.nom, g.nom, a.justificatif, a.validation)" +
+					"from model.Utilisateur u, model.Absence a, model.SessionCours s, model.Cours c, model.Groupe g, model.Promo p "+
+					"where u.id = a.utilisateur.id " +
+					"and a.sessionCours.id = s.id " +
+					"and s.cours.id = c.id " +
+					"and s.groupe.id = g.id "+
+					"and g.promo.id = p.id ";
+			if(!promo.isEmpty()) {hql+="and p.id=:promo ";};
+			if(!groupe.isEmpty()) {hql+="and g.id=:groupe ";};
+			if(!etudiant.isEmpty()) {hql+="and u.id=:etudiant ";};
+			if(!cour.isEmpty()) {hql+="and c.id=:cour ";};
+			// Liste des abscence d'un etudiant "
+			Query Liste = session.createQuery(hql);
+			if(!promo.isEmpty()) {Liste.setParameter("promo",promo);};
+			if(!groupe.isEmpty()) {Liste.setParameter("groupe",groupe);};
+			if(!etudiant.isEmpty()) {Liste.setParameter("etudiant",etudiant);};
+			if(!cour.isEmpty()) {Liste.setParameter("cour",cour);};
+			List<LigneAbsence> lst = Liste.list();
+			return lst;
+		}		
+	}
 	/**
 	 * Programme de test.
 	 * @throws ParseException 
@@ -205,8 +298,15 @@ public class TestHibernate
 
 	public static void main (String[] args) throws ParseException
 	{
-		
-		System.out.println(TestHibernate.afficherAbsEtu("02", "emiliebutez.eb@gmail.com"));
+
+		//System.out.println(TestHibernate.afficherAbsEtu("02", "emiliebutez.eb@gmail.com"));
+		//System.out.println(TestHibernate.afficherAbsEns("1", "1", "1", "2"));
+		//System.out.println(TestHibernate.getgroupe("1"));
+		for(Cours u :TestHibernate.getCour("TD1")){
+			System.out.println(u.getNom());
+			
+			System.out.println("----------");
+		}
 	}
 
 	public static void affichage (List l) {

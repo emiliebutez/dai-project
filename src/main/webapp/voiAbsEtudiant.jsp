@@ -37,7 +37,7 @@
 <div class="dropdown">
   <label for="mouth-select">Mois :</label>
   
-  <select name="mois" id="mois">
+  <select name="mois" id="mois" onclick="afficherTableau ()">
     <option value="">Selectionner un mois ...</option>
     <option value="01">Janvier</option>
     <option value="02">Fevrier</option>
