@@ -32,7 +32,7 @@ public class Groupe {
 	private String nom;
 	
 	// Relations 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name ="id_promo")
 	private Promo promo;
 	

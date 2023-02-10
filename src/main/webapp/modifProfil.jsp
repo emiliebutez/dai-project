@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="model.Utilisateur"%>
+<%@ page import="model.Statut"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,27 +19,42 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg bg-dark text-white">
-		<div class="container-fluid">
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
-				aria-controls="navbarTogglerDemo03" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<a class="navbar-brand text-white" href="#">Projet DAI</a>
-			<div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link active text-white"
-						aria-current="page" href="#">Accueil</a></li>
-					<li class="nav-item"><a class="nav-link text-white"
-						href="CtrlProfil?type_action=profil">Profil</a></li>
-					<li class="nav-item"><a class="nav-link text-white">Disabled</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+<nav class="navbar navbar-expand-lg bg-dark text-white">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand text-white" href="#">Projet DAI</a>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active text-white" aria-current="page" href="accueil">Accueil</a>
+        </li>
+        <%
+				Utilisateur utilisateur = (Utilisateur)session.getAttribute("utilisateur");
+				if (utilisateur.getStatut() == Statut.Etudiant) {
+					
+				%>
+	        <li class="nav-item">
+	          <a class="nav-link text-white" href='JustificatifController'>Déposer un justificatif</a>
+	        </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href='voiAbsEtudiant.jsp'>Voir mes absences</a>
+            </li>
+            <li class="nav-item">
+          		<a class="nav-link text-white" href="CtrlProfil?type_action=profil">Profil</a>
+			</li>
+        <% } %>
+      </ul>
+      <form action="Deconnexion" method="get">
+		            <div>
+		             
+		                <button class="btn btn-danger" type="submit">Déconnexion</button>
+		            </div>
+	</form>
+    </div>
+  </div>
+</nav>
 
 	<h1 class="text-center">Votre profil :</h1>
 	<br>

@@ -3,7 +3,6 @@ package controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,40 +18,47 @@ import services.EnregistrementAbsenceService;
 import services.SessionService;
 
 /**
- * CtrlListeAppel
+ * Servlet implementation class PdfController
  */
-public class CtrlListeAppel extends HttpServlet {
-	/**
-	 * 
-	 */
+public class PdfController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public PdfController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * doGet
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
 		
 		Long id = Long.parseLong(request.getParameter("idSession"));
 		
 		SessionService sessionService = new SessionService();
 		SessionCours sessionCours = sessionService.retrouverSession(id);
-		request.getSession(true).setAttribute("sessionCours", sessionCours);
-
-		List<Utilisateur> eleves = sessionService.retrouverEtudiants(id);
 		
-		request.getSession(true).setAttribute("eleves", eleves);
-		EnregistrementAbsenceService absenceService = new EnregistrementAbsenceService();
-		request.getSession(true).setAttribute("absences", absenceService.recupererAbsence(id));
+		System.out.println(sessionCours.getCours().getNom());
 		
-		request.getRequestDispatcher("/listeAppel.jsp").forward(request, response);
-		//}        
+		EtudiantSessionDao.miseSessionSession(id);
+		SessionCours s = EtudiantSessionDao.recupererSessionDonnee(id);
+		EtudiantSessionDao.miseSessionGroupe(s);
+		Groupe grp = EtudiantSessionDao.recupererGroupe(s.getGroupe().getId());
+		List<Utilisateur> eleves = new ArrayList<>(grp.getEtudiantsGroupe());
+		
+		eleves.sort((u1, u2) -> u1.getNom().compareTo(u2.getNom()));
+		
+		request.getRequestDispatcher("/listeAppelPdf.jsp").forward(request, response);
 	}
 
 	/**
-	 * doPost
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

@@ -58,7 +58,7 @@ public class Utilisateur {
 	@ManyToMany(mappedBy = "etudiantsGroupe")
 	private Set<Groupe> groupes = new HashSet<>();
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable (name = "retards",
 		joinColumns = @JoinColumn(name = "code_utilisateur"), 
 		inverseJoinColumns = @JoinColumn(name = "code_sessionCours"))
@@ -95,8 +95,14 @@ public class Utilisateur {
 		return mdp;
 	}
 	
-	public Statut getStatut() {
-		return this.statut;
+
+	
+	public String getNom() {
+		return nom;
+	}
+	
+	public String getPrenom() {
+		return prenom;
 	}
 	
 	public void addSessionsCours(SessionCours session) {
@@ -107,16 +113,8 @@ public class Utilisateur {
 		this.groupes.add(groupe);
 	}
 
-	public String getNom() {
-		return nom;
-	}
-
 	public void setNom(String nom) {
 		this.nom = nom;
-	}
-
-	public String getPrenom() {
-		return prenom;
 	}
 
 	public void setPrenom(String prenom) {
@@ -169,6 +167,10 @@ public class Utilisateur {
 
 	public void setSessionsCours(Set<SessionCours> sessionsCours) {
 		this.sessionsCours = sessionsCours;
+	}
+
+	public Statut getStatut() {
+		return statut;
 	}
 
 	public void setStatut(Statut statut) {

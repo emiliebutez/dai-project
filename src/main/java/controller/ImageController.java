@@ -20,8 +20,6 @@ public class ImageController extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		LOGGER.info("get image");
-		
 		resp.setContentType("image/jpeg");
 		try (ServletOutputStream output = resp.getOutputStream()) {
 			try (ByteArrayOutputStream byteOutput = new ByteArrayOutputStream()) {
