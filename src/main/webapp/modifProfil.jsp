@@ -98,7 +98,7 @@
 			<input type="file" name="file" /> 
 		</div><br>
 		<div class="text-center">
-			<input type="submit" value="Modifier" class="btn btn-danger"/>
+			<input type="submit" value="Modifier" class="btn btn-primary"/>
 		</div>
 	</form>
 

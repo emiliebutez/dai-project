@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" >
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <title>Voir abscence Etudiant</title>
 </head>
 <body>
@@ -37,16 +38,18 @@
 			</li>
         <% } %>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+            <form action="Deconnexion" method="get">
+		            <div>
+		             
+		                <button class="btn btn-danger" type="submit">Déconnexion</button>
+		            </div>
+	</form>
     </div>
   </div>
 </nav>
 <div class="container">
 <%Utilisateur u = (Utilisateur)session.getAttribute("utilisateur"); %>
-<% out.println("<h3 class=\"display-1\">" +  u.getNom() + " " + u.getPrenom()  + "</h3>");%>
+<% out.println("<p>" +  u.getNom() + " " + u.getPrenom()  + "</p>");%>
 <div class="dropdown">
   <label for="mouth-select">Mois :</label>
   
@@ -65,7 +68,7 @@
     <option value="11">Novembre</option>
     <option value="12">Decembre</option>
 </select>
-<h5 class="display-1"> Liste absence : </h5>
+<h1> Liste absence : </h1>
 <table class="table" id="table1">
 </table>
 </div>
