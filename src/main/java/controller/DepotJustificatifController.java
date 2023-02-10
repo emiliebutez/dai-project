@@ -77,7 +77,7 @@ public class DepotJustificatifController extends HttpServlet {
 				System.out.println(nomfichier);
 				if (nomfichier!= null) {
 						ecrireFichier(filepart, nomfichier, CHEMIN_FICHIERS );
-						String chemin = "localhost:8082/m2-dai/justif/" + nomfichier;
+						String chemin = "localhost:8006/m2-dai/justif/" + nomfichier;
 						// Enregistre le liens d'acces du fichier en BDD 
 						TestHibernate.ajoutJustificatif(lstIdChk,chemin);
 						//envoyer un mail a la scolarité
