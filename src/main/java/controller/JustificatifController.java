@@ -37,7 +37,7 @@ public class JustificatifController extends HttpServlet {
 		catch (Exception e)
 			{
 			url = "accueil";
-			request.setAttribute("msg_erreur", e.getMessage());
+			request.setAttribute("msg_exception", e.getMessage());
 			}
 		// Chainage.
 			request.getRequestDispatcher(url).forward(request, response);

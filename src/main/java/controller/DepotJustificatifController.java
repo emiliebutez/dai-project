@@ -83,19 +83,19 @@ public class DepotJustificatifController extends HttpServlet {
 						//envoyer un mail a la scolarité
 						Mail.envoyerMail(nomPrenom);
 						//redirection
-						url = "DepotJustificatifController";
+						url = "JustificatifController";
 						request.setAttribute("msg_info", "Le justificatif a bien été déposé.");
 				}else {
-				url = "DepotJustificatifController";
+				url = "JustificatifController";
 				request.setAttribute("msg_erreur", "veuillez déposer un fichier");}
 			}else {
-			url = "DepotJustificatifController";
+			url = "JustificatifController";
 			request.setAttribute("msg_erreur", "veuillez cocher au moins une absence");}
 			}
 		catch (Exception e) {
 			{
-				url = "DepotJustificatifController";
-				request.setAttribute("msg_erreur", e.getMessage());
+				url = "JustificatifController";
+				request.setAttribute("msg_erreur", "veuillez déposer un fichier");
 				}	
 			}
 		// Chainage.

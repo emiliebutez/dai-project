@@ -85,6 +85,13 @@
     <input type="File" id="justificatif" name="justificatif"/>
 
     <button type="submit" value="upload" class="btn btn-success">Valider</button>
+    <% 
+    	String messageInfo = (String)request.getAttribute("msg_info"); 
+    	String messageErreur = (String)request.getAttribute("msg_erreur"); 
+    %>
+    
+    <p><%= messageInfo != null ? messageInfo : ""  %></p>
+    <p><%=messageErreur != null ? messageErreur : ""  %></p>
 
     </form>
     </div>
