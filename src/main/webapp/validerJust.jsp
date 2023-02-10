@@ -51,8 +51,8 @@
         	out.println("<tr><td>"+labs.getPrenom()+"</td>");
         	out.println("<td>"+labs.getNom()+"</td>");
         	out.println("<td>" + labs.getNomCours() +"</td>");
-        	out.println("<td>" + labs.getDtdebut() +"</td>");
-        	out.println("<td>" + labs.getDtfin() +"</td>");
+        	out.println("<td>" + labs.getDtdebut().getDayOfMonth() + "/" + labs.getDtdebut().getMonthValue() + "/" + labs.getDtdebut().getYear() + " " + labs.getDtdebut().getHour() + ":" + labs.getDtdebut().getMinute() + "</td>");
+        	out.println("<td>" + labs.getDtfin().getDayOfMonth() + "/" + labs.getDtfin().getMonthValue() + "/" + labs.getDtfin().getYear() + " " + labs.getDtfin().getHour() + ":" + labs.getDtfin().getMinute() +"</td>");
         	out.println("<td>" + labs.getNomGroupe()+"</td>");
         	out.println("<td><a href = http://"+labs.getJustificatif()+">Voir justificatif</a></td>");
         	out.println("<td><input type=\"checkbox\" value= "+ labs.getAbsid() +" name=\"cb_abs\"></input></td></tr>");

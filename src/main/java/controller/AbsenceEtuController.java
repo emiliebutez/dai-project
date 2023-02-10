@@ -75,8 +75,8 @@ public class AbsenceEtuController extends HttpServlet {
 			
 			for (LigneAbsence abs : lstabs) {
 				out.println("<Absence><cours><![CDATA[" + abs.getNomCours() + "]]></cours>");
-				out.println("<debut><![CDATA[" + abs.getDtdebut() + "]]></debut>");
-				out.println("<fin><![CDATA[" + abs.getDtfin() + "]]></fin>");
+				out.println("<debut><![CDATA[" + abs.getDtdebut().getDayOfMonth() + "/" + abs.getDtdebut().getMonthValue() + "/" + abs.getDtdebut().getYear() + " " + abs.getDtdebut().getHour() + ":" + abs.getDtdebut().getMinute()+ "]]></debut>");
+				out.println("<fin><![CDATA[" + abs.getDtfin().getDayOfMonth() + "/" + abs.getDtfin().getMonthValue() + "/" + abs.getDtfin().getYear() + " " + abs.getDtfin().getHour() + ":" + abs.getDtfin().getMinute()+ "]]></fin>");
 				out.println("<groupe><![CDATA[" + abs.getNomGroupe() + "]]></groupe>");
 				out.println("<validation><![CDATA[" + abs.getValidation() + "]]></validation></Absence>");
 			}

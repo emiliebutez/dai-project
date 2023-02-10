@@ -63,8 +63,8 @@
         for (LigneAbsence labs : (List<LigneAbsence>)request.getAttribute("listeAbs") ) {
         	
         	out.println("<tr><td>" + labs.getNomCours() +"</td>");
-        	out.println("<td>" + labs.getDtdebut() +"</td>");
-        	out.println("<td>" + labs.getDtfin() +"</td>");
+        	out.println("<td>" + labs.getDtdebut().getDayOfMonth() + "/" + labs.getDtdebut().getMonthValue() + "/" + labs.getDtdebut().getYear() + " " + labs.getDtdebut().getHour() + ":" + labs.getDtdebut().getMinute() +"</td>");
+        	out.println("<td>" + labs.getDtfin().getDayOfMonth() + "/" + labs.getDtfin().getMonthValue() + "/" + labs.getDtfin().getYear() + " " + labs.getDtfin().getHour() + ":" + labs.getDtdebut().getMinute() +"</td>");
         	out.println("<td>" + labs.getNomGroupe()+"</td>");
 
         	if (labs.getJustificatif() != null) {

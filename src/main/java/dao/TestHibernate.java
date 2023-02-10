@@ -206,7 +206,11 @@ public class TestHibernate
 	public static void main (String[] args) throws ParseException
 	{
 		
-		System.out.println(TestHibernate.afficherAbsEtu("02", "emiliebutez.eb@gmail.com"));
+		OffsetDateTime dt1=OffsetDateTime.parse("2023-02-20T12:00+01:00");
+		
+		System.out.println(dt1.getDayOfMonth() + "/" + dt1.getMonthValue() + "/" + dt1.getYear() + " " + dt1.getHour() + ":" + dt1.getMinute());
+		
+		
 	}
 
 	public static void affichage (List l) {
