@@ -143,34 +143,39 @@ public class TestHibernate
 					System.out.println("XXX");
 
 				}
+				t.commit();
 				ArrayList<String> lstmail = new ArrayList<>();
-				lstmail = TestHibernate.rejectgetmail(lstIdChk);
+			lstmail = TestHibernate.rejectgetmail(lstIdChk);
+			System.out.println("ABC");
 				for (String eml : lstmail) {
 					Mail.envoyerMail3(eml);
 				}}
 
 			else if (action.contains("KO")) {
 				System.out.println("AHAHA");
-
+				Transaction t2 = session.beginTransaction();
 				Query query = session.createQuery("From model.Absence a "
 						+"where a.id IN :ids ");
 				query.setParameterList("ids", lstIdChk);
 				for (Object abs : query.list()) {
 					((Absence)abs).setJustificatif(null);
-					System.out.println("XXX");
-           
-
+					System.out.println("DEF");
+					
 				}
+				
 				ArrayList<String> lstmail = new ArrayList<>();
 				lstmail = TestHibernate.rejectgetmail(lstIdChk);
+				System.out.println("GHI");
 				for (String eml : lstmail) {
 					Mail.envoyerMail2(eml);
 				}
-
+				t2.commit();
 			}
-			t.commit();}
+			
+			}
+		}
 		
-	}
+	
 	/**
 	 * Recupere les lignes d'absence de l'etudiant pour un mois donné
 	 * @param mois
