@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="model.Utilisateur"%>
+<%@ page import="model.Statut"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,9 +21,21 @@
         <li class="nav-item">
           <a class="nav-link active text-white" aria-current="page" href="accueil">Accueil</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href='JustificatifController'>Déposer un justificatif</a>
-        </li>
+        <%
+				Utilisateur utilisateur = (Utilisateur)session.getAttribute("utilisateur");
+				if (utilisateur.getStatut() == Statut.Etudiant) {
+					
+				%>
+	        <li class="nav-item">
+	          <a class="nav-link text-white" href='JustificatifController'>Déposer un justificatif</a>
+	        </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href='voiAbsEtudiant.jsp'>Voir mes absences</a>
+            </li>
+            <li class="nav-item">
+          		<a class="nav-link text-white" href="CtrlProfil?type_action=profil">Profil</a>
+			</li>
+        <% } %>
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

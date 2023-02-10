@@ -25,12 +25,12 @@
 	        <li class="nav-item">
 	          <a class="nav-link text-white" href='JustificatifController'>Déposer un justificatif</a>
 	        </li>
-			<li class="nav-item">
-          		<a class="nav-link text-white" href="CtrlProfil?type_action=profil">Profil</a>
-			</li>
             <li class="nav-item">
                 <a class="nav-link text-white" href='voiAbsEtudiant.jsp'>Voir mes absences</a>
             </li>
+            <li class="nav-item">
+          		<a class="nav-link text-white" href="CtrlProfil?type_action=profil">Profil</a>
+			</li>
         </#if>
       </ul>
       <form action="Deconnexion" method="get">
