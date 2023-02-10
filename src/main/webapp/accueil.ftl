@@ -91,7 +91,7 @@
 							<p class="margin10">
 							<span>Enseignant: ${rendu.sessionCours.enseignant.nom} ${rendu.sessionCours.enseignant.prenom}</span>
 							<br>
-							<span class="margin">Groupe: ${rendu.sessionCours.groupe.nom}</span>
+							<span class="margin">Groupe: ${rendu.sessionCours.groupe.nom} - ${rendu.sessionCours.groupe.promo.nom}</span>
 							</p>
 					</a>
 					</li>
